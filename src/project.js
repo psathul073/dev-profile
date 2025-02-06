@@ -36,6 +36,16 @@ const projects = [{
     demoLink: "https://psathul073.github.io/90s-simon-game/",
     sourceCode: "https://github.com/psathul073/90s-simon-game" 
 },
+{
+    id: 5,
+    name: "Dev Profile",
+    iconName: "project",
+    imageURL: "/dv.png",
+    details: "A simple and elegant developer profile page, similar to Linktree, that showcases your projects, source code demos, and social media links. This static page is fully responsive and visually appealing.",
+    demoLink: "https://d9-coder.netlify.app/",
+    sourceCode: "https://github.com/psathul073/dev-profile" 
+},
+
 
 ]
 
