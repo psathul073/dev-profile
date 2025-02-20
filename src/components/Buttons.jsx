@@ -9,7 +9,6 @@ const Buttons = (props) => {
        <button className={props.buttonClass}> <Icons name={props.iconName} /></button>
        <p className={props.textClass}>{props.name}</p>
     </a>
-    experience
     </div>
   )
 }
