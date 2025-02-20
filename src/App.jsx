@@ -9,7 +9,7 @@ function App() {
   const [isVisible, setVisible] = useState(false);
   // Set project details
   const [project, setProject] = useState({});
-
+  
   // Get project data
   function viewProject (item) {
     // console.log(item);
@@ -18,7 +18,7 @@ function App() {
   }
   return (
     <div className="h-screen w-screen p-0 m-0 md:flex justify-center items-center bg-[url(https://www.transparenttextures.com/patterns/cubes.png)] box-border touch-none overflow-y-scroll">
-     {isVisible ? <ProjectView projectData={project} exitButton={setVisible} /> : <Home  viewProject = {viewProject} />}
+     {isVisible ? <ProjectView projectData={project} exitButton={setVisible} cardId ={project.cardId} /> : <Home  viewProject = {viewProject} />}
     </div>
   );
 }
