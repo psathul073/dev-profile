@@ -216,7 +216,7 @@ const ProjectView = (props) => {
 // Load skelton image...
 async function delayForImage(images) {
   return new Promise((resolve) => {
-    setTimeout(resolve, 10000);
+    setTimeout(resolve, 2000);
   }).then(() => images);
 }
 
