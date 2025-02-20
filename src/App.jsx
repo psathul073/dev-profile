@@ -18,7 +18,7 @@ function App() {
     setVisible(!isVisible);
   }
   return (
-    <div className="h-screen w-screen p-0 m-0 md:flex justify-center items-center bg-[url(https://www.transparenttextures.com/patterns/cubes.png)] box-border touch-none overflow-y-scroll">
+    <div className=" h-dvh p-0 m-0 md:flex justify-center items-center bg-[url(https://www.transparenttextures.com/patterns/cubes.png)] box-border touch-none">
      {isVisible ? <ProjectView projectData={project} exitButton={setVisible} cardId ={project.cardId} /> : <Home  viewProject = {viewProject} />}
      <Footer />
     </div>
