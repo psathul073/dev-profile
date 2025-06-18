@@ -92,14 +92,14 @@ const ProjectAdd = ({ setProjectAddModel }) => {
         <form className=' relative pt-2 md:py-6 h-full w-full flex flex-col md:flex-row justify-center item-center gap-5' onSubmit={handleSubmit(addProject)}>
 
           <div className='relative p-2 flex flex-col justify-center  items-center group transform duration-200'>
-            <img src={isPicture ? isPicture : '/addImg.webp'} alt="Picture" className=' md:w-[240px] md:h-[240px] w-40 h-40 rounded-md p-1 inset-shadow-[0_0_5px_2px_rgb(251,191,36,0.2)] object-cover bg-center outline outline-dashed outline-amber-400' />
+            <img src={isPicture ? isPicture : '/addImg.webp'} alt="Picture" className=' md:w-[240px] md:h-[240px] w-40 h-40 rounded-md p-1 inset-shadow-[0_0_5px_2px_rgb(251,191,36,0.2)] object-scale-down bg-center outline outline-dashed outline-amber-400' />
             <label htmlFor="picture" className='invisible absolute p-1 bg-amber-400 rounded-md flex justify-center items-center text-2xl text-shadow-white cursor-pointer backdrop-blur-xs group-hover:visible group-active:visible'> <Svg name={'camera'} className={"text-white"} /> </label>
             <input type="file" name="picture" id="picture" accept="image/png, image/jpeg" className=' hidden' onChange={handleChange}/>
           </div>
 
           <div className='relative md:w-[80%] flex flex-col gap-3 text-amber-950/90'>
             <input className='px-2 py-1 border-b-2  border-dashed border-amber-400 focus:outline-0' type="text" placeholder='Project Title' { ...register('title', { required: true})} />
-            <textarea className='px-2 py-1 border-b-2  border-dashed border-amber-400 focus:outline-0' type="text" name="" id="" placeholder='Small description'{...register('description', { required: true })} ></textarea>
+            <textarea className='px-2 py-1 border-b-2  border-dashed border-amber-400 focus:outline-0' type="text" name="" id="" placeholder='Small description' maxLength='260' {...register('description', { required: true })} ></textarea>
             <input className='px-2 py-1 border-b-2  border-dashed border-amber-400 focus:outline-0' type="url" name="" id="" placeholder='Live link' {...register('liveURL')} />
             <input className='px-2 py-1 border-b-2  border-dashed border-amber-400 focus:outline-0' type="url" name="" id="" placeholder='Demo link' {...register('demoURL', { required: true })} />
             <button className='flex flex-row justify-center items-center bg-amber-400 text-amber-900 self-end mr-10 mt-5 w-[83px] h-[42px] py-2 px-4 rounded-[6%_94%_7%_93%_/_93%_5%_95%_7%] hover:bg-amber-200 active:bg-amber-200 cursor-pointer' type="submit">{ isSubmitting? <Svg name={'loading'}/> :' Submit' }</button>

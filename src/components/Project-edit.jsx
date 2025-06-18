@@ -90,14 +90,14 @@ const ProjectEdit = ({ projectID, setEditModel }) => {
                 <form onSubmit={handleSubmit(submit)} className='py-6 flex justify-center flex-wrap sm:flex-nowrap gap-5' >
 
                     <div className='relative p-2 flex flex-col justify-center items-center group transform duration-200'>
-                        <img src={picture ? picture : '/addImg.webp'} alt="Picture" className='w-44 h-44 md:w-80 md:h-60  rounded-md object-cover bg-center outline-1 outline-dashed outline-amber-500' />
+                        <img src={picture ? picture : '/addImg.webp'} alt="Picture" className='w-44 h-44 md:w-80 md:h-60  rounded-md object-scale-down bg-center outline-1 outline-dashed outline-amber-500' />
                         <label htmlFor="picture" className='invisible absolute p-1 rounded-md flex justify-center items-center text-2xl text-shadow-white cursor-pointer bg-amber-400 backdrop-blur-xs group-hover:visible group-active:visible'> <Svg name={'camera'} className={"text-white"} /> </label>
                         <input type="file" name="picture" id="picture" accept="image/png, image/jpeg" className=' hidden' onChange={handleFileChange} />
                     </div>
 
                     <div className='relative w-full flex flex-col gap-3 text-amber-900/60'>
                         <input className='px-2 py-1 border-b-2  border-dashed border-amber-400 focus:outline-0' type="text" placeholder='Project Title' {...register('title', { required: true })} />
-                        <textarea className='px-2 py-1 border-b-2  border-dashed border-amber-400 focus:outline-0' type="text" name="" id="" placeholder='Small description'{...register('description', { required: true })} ></textarea>
+                        <textarea className='px-2 py-1 border-b-2  border-dashed border-amber-400 focus:outline-0' type="text" name="" id="" placeholder='Small description' maxLength={'260'} {...register('description', { required: true })} ></textarea>
                         <input className='px-2 py-1 border-b-2  border-dashed border-amber-400 focus:outline-0' type="url" name="" id="" placeholder='Live link' {...register('liveURL')} />
                         <input className='px-2 py-1 border-b-2  border-dashed border-amber-400 focus:outline-0' type="url" name="" id="" placeholder='Demo link' {...register('demoURL', { required: true })} />
                         <input type="text" name="projectID" id="projectID" hidden {...register('projectID')} />

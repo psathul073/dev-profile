@@ -113,7 +113,7 @@ const ProfileEdit = ({ setProfileModel }) => {
                 <form onSubmit={handleSubmit(onSubmit)}>
 
                     <div className='relative p-2 flex flex-col justify-center items-center group transform duration-200'>
-                        <img src={avatar ? avatar : user?.avatar} alt="avatar" className=' w-40 h-40 rounded-full object-cover bg-center outline-3 outline-red-400' loading='lazy' />
+                        <img src={avatar ? avatar : user?.avatar} alt="avatar" className=' w-40 h-40 rounded-full object-scale-down bg-center outline-3 outline-red-400' loading='lazy' />
                         <label htmlFor="avatar" className='invisible absolute h-40 w-40  rounded-full flex justify-center items-center text-2xl text-shadow-white cursor-pointer bg-transparent backdrop-blur-xs group-hover:visible group-active:visible'> <Svg name={'camera'} className={"text-white"} /> </label>
                         <input type="file" name="avatar" id="avatar" accept="image/png, image/jpeg" className=' hidden' onChange={handleChange} />
                     </div>
