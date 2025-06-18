@@ -55,7 +55,7 @@ function PublicHome({ setIsShowHome, username, setProjectID }) {
 
     return (
         <>
-            <div className=" relative w-full sm:w-4/12 h-ful p-2  bg-white/10 backdrop-blur-xs border border-white/20 shadow-[0_8px_32px_0_rgb(0,0,0,0.18)] rounded-xl ">
+            <div className=" relative w-full sm:w-4/12 h-fit p-2  bg-white/10 backdrop-blur-xs border border-white/20 shadow-[0_8px_32px_0_rgb(0,0,0,0.18)] rounded-xl overflow-hidden scrollbar">
 
                 <button onClick={() => setShareLinkModel(true)} className="share-btn absolute top-5 right-5 z-20 text-2xl text-indigo-950/50 hover:text-indigo-400/60 active:text-indigo-400/60  cursor-pointer" ><Svg name={'share'} /></button>
 
@@ -77,12 +77,12 @@ function PublicHome({ setIsShowHome, username, setProjectID }) {
 
                 </div>
 
-                <div className="flex flex-col gap-5 my-4 text-center border border-indigo-50/60 rounded-md inset-shadow-xs/50 inset-shadow-indigo-400 p-2 overflow-y-scroll scrollbar">
+                <div className=" relative flex flex-col gap-5 my-4 text-center border border-indigo-50/60 rounded-md inset-shadow-xs/50 inset-shadow-indigo-400 p-2 overflow-x-hidden overflow-y-scroll scrollbar">
                     {
                         projects && projects.map((project, index) => {
                             const isLast = index === projects?.length - 1;
                             return (
-                                <button key={project.id} ref={isLast ? lastProjectRef : null} onClick={() => { setIsShowHome(false); setProjectID(project.id) }} className=" text-indigo-950/50 flex flex-row items-center gap-1.5 p-2 rounded-md bg-transparent backdrop-blur-xs border-2 border-indigo-50 shadow-xs/50 shadow-indigo-600 hover:bg-indigo-400/10 active:bg-indigo-400/10 duration-200 cursor-pointer" ><Svg name={'project'} /> {project?.title} </button>
+                                <button key={project.id} ref={isLast ? lastProjectRef : null} onClick={() => { setIsShowHome(false); setProjectID(project.id) }} className=" relative text-indigo-950/50 flex flex-row items-center gap-1.5 p-2 rounded-md bg-transparent backdrop-blur-xs border-2 border-indigo-50 shadow-xs/50 shadow-indigo-600 hover:bg-indigo-400/10 active:bg-indigo-400/10 duration-200 cursor-pointer" ><Svg name={'project'} /> {project?.title} </button>
                             );
                         })
                     }

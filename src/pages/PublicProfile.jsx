@@ -10,7 +10,7 @@ export default function PublicProfile() {
   const [projectID, setProjectID] = useState(null);
 
   return (
-    <div className="relative h-screen w-screen flex justify-center p-3  bg-white bg-[url(/bg.webp)] bg-cover backdrop-blur-md font-poppins overflow-x-hidden">
+    <div className="relative h-screen w-screen flex justify-center p-3  bg-white bg-[url(/bg.webp)] bg-cover backdrop-blur-md font-poppins overflow-x-hidden scrollbar">
 
       {/* <h1 className="uppercase fixed top-10 text-5xl text-center z-0 font-nanum bg-amber-600">Athul krishna ffggg</h1> */}
 

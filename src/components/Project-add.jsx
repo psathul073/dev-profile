@@ -98,7 +98,7 @@ const ProjectAdd = ({ setProjectAddModel }) => {
           </div>
 
           <div className='relative md:w-[80%] flex flex-col gap-3 text-amber-950/90'>
-            <input className='px-2 py-1 border-b-2  border-dashed border-amber-400 focus:outline-0' type="text" placeholder='Project Title' { ...register('title', { required: true})} />
+            <input className='px-2 py-1 border-b-2  border-dashed border-amber-400 focus:outline-0' type="text" placeholder='Project Title' maxLength={'22'} { ...register('title', { required: true})} />
             <textarea className='px-2 py-1 border-b-2  border-dashed border-amber-400 focus:outline-0' type="text" name="" id="" placeholder='Small description' maxLength='260' {...register('description', { required: true })} ></textarea>
             <input className='px-2 py-1 border-b-2  border-dashed border-amber-400 focus:outline-0' type="url" name="" id="" placeholder='Live link' {...register('liveURL')} />
             <input className='px-2 py-1 border-b-2  border-dashed border-amber-400 focus:outline-0' type="url" name="" id="" placeholder='Demo link' {...register('demoURL', { required: true })} />
