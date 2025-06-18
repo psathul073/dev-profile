@@ -108,7 +108,7 @@ const PublicProject = ({ projectID, username, setIsShowHome }) => {
       <div className=" relative h-fit w-4xl p-2 bg-white/10 backdrop-blur-xs border border-white/20 shadow-[0_8px_32px_0_rgb(0,0,0,0.18)] rounded-xl ">
 
         <div className=' relative flex flex-col md:flex-row gap-4'>
-          <div onClick={() => setIsShowHome(true)} className=' top-5 right-5 sm:hidden p-0.5 text-lg rounded-full border border-indigo-400/5 text-red-400/50 bg-indigo-200 animate-pulse cursor-pointer'><Svg name={'X'} /> </div>
+          <div onClick={() => setIsShowHome(true)} className='absolute top-5 right-5 md:hidden p-0.5 text-lg rounded-full border border-indigo-400/5 text-red-400/50 bg-indigo-200 animate-pulse cursor-pointer'><Svg name={'X'} /> </div>
           <img className=' w-full md:w-80 h-80 object-scale-down rounded-md p-1 inset-shadow-[0_0_5px_2px_rgb(129,140,248,0.2)] ' src={project?.picture ? project?.picture : "/addImg.webp"} alt="project img" loading='lazy' />
 
           <div className='w-full flex flex-col gap-2 p-2 rounded-md inset-shadow-[0_0_5px_2px_rgb(129,140,248,0.2)]'>
