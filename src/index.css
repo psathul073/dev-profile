@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Poppins&display=swap');
+@import "tailwindcss";
+
+@theme{
+    --font-poppins: "Poppins", sans-serif;
+    --font-nanum: "Nanum Pen Script", cursive;
+}
+
+.profile-input {
+    @apply w-full p-1.5 border-red-400 focus:outline-0;
+}
+
+@layer utilities{
+    .scrollbar::-webkit-scrollbar {
+        width: 0px;
+        height: 0px;
+      }
+
+}

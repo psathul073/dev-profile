@@ -1,0 +1,21 @@
+// PublicProfile.jsx
+import { useState } from "react";
+import PublicHome from "../components/Public-home";
+import PublicProject from "../components/Public-project";
+import { useParams } from "react-router";
+
+export default function PublicProfile() {
+  const { username } = useParams();
+  const [isShowHome, setIsShowHome] = useState(true);
+  const [projectID, setProjectID] = useState(null);
+
+  return (
+    <div className="relative h-screen w-screen flex justify-center p-3  bg-white bg-[url(/bg.webp)] bg-cover backdrop-blur-md font-poppins overflow-x-hidden">
+
+      {/* <h1 className="uppercase fixed top-10 text-5xl text-center z-0 font-nanum bg-amber-600">Athul krishna ffggg</h1> */}
+
+      {isShowHome ? <PublicHome setIsShowHome={setIsShowHome} username={username} setProjectID={setProjectID} /> : <PublicProject projectID={projectID} username={username} setIsShowHome={setIsShowHome} /> }
+
+    </div>
+  );
+}
