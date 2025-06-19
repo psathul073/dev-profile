@@ -55,7 +55,7 @@ function PublicHome({ setIsShowHome, username, setProjectID }) {
 
     return (
         <>
-            <div className=" relative w-full sm:w-4/12 h-fit p-2  bg-white/10 backdrop-blur-xs border border-white/20 shadow-[0_8px_32px_0_rgb(0,0,0,0.18)] rounded-xl overflow-hidden scrollbar">
+            <div className=" relative w-full sm:w-md h-fit p-2  bg-white/10 backdrop-blur-xs border border-white/20 shadow-[0_8px_32px_0_rgb(0,0,0,0.18)] rounded-xl overflow-y-auto scroll-smooth scrollbar ">
 
                 <button onClick={() => setShareLinkModel(true)} className="share-btn absolute top-5 right-5 z-20 text-2xl text-indigo-950/50 hover:text-indigo-400/60 active:text-indigo-400/60  cursor-pointer" ><Svg name={'share'} /></button>
 
@@ -77,7 +77,7 @@ function PublicHome({ setIsShowHome, username, setProjectID }) {
 
                 </div>
 
-                <div className=" relative flex flex-col gap-5 my-4 text-center border border-indigo-50/60 rounded-md inset-shadow-xs/50 inset-shadow-indigo-400 p-2 overflow-x-hidden overflow-y-scroll scrollbar">
+                <div className=" h-full flex flex-col gap-5 my-4 text-center border border-indigo-50/60 rounded-md inset-shadow-xs/50 inset-shadow-indigo-400 p-2 overflow-y-auto scroll-smooth scrollbar ">
                     {
                         projects && projects.map((project, index) => {
                             const isLast = index === projects?.length - 1;
@@ -91,7 +91,6 @@ function PublicHome({ setIsShowHome, username, setProjectID }) {
                     {!hasMore && <p className="text-indigo-950/45 pb-5 animate-pulse ">No more projects.</p>}
 
                 </div>
-
 
             </div>
 

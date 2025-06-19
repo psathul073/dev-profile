@@ -33,8 +33,9 @@ const ShareLink = ({ shareUrl, setShareLinkModel, userData }) => {
 
 
     return (
-        <div className=' absolute top-0 px-2 w-full h-full backdrop-blur-sm bg-[rgba(255, 255, 255, 0.05)] flex items-center justify-center overflow-y-scroll scrollbar'>
-            <div className='profile-share relative w-md p-5  text-indigo-950/60 flex flex-col bg-white/10 backdrop-blur-xs border border-white/20 shadow-[0_8px_32px_0_rgb(0,0,0,0.18)] rounded-xl'>
+        <div className=' absolute px-2 w-full h-full backdrop-blur-sm bg-[rgba(255, 255, 255, 0.05)] flex  justify-center overflow-hidden scrollbar'>
+       
+            <div className='profile-share relative h-fit top-1/6 w-md p-5  text-indigo-950/60 flex flex-col bg-white/10 backdrop-blur-xs border border-white/20 shadow-[0_8px_32px_0_rgb(0,0,0,0.18)] rounded-xl'>
 
                 <div className='w-full flex flex-row items-center justify-between font-semibold '>
                     <h2>Share Dev profile</h2>

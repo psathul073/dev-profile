@@ -15,6 +15,8 @@ function App() {
           <Route  path="/" element={<PrivateRoute> <Home /> </PrivateRoute> } />
           <Route path="/project" element={<PrivateRoute>  <Projects /> </PrivateRoute>} />
           <Route path="/u/:username" element={<PublicProfile />} />
+          {/* 404 */}
+          <Route path="*" element={<PrivateRoute> <Home /> </PrivateRoute>} />
         </Routes>
       </AuthProvider>
     </Router>
