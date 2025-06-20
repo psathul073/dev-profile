@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import Svg from './Svg';
 import { FetchProfileForPublic, FetchProjectsForPublic } from '../api/FetchProjects';
 import ShareLink from './Share-link';
+import { getWithExpiry, setWithExpiry } from '../utils/localStorage.js';
 
 function PublicHome({ setIsShowHome, username, setProjectID }) {
 
@@ -17,10 +18,15 @@ function PublicHome({ setIsShowHome, username, setProjectID }) {
         if (loading || !hasMore) return;
         setLoading(true);
         const { projects: newProjects, nextCursor: newCursor } = await FetchProjectsForPublic(username, nextCursor);
-        setProjects((prev) => [...prev, ...newProjects]);
+        const updatedProjects = [...projects, ...newProjects];
+      
+        setProjects(updatedProjects);
         setNextCursor(newCursor);
         setHasMore(Boolean(newCursor));
         setLoading(false);
+        // Cache projects in locally.
+        setWithExpiry(`projects-${username}`, updatedProjects);
+        setWithExpiry(`cursor-${username}`, newCursor);
     };
 
     // Last project reference.
@@ -43,19 +49,39 @@ function PublicHome({ setIsShowHome, username, setProjectID }) {
 
     const FetchUser = async () => {
         const response = await FetchProfileForPublic(username);
-        if (response) setUserData(response);
+        if (response){ 
+            setUserData(response);
+            setWithExpiry(`user-${username}`, response);
+        }
         // console.log(userData, '==profile');
 
     };
 
     useEffect(() => {
-        FetchAllProjects();
-        FetchUser();
-    }, []);
+        
+        const storedProjects = getWithExpiry(`projects-${username}`);
+        const storedCursor = getWithExpiry(`cursor-${username}`);
+        const storedUser = getWithExpiry(`user-${username}`);
+
+        if (storedProjects) {
+            setProjects(storedProjects);
+            setNextCursor(storedCursor);
+            setHasMore(Boolean(storedCursor));
+        } else {
+            FetchAllProjects();
+        }
+
+        if (storedUser) {
+            setUserData(storedUser);
+        } else {
+            FetchUser();
+        }
+
+    }, [username]);
 
     return (
         <>
-            <div className=" relative w-full sm:w-md h-fit p-2  bg-white/10 backdrop-blur-xs border border-white/20 shadow-[0_8px_32px_0_rgb(0,0,0,0.18)] rounded-xl overflow-y-auto scroll-smooth scrollbar ">
+            <div className=" relative w-full sm:w-md h-full p-2  bg-white/10 backdrop-blur-xs border border-white/20 shadow-[0_8px_32px_0_rgb(0,0,0,0.18)] rounded-xl overflow-y-auto scroll-smooth scrollbar transition duration-200">
 
                 <button onClick={() => setShareLinkModel(true)} className="share-btn absolute top-5 right-5 z-20 text-2xl text-indigo-950/50 hover:text-indigo-400/60 active:text-indigo-400/60  cursor-pointer" ><Svg name={'share'} /></button>
 
@@ -77,7 +103,7 @@ function PublicHome({ setIsShowHome, username, setProjectID }) {
 
                 </div>
 
-                <div className=" h-full flex flex-col gap-5 my-4 text-center border border-indigo-50/60 rounded-md inset-shadow-xs/50 inset-shadow-indigo-400 p-2 overflow-y-auto scroll-smooth scrollbar ">
+                <div className={` flex flex-col gap-5 my-4 text-center border border-indigo-50/60 rounded-md inset-shadow-xs/50 inset-shadow-indigo-400 p-2 overflow-y-auto scroll-smooth scrollbar `}>
                     {
                         projects && projects.map((project, index) => {
                             const isLast = index === projects?.length - 1;

@@ -92,9 +92,14 @@ const PublicProject = ({ projectID, username, setIsShowHome }) => {
 
   // Fetch a single project.
   const FetchProject = async () => {
-    const result = await FetchProjectForPublic(username, projectID);
-    // console.log(result, '==project');
-    setProject({ ...result });
+    try {
+      const result = await FetchProjectForPublic(username, projectID);
+      // console.log(result, '==project');
+      setProject({ ...result });
+    } catch (error) {
+      console.error('Project fetching error,', error);
+    }
+
   };
 
   useEffect(() => {
@@ -103,7 +108,7 @@ const PublicProject = ({ projectID, username, setIsShowHome }) => {
 
   return (
 
-    <div className='overlay h-full w-full flex items-center justify-center'>
+    <div className='overlay h-full w-full flex items-center justify-center scroll-smooth'>
 
       <div className=" relative h-fit w-4xl p-2 bg-white/10 backdrop-blur-xs border border-white/20 shadow-[0_8px_32px_0_rgb(0,0,0,0.18)] rounded-xl ">
 
