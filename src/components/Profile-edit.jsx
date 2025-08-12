@@ -4,8 +4,9 @@ import { FetchUser } from '../api/Auth'
 import { useNavigate } from 'react-router';
 import { profileUpdates } from '../api/Profile';
 import Svg from './Svg';
+import { X } from 'lucide-react';
 
-const ProfileEdit = ({ setProfileModel }) => {
+const ProfileEdit = ({ setProfileEdit }) => {
 
     const [user, setUser] = useState();
     const [avatar, setAvatar] = useState();
@@ -63,6 +64,7 @@ const ProfileEdit = ({ setProfileModel }) => {
         setAvatar(objURL);
     };
 
+    // Revoke url.
     useEffect(() => {
         return () => {
             if (avatar) {
@@ -95,66 +97,67 @@ const ProfileEdit = ({ setProfileModel }) => {
     useEffect(() => {
         const handleClickOutside = (e) => {
             if (profileRef.current && !profileRef.current.contains(e.target)) {
-                setProfileModel(false);
+                setProfileEdit(false);
             };
         }
         document.addEventListener('mousedown', handleClickOutside);
         return () => document.removeEventListener('mousedown', handleClickOutside);
 
-    }, [setProfileModel]);
+    }, []);
 
     return (
-        <div className=' absolute top-0 h-full w-full backdrop-blur-sm bg-[rgba(255, 255, 255, 0.05)] flex items-center justify-center'>
+        <div className='z-20 fixed top-0 h-full w-full bg-gradient-to-t from-indigo-950 to-indigo-200 dark:from-slate-950 dark:to-indigo-950 flex md:items-center justify-center p-2.5 overflow-y-auto'>
 
-            <div ref={profileRef} className='profile-edit  relative w-96 py-10 px-5  bg-white/10 backdrop-blur-xs border border-white/20 shadow-[0_8px_32px_0_rgb(0,0,0,0.18)] rounded-xl '>
-                <h3 className='absolute left-4 top-4  bg-red-200 px-1.5 py-0.5 text-lg text-red-400 font-semibold font-nanum rounded-md'>Profile Edit</h3>
-                <button onClick={() => setProfileModel(false)} className=' absolute top-4 right-4 text-2xl text-red-500 rounded-full p-1 bg-red-200 cursor-pointer'> <Svg name={'X'} /></button>
+            <div ref={profileRef} className='profile-edit  relative h-fit w-full max-w-[460px] p-3 bg-indigo-50/5 text-indigo-950 dark:text-indigo-50/50 backdrop-blur-xs border border-indigo-200 outline-4 outline-indigo-200/15 shadow-2xl rounded-2xl font-poppins animate-popIn '>
 
-                <form onSubmit={handleSubmit(onSubmit)}>
+                <h3 className=' flex flex-row justify-between items-center text-lg font-medium '>Profile Edit
+                    <button onClick={() => setProfileEdit(false)} className='rounded-full p-1.5 bg-indigo-200/10 hover:bg-indigo-200/20 cursor-pointer'> <X strokeWidth={1.5} /></button>
+                </h3>
+
+                <form onSubmit={handleSubmit(onSubmit)} className='content-center text-center'>
 
                     <div className='relative p-2 flex flex-col justify-center items-center group transform duration-200'>
-                        <img src={avatar ? avatar : user?.avatar} alt="avatar" className=' w-40 h-40 rounded-full object-scale-down bg-center outline-3 outline-red-400' loading='lazy' />
-                        <label htmlFor="avatar" className='invisible absolute h-40 w-40  rounded-full flex justify-center items-center text-2xl text-shadow-white cursor-pointer bg-transparent backdrop-blur-xs group-hover:visible group-active:visible'> <Svg name={'camera'} className={"text-white"} /> </label>
+                        <img src={avatar ? avatar : user?.avatar} alt="avatar" className=' w-40 h-40 rounded-full object-scale-down bg-center border border-indigo-200 p-1' loading='lazy' />
+                        <label htmlFor="avatar" className='invisible absolute h-36 w-36  rounded-full flex justify-center items-center text-2xl text-shadow-white cursor-pointer bg-transparent backdrop-blur-xs group-hover:visible group-active:visible'> <Svg name={'camera'} className={"text-white"} /> </label>
                         <input type="file" name="avatar" id="avatar" accept="image/png, image/jpeg" className=' hidden' onChange={handleChange} />
                     </div>
 
-                    <div className=' flex flex-col gap-2 my-5  text-red-400 '>
-                        <div className='flex items-center gap-1.5 w-full  border-b-2 border-dashed'>
+                    {msg && <p className='text-center font-light text-red-400'>{msg}</p>}
+
+                    <div className=' flex flex-col gap-4 my-3 '>
+
+                        <div className='w-full flex items-center gap-1.5 px-2.5 py-1.5 rounded-md border border-indigo-200 outline-4 outline-indigo-200/15'>
                             <Svg name={'verifyUser'}></Svg>
-                            <input className={`profile-input ${errors.name ? 'text-red-500' : 'text-gray-700'}`} type="text" name="name" id="name" placeholder='Username'{...register('name')} />
+                            <input className={`profile-input ${errors.name && 'text-red-500'}`} type="text" name="name" id="name" placeholder='Username'{...register('name')} />
                         </div>
 
-                        <div className='flex items-center gap-1.5 w-full  border-b-2 border-dashed'>
+                        <div className='w-full flex items-center gap-1.5 px-2.5 py-1.5 rounded-md border border-indigo-200 outline-4 outline-indigo-200/15'>
                             <Svg name={'gh'}></Svg>
-                            <input className={`profile-input ${errors.gh ? 'text-red-500' : 'text-gray-700'}`} type="url" name="gh" id="gh" placeholder='Github URL' {...register('gh', { required: true, })} />
+                            <input className={`profile-input ${errors.gh && 'text-red-500'}`} type="url" name="gh" id="gh" placeholder='Github URL' {...register('gh', { required: true, })} />
                         </div>
 
-                        <div className='flex items-center gap-1.5 w-full  border-b-2 border-dashed'>
+                        <div className='w-full flex items-center gap-1.5 px-2.5 py-1.5 rounded-md border border-indigo-200 outline-4 outline-indigo-200/15'>
                             <Svg name={'ig'}></Svg>
-                            <input className={`profile-input ${errors.ig ? 'text-red-500' : 'text-gray-700'}`} type="url" name="ig" id="ig" placeholder='Instagram URL' {...register('ig', { required: true })} />
+                            <input className={`profile-input ${errors.ig && 'text-red-500'}`} type="url" name="ig" id="ig" placeholder='Instagram URL' {...register('ig', { required: true })} />
                         </div>
 
-                        <div className='flex items-center gap-1.5 w-full  border-b-2 border-dashed'>
+                        <div className='w-full flex items-center gap-1.5 px-2.5 py-1.5 rounded-md border border-indigo-200 outline-4 outline-indigo-200/15'>
                             <Svg name={'yt'}></Svg>
-                            <input className={`profile-input ${errors.yt ? 'text-red-500' : 'text-gray-700'}`} type="url" name="yt" id="yt" placeholder='Youtube URL' {...register('yt')} />
+                            <input className={`profile-input ${errors.yt && 'text-red-500'}`} type="url" name="yt" id="yt" placeholder='Youtube URL' {...register('yt')} />
                         </div>
 
-                        <div className='flex items-center gap-1.5 w-full  border-b-2 border-dashed'>
+                        <div className='w-full flex items-center gap-1.5 px-2.5 py-1.5 rounded-md border border-indigo-200 outline-4 outline-indigo-200/15'>
                             <Svg name={'lk'}></Svg>
-                            <input className={`profile-input ${errors.lk ? 'text-red-500' : 'text-gray-700'}`} type="url" name="lk" id="lk" placeholder='Linkedin URL' {...register('lk', { required: true })} />
+                            <input className={`profile-input ${errors.lk && 'text-red-500'}`} type="url" name="lk" id="lk" placeholder='Linkedin URL' {...register('lk', { required: true })} />
                         </div>
-                        <div className='flex items-center gap-1.5 w-full  border-b-2 border-dashed'>
+                        <div className='w-full flex items-center gap-1.5 px-2.5 py-1.5 rounded-md border border-indigo-200 outline-4 outline-indigo-200/15'>
                             <Svg name={'x'} ></Svg>
-                            <input className={`profile-input ${errors.x ? 'text-red-500' : 'text-gray-700'}`} type="url" name="x" id="x" placeholder='X URL' {...register('x')} />
+                            <input className={`profile-input ${errors.x && 'text-red-500'}`} type="url" name="x" id="x" placeholder='X URL' {...register('x')} />
                         </div>
 
                     </div>
-                    
-                    <div className=' flex items-center gap-5 '>
-                        <button disabled={isLoading} className={`${isLoading ? 'bg-red-200' : 'bg-red-400'}  py-1 px-2 w-[67px] h-[34px] ml-10 text-white  rounded-[91%_9%_96%_4%_/_9%_94%_6%_91%]  cursor-pointer `} type="submit">Submit</button>
-                        {isLoading && <p className='text-red-800 animate-pulse'>Submitting...</p>}
-                        {msg && <p className='text-red-600 animate-pulse'>{msg}</p>}
-                    </div>
+
+                    <button disabled={isLoading} type="submit" className="my-2 py-2 px-3 rounded-full bg-indigo-950 text-indigo-50 border border-indigo-200 outline-4 outline-indigo-200/15 p-2.5 hover:bg-indigo-900 transition duration-200 cursor-pointer" >{isLoading ? <span className='loader'></span> : "Submit"}</button>
 
                 </form>
 

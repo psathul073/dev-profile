@@ -3,13 +3,14 @@ import { useForm } from 'react-hook-form';
 import Svg from './Svg';
 import { FetchRepo } from '../api/FetchRepo';
 import { UploadProject } from '../api/Project';
+import { X } from 'lucide-react';
 
 const ProjectAdd = ({ setProjectAddModel }) => {
 
   const { register: registerGh, handleSubmit: handleFetchSubmit, reset: resetGh } = useForm();
   const { register, handleSubmit, reset, setValue } = useForm();
   const [isPicture, setIsPicture] = useState(null);
-  const[isMsg, setIsMsg] = useState(null);
+  const [isMsg, setIsMsg] = useState(null);
   const [loading, setLoading] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -68,43 +69,57 @@ const ProjectAdd = ({ setProjectAddModel }) => {
   };
 
   return (
-    <div className=' absolute top-0 px-2 w-full h-full backdrop-blur-sm bg-[rgba(255, 255, 255, 0.05)] flex items-center justify-center overflow-y-scroll scrollbar'>
+    <div className='z-20 fixed top-0 h-full w-full bg-gradient-to-t from-indigo-950 to-indigo-200 dark:from-slate-950 dark:to-indigo-950 flex max-sm:items-start items-center justify-center p-2.5 overflow-y-auto'>
 
-      <div className=' profile-edit relative md:w-7/12 w-full h-fit p-5  bg-white/10 backdrop-blur-xs border border-white/20 shadow-[0_8px_32px_0_rgb(0,0,0,0.18)] rounded-xl'>
-       
+      <div className=' profile-edit relative w-full max-w-[768px] h-fit p-3 bg-indigo-50/5 text-indigo-950 dark:text-indigo-50/50 backdrop-blur-xs border border-indigo-200 outline-4 outline-indigo-200/15 shadow-2xl rounded-2xl font-poppins animate-popIn '>
+
         {/* Header */}
-        <div className=' flex items-center justify-between  text-amber-600'>
-          <h3 className=' bg-amber-200 px-2 py-1 ml-5 text-lg  font-semibold font-nanum rounded-md ' >Add Project</h3>
-          <button onClick={() => setProjectAddModel(false)} className=' text-2xl rounded-full p-1 bg-amber-200 cursor-pointer'> <Svg name={'X'} /></button>
+        <div className=' flex items-center justify-between'>
+          <h1 className='text-[19px] font-medium ' >Add Project</h1>
+          <button onClick={() => setProjectAddModel(false)} className='rounded-full p-1.5 bg-indigo-200/10 hover:bg-indigo-200/20  cursor-pointer'> <X strokeWidth={1.5} /></button>
         </div>
-        
+
         {/*Project fetch */}
-        <p className='font-nanum text-[1.4em] text-amber-700 px-2 py-3'>Fetch project from github.</p>
-        <form className=' flex justify-between' onSubmit={ handleFetchSubmit(FetchRepos)}>
-          <div className='w-full flex flex-wrap sm:flex-nowrap items-center gap-2'>
-            <input className='w-full px-2 py-1 border-b-2 border-r border-dashed border-amber-600 focus:outline-0 ' type="text" name='ghUsername' placeholder='Github username' {...registerGh('ghUsername', { required: true })} />
-            <input className='w-full px-2 py-1 border-b-2 border-l border-dashed border-amber-600 focus:outline-0 ' type="text" name='repoName' placeholder='Project name' {...registerGh('repoName', { required: true })} />
+        <p className='text-[15px] mb-4'>Fetch project from github.</p>
+
+        <form className=' flex justify-between mb-4' onSubmit={handleFetchSubmit(FetchRepos)}>
+
+          <div className='w-full flex flex-wrap sm:flex-nowrap items-center gap-4'>
+
+            <input className='w-full p-2.5 rounded-md border border-indigo-200 outline-4 outline-indigo-200/15 ' type="text" name='ghUsername' placeholder='Github username' {...registerGh('ghUsername', { required: true })} />
+
+            <input className='w-full p-2.5 rounded-md border border-indigo-200 outline-4 outline-indigo-200/15 ' type="text" name='repoName' placeholder='Project name' {...registerGh('repoName', { required: true })} />
+
+            <button className=' max-sm:w-full flex justify-center items-center bg-indigo-950 text-indigo-50 border border-indigo-200 outline-4 outline-indigo-200/15 p-2.5 rounded-md hover:bg-indigo-800 cursor-pointer' type="submit"><Svg name={loading ? 'loading' : 'pkSearch'} /></button>
+
           </div>
-          <button className='text-xl pl-4 text-amber-600 cursor-pointer' type="submit"><Svg name={loading ? 'loading' : 'pkSearch'} /></button>
+
         </form>
 
+        {isMsg && <p className='absolute bottom-4 text-red-500 animate-pulse'>{isMsg}</p>}
+
         {/* Project submit form */}
-        <form className=' relative pt-2 md:py-6 h-full w-full flex flex-col md:flex-row justify-center item-center gap-5' onSubmit={handleSubmit(addProject)}>
+        <form className=' relative my-2 md:py-6 ' onSubmit={handleSubmit(addProject)}>
 
-          <div className='relative p-2 flex flex-col justify-center  items-center group transform duration-200'>
-            <img src={isPicture ? isPicture : '/addImg.webp'} alt="Picture" className=' md:w-[240px] md:h-[240px] w-40 h-40 rounded-md p-1 inset-shadow-[0_0_5px_2px_rgb(251,191,36,0.2)] object-scale-down bg-center outline outline-dashed outline-amber-400' />
-            <label htmlFor="picture" className='invisible absolute p-1 bg-amber-400 rounded-md flex justify-center items-center text-2xl text-shadow-white cursor-pointer backdrop-blur-xs group-hover:visible group-active:visible'> <Svg name={'camera'} className={"text-white"} /> </label>
-            <input type="file" name="picture" id="picture" accept="image/png, image/jpeg" className=' hidden' onChange={handleChange}/>
+          <div className='h-full w-full flex flex-col md:flex-row gap-5 mt-5 max-sm:mt-15'>
+
+            <div className='relative flex flex-col justify-center items-center mb-6 group transform duration-200'>
+              <img src={isPicture ? isPicture : '/addImg.webp'} alt="Picture" className='w-[240px] h-[250px]  rounded-md p-1 object-scale-down bg-center p-2.5 rounded-md border border-indigo-200 outline-4 outline-indigo-200/15 ' />
+              <label htmlFor="picture" className='invisible absolute p-1 bg-indigo-900 rounded-md flex justify-center items-center text-2xl text-shadow-white cursor-pointer backdrop-blur-xs group-hover:visible group-active:visible'> <Svg name={'camera'} className={"text-white"} /> </label>
+              <input type="file" name="picture" id="picture" accept="image/png, image/jpeg" className=' hidden' onChange={handleChange} />
+            </div>
+
+            <div className='relative md:w-[80%] flex flex-col gap-3.5 '>
+              <input className='w-full p-2.5 rounded-md border border-indigo-200 outline-4 outline-indigo-200/15 ' type="text" placeholder='Project Title' maxLength={'22'} {...register('title', { required: true })} />
+              <textarea className='w-full p-2.5 rounded-md border border-indigo-200 outline-4 outline-indigo-200/15 ' type="text" name="" id="" placeholder='Small description' maxLength='260' {...register('description', { required: true })} ></textarea>
+              <input className='w-full p-2.5 rounded-md border border-indigo-200 outline-4 outline-indigo-200/15 ' type="url" name="" id="" placeholder='Live link' {...register('liveURL')} />
+              <input className='w-full p-2.5 rounded-md border border-indigo-200 outline-4 outline-indigo-200/15 ' type="url" name="" id="" placeholder='Demo link' {...register('demoURL', { required: true })} />
+
+            </div>
+
           </div>
 
-          <div className='relative md:w-[80%] flex flex-col gap-3 text-amber-950/90'>
-            <input className='px-2 py-1 border-b-2  border-dashed border-amber-400 focus:outline-0' type="text" placeholder='Project Title' maxLength={'22'} { ...register('title', { required: true})} />
-            <textarea className='px-2 py-1 border-b-2  border-dashed border-amber-400 focus:outline-0' type="text" name="" id="" placeholder='Small description' maxLength='260' {...register('description', { required: true })} ></textarea>
-            <input className='px-2 py-1 border-b-2  border-dashed border-amber-400 focus:outline-0' type="url" name="" id="" placeholder='Live link' {...register('liveURL')} />
-            <input className='px-2 py-1 border-b-2  border-dashed border-amber-400 focus:outline-0' type="url" name="" id="" placeholder='Demo link' {...register('demoURL', { required: true })} />
-            <button className='flex flex-row justify-center items-center bg-amber-400 text-amber-900 self-end mr-10 mt-5 w-[83px] h-[42px] py-2 px-4 rounded-[6%_94%_7%_93%_/_93%_5%_95%_7%] hover:bg-amber-200 active:bg-amber-200 cursor-pointer' type="submit">{ isSubmitting? <Svg name={'loading'}/> :' Submit' }</button>
-            { isMsg && <p className='absolute bottom-4 text-red-500 animate-pulse'>{isMsg}</p>}
-          </div>
+          <button disabled={isSubmitting} className=' relative left-1/2 -translate-x-1/2 mt-6 flex flex-row justify-center items-center py-2 px-3 rounded-full bg-indigo-950 text-indigo-50 border border-indigo-200 outline-4 outline-indigo-200/15 p-2.5 hover:bg-indigo-900 transition duration-200 cursor-pointer' type="submit">{isSubmitting ? <span className='loader'></span> : "Submit"}</button>
 
         </form>
 

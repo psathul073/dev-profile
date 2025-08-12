@@ -6,11 +6,11 @@ const API = axios.create({
     withCredentials: true, // Allow cookies & sessions to be sent
 });
 
-export const FetchProjects = async (nextCursor) => {
+export const FetchProjects = async (nextCursor, limit = 5) => {
     try {
         const response = await API.get('/project/get', {
             params: {
-                limit: 5,
+                limit: limit,
                 startAfter: nextCursor,
             },
         });
@@ -31,6 +31,20 @@ export const FetchSingleProject = async (projectID) => {
         const response = await API.get('/project/single', {
             params: { projectID },
         });
+
+        // console.log(response.data, 'single projects--');
+        return response.data;
+
+    } catch (err) {
+        console.warn('API fetching failed', err);
+        return null;
+    }
+};
+
+// Fetch total like and projects count.
+export const FetchCounts = async () => {
+    try {
+        const response = await API.get('/project/counts');
 
         // console.log(response.data, 'single projects--');
         return response.data;

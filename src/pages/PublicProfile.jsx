@@ -1,8 +1,10 @@
 // PublicProfile.jsx
-import { useState } from "react";
+import { useState, lazy, Suspense } from "react";
 import PublicHome from "../components/Public-home";
-import PublicProject from "../components/Public-project";
 import { useParams } from "react-router";
+import Loader from "../components/Loader";
+
+const PublicProject = lazy(() => import('../components/Public-project'));
 
 export default function PublicProfile() {
   const { username } = useParams();
@@ -10,11 +12,9 @@ export default function PublicProfile() {
   const [projectID, setProjectID] = useState(null);
 
   return (
-    <div className="relative  flex justify-center items-center p-3 bg-indigo-100 bg-[url(/bg.webp)] bg-cover bg-center min-h-screen backdrop-blur-md font-poppins overflow-hidden scroll-smooth scrollbar transition duration-200">
+    <div className="z-20 fixed top-0 h-full w-full bg-gradient-to-t from-indigo-950 to-indigo-200 dark:from-slate-950 dark:to-indigo-950 flex justify-center p-2.5 overflow-hidden">
 
-      {/* <h1 className="uppercase fixed top-10 text-5xl text-center z-0 font-nanum bg-amber-600">Athul krishna ffggg</h1> */}
-
-      {isShowHome ? <PublicHome setIsShowHome={setIsShowHome} username={username} setProjectID={setProjectID} /> : <PublicProject projectID={projectID} username={username} setIsShowHome={setIsShowHome} /> }
+      {isShowHome ? <PublicHome setIsShowHome={setIsShowHome} username={username} setProjectID={setProjectID} /> : <Suspense fallback={<Loader/>}> <PublicProject projectID={projectID} username={username} setIsShowHome={setIsShowHome} /> </Suspense> }
 
     </div>
   );

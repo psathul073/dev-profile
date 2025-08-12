@@ -1,25 +1,107 @@
-@import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Poppins&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Poppins&display=swap");
 @import "tailwindcss";
 
-@theme{
-    --font-poppins: "Poppins", sans-serif;
-    --font-nanum: "Nanum Pen Script", cursive;
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer components {
+  .loader {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: block;
+    position: relative;
+    background: #fff;
+    box-shadow: -24px 0 #fff, 24px 0 #fff;
+    box-sizing: border-box;
+    animation: shadowPulse 2s linear infinite;
+  }
+
+  @keyframes shadowPulse {
+    33% {
+      background: #fff;
+      box-shadow: -24px 0 #2b00ff, 24px 0 #fff;
+    }
+    66% {
+      background: #2b00ff;
+      box-shadow: -24px 0 #fff, 24px 0 #fff;
+    }
+    100% {
+      background: #fff;
+      box-shadow: -24px 0 #fff, 24px 0 #2b00ff;
+    }
+  }
+
+  .loader2 {
+    width: 26px;
+    height: 26px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+  }
+  .loader2::after {
+    content: "";
+    box-sizing: border-box;
+    position: absolute;
+    left: 6px;
+    top: 0;
+    background: #2b00ff;
+    width: 8px;
+    height: 8px;
+    transform: translate(-50%, 50%);
+    border-radius: 50%;
+  }
+
+  @keyframes rotation {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
 }
 
-.profile-input {
-    @apply w-full p-1.5 border-red-400 focus:outline-0;
+@theme {
+  --font-poppins: "Poppins", sans-serif;
+  --font-nanum: "Nanum Pen Script", cursive;
+  --animate-popIn: popIn 0.3s ease-in-out;
+  --animate-popUp: popUp 0.3s ease-in-out;
+
+  @keyframes popIn {
+    0% {
+      opacity: 0;
+      transform: translateY(-5px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+  }
+  @keyframes popUp {
+    0% {
+      opacity: 0;
+      transform: translateY(5px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+  }
 }
 
-@layer utilities{
-    .scrollbar::-webkit-scrollbar {
-        width: 0px;
-        height: 0px;
-      }
-
+@layer utilities {
+  .scrollbar::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+  }
 }
-*{
-    ::-webkit-scrollbar {
-        width: 0px;
-        height: 0px;
-      }
+
+* {
+  ::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+  }
 }

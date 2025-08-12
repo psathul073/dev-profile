@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Svg from './Svg';
 import { FetchProjectForPublic } from '../api/FetchProjects';
 import { db, auth, ref, signInAnonymously, get, onValue, runTransaction } from '../config/firebase';
+import { X } from 'lucide-react';
 
 const PublicProject = ({ projectID, username, setIsShowHome }) => {
 
@@ -108,29 +109,31 @@ const PublicProject = ({ projectID, username, setIsShowHome }) => {
 
   return (
 
-    <div className='overlay h-full w-full flex items-center justify-center scroll-smooth'>
+    <div className='overlay h-full w-full flex md:items-center justify-center overflow-y-scroll scroll-smooth'>
 
-      <div className=" relative h-fit w-4xl p-2 bg-white/10 backdrop-blur-xs border border-white/20 shadow-[0_8px_32px_0_rgb(0,0,0,0.18)] rounded-xl ">
+      <div className=" relative h-fit w-full max-w-[768px] p-3.5 bg-indigo-50/5 text-indigo-950 dark:text-indigo-50/50 backdrop-blur-xs border border-indigo-200/50 shadow-2xl rounded-2xl font-poppins animate-popIn">
 
         <div className=' relative flex flex-col md:flex-row gap-4'>
-          <div onClick={() => setIsShowHome(true)} className='absolute top-2 right-2 md:hidden p-0.5 text-lg rounded-full border border-indigo-400/5 text-red-400/50 bg-indigo-200 animate-pulse cursor-pointer'><Svg name={'X'} /> </div>
-          <img className=' w-full md:w-80 h-80 object-scale-down rounded-md p-1 inset-shadow-[0_0_5px_2px_rgb(129,140,248,0.2)] ' src={project?.picture ? project?.picture : "/addImg.webp"} alt="project img" loading='lazy' />
+         
+          <button onClick={() => setIsShowHome(true)} className='absolute top-2 right-2 md:hidden text-lg  p-1.5 rounded-full bg-indigo-50/10 dark:bg-indigo-950/20 border border-indigo-200/10 hover:bg-red-800/10 hover:text-red-800 transition cursor-pointer'><X size={18} /> </button>
+     
+          <img className=' w-full md:w-80 h-80 object-scale-down bg-center p-2.5 rounded-md border border-indigo-200 outline-4 outline-indigo-200/15 ' src={project?.picture ? project?.picture : "/addImg.webp"} alt="project img" loading='lazy' />
 
-          <div className='w-full flex flex-col gap-2 p-2 rounded-md inset-shadow-[0_0_5px_2px_rgb(129,140,248,0.2)]'>
+          <div className='w-full flex flex-col gap-2 p-2.5 rounded-md border border-indigo-200 outline-4 outline-indigo-200/15 '>
 
             <div className='header flex flex-row justify-between items-center'>
-              <h1 className='font-bold text-[1.08em] text-indigo-950/50'>{project?.title}</h1>
-              <div onClick={() => setIsShowHome(true)} className=' hidden md:block  p-0.5 text-lg rounded-full border border-indigo-400/5 text-red-400/50 bg-indigo-200 animate-pulse cursor-pointer'><Svg name={'X'} /> </div>
+              <h1 className='font-semibold text-[1.08em]'>{project?.title}</h1>
+              <button onClick={() => setIsShowHome(true)} className=' hidden md:block  text-lg p-1.5 rounded-full bg-indigo-50/10 dark:bg-indigo-950/20 border border-indigo-200/10 hover:bg-red-800/10 hover:text-red-800 transition cursor-pointer'><X size={18} /> </button>
             </div>
 
-            <p className='text-indigo-950/45'>{project?.description}</p>
+            <p className='text-[15px] font-extralight'>{project?.description}</p>
 
             <div className='h-full flex justify-center p-2'>
 
-              <div className='self-end w-full flex justify-evenly items-center border-t border-indigo-950/10 py-1 text-[1.1em] '>
-                <button onClick={() => handleLikeClick()} disabled={isDisable} className='flex items-center justify-center gap-1 text-rose-400 cursor-pointer'><Svg name={isDisable ? 'liked' : 'like'} className={'text-[1.2em]'} />{count}</button>
-                <button onClick={() => window.open(project?.demoURL, "_blank")} className='flex items-center justify-center gap-1 text-indigo-400 cursor-pointer'><Svg name={'project'} className={'text-[1.2em]'} />code</button>
-                <button onClick={() => window.open(project?.liveURL, "_blank")} className='flex items-center justify-center gap-1 text-amber-500 cursor-pointer'><Svg name={'demo'} className={'text-[1.2em]'} />live</button>
+              <div className='self-end w-full flex justify-evenly items-center border-t border-indigo-200/20 pt-4 text-[1.1em] '>
+                <button onClick={() => handleLikeClick()} disabled={isDisable} className='flex items-center justify-center gap-1 py-1 px-2 rounded-full bg-rose-950/20 text-rose-400 hover:bg-rose-900/20 cursor-pointer'><Svg name={isDisable ? 'liked' : 'like'} className={'text-[1.2em]'} />{count}</button>
+                <button onClick={() => window.open(project?.demoURL, "_blank")} className='flex items-center justify-center gap-1 py-1 px-2 rounded-full bg-indigo-950/20 text-indigo-400 hover:bg-indigo-900/20 cursor-pointer'><Svg name={'project'} className={'text-[1.2em]'} />code</button>
+                <button onClick={() => window.open(project?.liveURL, "_blank")} className='flex items-center justify-center gap-1 py-1 px-2 rounded-full bg-amber-950/20 text-amber-500 hover:bg-amber-900/20 cursor-pointer'><Svg name={'demo'} className={'text-[1.2em]'} />live</button>
               </div>
 
             </div>

@@ -462,7 +462,6 @@ const Svg = ({ name, className }) => {
                 />
             </svg>
         ),
-
         demo: (
             <svg
                 className={className}
