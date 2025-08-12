@@ -99,16 +99,19 @@ const Projects = () => {
                 const isLast = index === projects.length - 1 && projects.length > 0;
 
                 return (
-                  <div key={project.id || index} ref={isLast ? lastProjectRef : null} className='project flex flex-row items-center gap-2 my-5 mx-2 py-3 px-2 rounded-md border border-indigo-200 outline-4 outline-indigo-200/15'>
+                  <div key={project.id || index} ref={isLast ? lastProjectRef : null} className='project flex flex-row items-center justify-between gap-2 my-5 mx-2 py-3 px-2 rounded-md border border-indigo-200 outline-4 outline-indigo-200/15'>
 
                     <img className='w-10 h-10 mx-2 rounded-md object-center object-contain' src={project.picture ? project.picture : "/addImg.webp"} alt="project-photo" loading='lazy' />
 
-                    <div className='w-full flex md:flex-row flex-col justify-between '>
-                      <h2 className='text-left'> {project.title}</h2>
-                      <div className='flex justify-end items-center gap-4 mr-1.5'>
+                    <div className='w-full flex flex-row max-[425px]:flex-col items-center max-[425px]:items-end max-sm:text-sm overflow-hidden'>
+                      
+                      <h2 className='text-left w-full'> {project.title}</h2>
+                    
+                      <div className=' w-fit flex justify-end items-center gap-4 mr-1.5'>
                         <button onClick={() => { setDeleteModel(true), setProjectID(project.id), setPictureId(project.pictureID); setProjectName(project.title) }} className='flex items-center justify-center gap-1.5 p-2 bg-red-800/10 rounded-full text-red-800 hover:bg-red-800/20 active:bg-red-800/20 cursor-pointer transition-colors duration-200 '> <Trash2 /> </button>
                         <button onClick={() => { setEditModel(true), setProjectID(project.id) }} className='flex items-center justify-center gap-1.5 p-2 rounded-full bg-green-800/10 text-green-700 hover:bg-green-800/20 active:bg-green-700/20 cursor-pointer transition-colors duration-200'> <Edit /> </button>
                       </div>
+
                     </div>
 
                   </div>

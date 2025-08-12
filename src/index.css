@@ -19,15 +19,15 @@
   @keyframes shadowPulse {
     33% {
       background: #fff;
-      box-shadow: -24px 0 #2b00ff, 24px 0 #fff;
+      box-shadow: -24px 0 #4338ca, 24px 0 #fff;
     }
     66% {
-      background: #2b00ff;
+      background: #4338ca;
       box-shadow: -24px 0 #fff, 24px 0 #fff;
     }
     100% {
       background: #fff;
-      box-shadow: -24px 0 #fff, 24px 0 #2b00ff;
+      box-shadow: -24px 0 #fff, 24px 0 #4338ca;
     }
   }
 
@@ -47,7 +47,7 @@
     position: absolute;
     left: 6px;
     top: 0;
-    background: #2b00ff;
+    background: #4338ca;
     width: 8px;
     height: 8px;
     transform: translate(-50%, 50%);
