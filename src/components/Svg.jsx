@@ -81,6 +81,7 @@ const Svg = ({ name, className }) => {
         ),
         verifyUser: (
             <svg
+            className={className}
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
                 width="1.4em"
@@ -185,6 +186,7 @@ const Svg = ({ name, className }) => {
         ),
         gh: (
             <svg
+                className={className}
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
                 width="1.4em"
@@ -205,6 +207,7 @@ const Svg = ({ name, className }) => {
         ),
         ig: (
             <svg
+                className={className}
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
                 width="1.4em"
@@ -225,6 +228,7 @@ const Svg = ({ name, className }) => {
         ),
         yt: (
             <svg
+                className={className}
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
                 width="1.4em"
@@ -245,6 +249,7 @@ const Svg = ({ name, className }) => {
         ),
         lk: (
             <svg
+                className={className}
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
                 width="1.4em"
@@ -344,7 +349,6 @@ const Svg = ({ name, className }) => {
                 />
             </svg>
         ),
-
         loading: (
             <svg
                 className="animate-spin"

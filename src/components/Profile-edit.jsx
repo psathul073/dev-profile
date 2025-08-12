@@ -127,31 +127,31 @@ const ProfileEdit = ({ setProfileEdit }) => {
                     <div className=' flex flex-col gap-4 my-3 '>
 
                         <div className='w-full flex items-center gap-1.5 text-[16px] px-2.5 py-1.5 rounded-md border border-indigo-200 outline-4 outline-indigo-200/15'>
-                            <Svg name={'verifyUser'}></Svg>
+                            <Svg className={"text-lg"} name={'verifyUser'}></Svg>
                             <input className={`profile-input outline-0 p-1.5 ${errors.name && 'text-red-500'}`} type="text" name="name" id="name" placeholder='Username'{...register('name')} />
                         </div>
 
                         <div className='w-full flex items-center gap-1.5 text-[16px]  px-2.5 py-1.5 rounded-md border border-indigo-200 outline-4 outline-indigo-200/15'>
-                            <Svg name={'gh'}></Svg>
+                            <Svg className={"text-lg"} name={'gh'}></Svg>
                             <input className={`profile-input outline-0 p-1.5 ${errors.gh && 'text-red-500'}`} type="url" name="gh" id="gh" placeholder='Github URL' {...register('gh', { required: true, })} />
                         </div>
 
                         <div className='w-full flex items-center gap-1.5 text-[16px]  px-2.5 py-1.5 rounded-md border border-indigo-200 outline-4 outline-indigo-200/15'>
-                            <Svg name={'ig'}></Svg>
+                            <Svg className={"text-lg"} name={'ig'}></Svg>
                             <input className={`profile-input outline-0 p-1.5 ${errors.ig && 'text-red-500'}`} type="url" name="ig" id="ig" placeholder='Instagram URL' {...register('ig', { required: true })} />
                         </div>
 
                         <div className='w-full flex items-center gap-1.5 text-[16px]  px-2.5 py-1.5 rounded-md border border-indigo-200 outline-4 outline-indigo-200/15'>
-                            <Svg name={'yt'}></Svg>
+                            <Svg className={"text-lg"} name={'yt'}></Svg>
                             <input className={`profile-input outline-0 p-1.5 ${errors.yt && 'text-red-500'}`} type="url" name="yt" id="yt" placeholder='Youtube URL' {...register('yt')} />
                         </div>
 
                         <div className='w-full flex items-center gap-1.5 text-[16px]  px-2.5 py-1.5 rounded-md border border-indigo-200 outline-4 outline-indigo-200/15'>
-                            <Svg name={'lk'}></Svg>
+                            <Svg className={"text-lg"} name={'lk'}></Svg>
                             <input className={`profile-input outline-0 p-1.5 ${errors.lk && 'text-red-500'}`} type="url" name="lk" id="lk" placeholder='Linkedin URL' {...register('lk', { required: true })} />
                         </div>
                         <div className='w-full flex items-center gap-1.5 text-[16px]  px-2.5 py-1.5 rounded-md border border-indigo-200 outline-4 outline-indigo-200/15'>
-                            <Svg name={'x'} ></Svg>
+                            <Svg className={"text-lg"} name={'x'} ></Svg>
                             <input className={`profile-input outline-0 p-1.5 ${errors.x && 'text-red-500'}`} type="url" name="x" id="x" placeholder='X URL' {...register('x')} />
                         </div>
 

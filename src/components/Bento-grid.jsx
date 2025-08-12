@@ -57,7 +57,7 @@ const BentoGrid = ({ setProfileEdit, setProjectAddModel, setProfileDelModel }) =
 
                 <div className="flex flex-col items-center gap-3 rounded-2xl p-2.5">
                     <img src={user?.avatar} alt="avatar" loading="lazy"
-                        className="w-32 h-32 object-scale-down border border-indigo-200 p-1 rounded-full" />
+                        className="w-32 h-32 object-contain object-center border border-indigo-200 p-1 rounded-full" />
                     <div className="space-y-1 text-center text-[17px]">
                         <p className="text-indigo-500 font-extralight">@{user?.name}</p>
                         <p><Mail strokeWidth={1.5} className="inline-block mr-2" />{user?.email}</p>
