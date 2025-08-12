@@ -33,7 +33,7 @@ const BentoGrid = ({ setProfileEdit, setProjectAddModel, setProfileDelModel }) =
     md:grid-cols-1
     lg:grid-cols-2
     2xl:grid-cols-3
-    backdrop-blur-2xl p-2.5 overflow-y-auto">
+    backdrop-blur-2xl p-2.5 overflow-y-auto scroll-smooth">
 
             {/* Public profile view */}
             <div className="bg-indigo-50/10 backdrop-blur-lg border border-indigo-200 outline-4 outline-indigo-200/15 shadow-2xl rounded-3xl p-2.5 row-span-2">

@@ -116,8 +116,8 @@ const ProfileEdit = ({ setProfileEdit }) => {
 
                 <form onSubmit={handleSubmit(onSubmit)} className='content-center text-center'>
 
-                    <div className='relative p-2 flex flex-col justify-center items-center group transform duration-200'>
-                        <img src={avatar ? avatar : user?.avatar} alt="avatar" className=' w-40 h-40 rounded-full object-scale-down bg-center border border-indigo-200 p-1' loading='lazy' />
+                    <div className='relative p-2 flex flex-col justify-center items-center rounded-full group transform duration-200'>
+                        <img src={avatar ? avatar : user?.avatar} alt="avatar" className=' w-40 h-40 rounded-full object-contain bg-center border border-indigo-200 p-1' loading='lazy' />
                         <label htmlFor="avatar" className='invisible absolute h-36 w-36  rounded-full flex justify-center items-center text-2xl text-shadow-white cursor-pointer bg-transparent backdrop-blur-xs group-hover:visible group-active:visible'> <Svg name={'camera'} className={"text-white"} /> </label>
                         <input type="file" name="avatar" id="avatar" accept="image/png, image/jpeg" className=' hidden' onChange={handleChange} />
                     </div>
@@ -126,33 +126,33 @@ const ProfileEdit = ({ setProfileEdit }) => {
 
                     <div className=' flex flex-col gap-4 my-3 '>
 
-                        <div className='w-full flex items-center gap-1.5 px-2.5 py-1.5 rounded-md border border-indigo-200 outline-4 outline-indigo-200/15'>
+                        <div className='w-full flex items-center gap-1.5 text-[16px] px-2.5 py-1.5 rounded-md border border-indigo-200 outline-4 outline-indigo-200/15'>
                             <Svg name={'verifyUser'}></Svg>
-                            <input className={`profile-input ${errors.name && 'text-red-500'}`} type="text" name="name" id="name" placeholder='Username'{...register('name')} />
+                            <input className={`profile-input outline-0 p-1.5 ${errors.name && 'text-red-500'}`} type="text" name="name" id="name" placeholder='Username'{...register('name')} />
                         </div>
 
-                        <div className='w-full flex items-center gap-1.5 px-2.5 py-1.5 rounded-md border border-indigo-200 outline-4 outline-indigo-200/15'>
+                        <div className='w-full flex items-center gap-1.5 text-[16px]  px-2.5 py-1.5 rounded-md border border-indigo-200 outline-4 outline-indigo-200/15'>
                             <Svg name={'gh'}></Svg>
-                            <input className={`profile-input ${errors.gh && 'text-red-500'}`} type="url" name="gh" id="gh" placeholder='Github URL' {...register('gh', { required: true, })} />
+                            <input className={`profile-input outline-0 p-1.5 ${errors.gh && 'text-red-500'}`} type="url" name="gh" id="gh" placeholder='Github URL' {...register('gh', { required: true, })} />
                         </div>
 
-                        <div className='w-full flex items-center gap-1.5 px-2.5 py-1.5 rounded-md border border-indigo-200 outline-4 outline-indigo-200/15'>
+                        <div className='w-full flex items-center gap-1.5 text-[16px]  px-2.5 py-1.5 rounded-md border border-indigo-200 outline-4 outline-indigo-200/15'>
                             <Svg name={'ig'}></Svg>
-                            <input className={`profile-input ${errors.ig && 'text-red-500'}`} type="url" name="ig" id="ig" placeholder='Instagram URL' {...register('ig', { required: true })} />
+                            <input className={`profile-input outline-0 p-1.5 ${errors.ig && 'text-red-500'}`} type="url" name="ig" id="ig" placeholder='Instagram URL' {...register('ig', { required: true })} />
                         </div>
 
-                        <div className='w-full flex items-center gap-1.5 px-2.5 py-1.5 rounded-md border border-indigo-200 outline-4 outline-indigo-200/15'>
+                        <div className='w-full flex items-center gap-1.5 text-[16px]  px-2.5 py-1.5 rounded-md border border-indigo-200 outline-4 outline-indigo-200/15'>
                             <Svg name={'yt'}></Svg>
-                            <input className={`profile-input ${errors.yt && 'text-red-500'}`} type="url" name="yt" id="yt" placeholder='Youtube URL' {...register('yt')} />
+                            <input className={`profile-input outline-0 p-1.5 ${errors.yt && 'text-red-500'}`} type="url" name="yt" id="yt" placeholder='Youtube URL' {...register('yt')} />
                         </div>
 
-                        <div className='w-full flex items-center gap-1.5 px-2.5 py-1.5 rounded-md border border-indigo-200 outline-4 outline-indigo-200/15'>
+                        <div className='w-full flex items-center gap-1.5 text-[16px]  px-2.5 py-1.5 rounded-md border border-indigo-200 outline-4 outline-indigo-200/15'>
                             <Svg name={'lk'}></Svg>
-                            <input className={`profile-input ${errors.lk && 'text-red-500'}`} type="url" name="lk" id="lk" placeholder='Linkedin URL' {...register('lk', { required: true })} />
+                            <input className={`profile-input outline-0 p-1.5 ${errors.lk && 'text-red-500'}`} type="url" name="lk" id="lk" placeholder='Linkedin URL' {...register('lk', { required: true })} />
                         </div>
-                        <div className='w-full flex items-center gap-1.5 px-2.5 py-1.5 rounded-md border border-indigo-200 outline-4 outline-indigo-200/15'>
+                        <div className='w-full flex items-center gap-1.5 text-[16px]  px-2.5 py-1.5 rounded-md border border-indigo-200 outline-4 outline-indigo-200/15'>
                             <Svg name={'x'} ></Svg>
-                            <input className={`profile-input ${errors.x && 'text-red-500'}`} type="url" name="x" id="x" placeholder='X URL' {...register('x')} />
+                            <input className={`profile-input outline-0 p-1.5 ${errors.x && 'text-red-500'}`} type="url" name="x" id="x" placeholder='X URL' {...register('x')} />
                         </div>
 
                     </div>

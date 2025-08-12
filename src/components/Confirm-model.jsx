@@ -13,8 +13,8 @@ const ConfirmModel = ({title, content, confirm, cancel, loading}) => {
               <p className='text-[15px] mb-4'>{content}</p>
 
               <div className='flex items-center justify-end gap-2 py-1.5'>
-                  <button disabled={loading} onClick={() => cancel()} className=' mr-5 p-2 bg-indigo-800/10 text-indigo-800 rounded-full hover:bg-indigo-800/20 cursor-pointer'>Cancel</button>
-                  <button disabled={loading} onClick={() => confirm()} className=' flex items-center justify-center gap-1.5 mr-5 p-2 rounded-full bg-red-800/10 text-red-800 hover:bg-red-800/20 cursor-pointer'>{ loading ? <span className='loader'></span> : "Delete" }</button>
+                  <button disabled={loading} onClick={() => cancel()} className=' mr-5 p-2 border border-indigo-900/30 bg-indigo-800/10 text-indigo-800 rounded-full hover:bg-indigo-800/20 cursor-pointer'>Cancel</button>
+                  <button disabled={loading} onClick={() => confirm()} className=' flex items-center justify-center gap-1.5 mr-5 p-2 rounded-full border border-red-900/30 bg-red-800/10 text-red-800 hover:bg-red-800/20 cursor-pointer'>{ loading ? <span className='loader'></span> : "Delete" }</button>
               </div>
           </div>
 

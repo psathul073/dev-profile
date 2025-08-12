@@ -87,7 +87,7 @@ function PublicHome({ setIsShowHome, username, setProjectID }) {
                 <button onClick={() => setShareLinkModel(true)} className="share-btn absolute top-5 right-5 z-20 text-2xl p-2 rounded-full bg-indigo-50/10 dark:bg-indigo-950/20 border border-indigo-200/10 hover:bg-indigo-800/10 hover:text-indigo-800 transition cursor-pointer" ><Share2 size={18} strokeWidth={1.5} /></button>
 
                 <div className="relative flex flex-col items-center justify-center p-3.5 border border-indigo-200/50 rounded-md inset-shadow-xs/50 inset-shadow-indigo-400 ">
-                    <img className="relative w-32 h-32 my-4 z-10 p-1 object-scale-down bg-center rounded-full border border-indigo-200" src={userData?.avatar ? userData.avatar : '/avatar.webp'} alt="avatar" loading='lazy' />
+                    <img className="relative w-32 h-32 my-4 z-10 p-1 object-contain bg-center rounded-full border border-indigo-200" src={userData?.avatar ? userData.avatar : '/avatar.webp'} alt="avatar" loading='lazy' />
 
                     <p className=" flex flex-row items-center justify-center gap-1.5 mb-4 text-[1.1em] text-indigo-950 dark:text-indigo-200 ">@{userData?.name} {userData?.verified && <BadgeCheck size={20} className='text-blue-500' />}</p>
 
