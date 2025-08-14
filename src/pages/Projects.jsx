@@ -144,7 +144,7 @@ const Projects = () => {
             }
 
             {loading && <p className='text-red-400 animate-pulse'>Loading...</p>}
-            {!hasMore && <p className="text-green-400 pb-5">No more projects.</p>}
+            {!hasMore && <p className="dark:text-green-400 text-green-600 pb-5">No more projects.</p>}
 
           </div>
 

@@ -26,12 +26,12 @@ fetch("https://dev-profile-92gb.onrender.com/api/projects?limit=10", {
     return (
         <div className=" h-full w-full bg-gradient-to-t from-indigo-950 to-indigo-200 dark:from-slate-950 dark:to-indigo-950 flex justify-center p-3 max-sm:p-2.5 overflow-y-auto scroll-smooth">
         
-            <div className="relative h-fit w-full max-w-[1024px] p-3.5 bg-indigo-50/5 text-indigo-950 dark:text-indigo-50/50 backdrop-blur-xs border border-indigo-200 outline-4 outline-indigo-200/15 shadow-2xl rounded-2xl font-poppins">
+            <div className="relative h-fit w-full max-w-[1024px] p-3.5 bg-indigo-50/5 text-neutral-900 dark:text-indigo-50/50 backdrop-blur-xs border border-indigo-200 outline-4 outline-indigo-200/15 shadow-2xl rounded-2xl font-poppins">
 
                 <h1 className="font-bold text-xl mb-6">API Document</h1>
 
                 <div className='flex items-center flex-wrap gap-5 mb-4'>
-                    <p className=' text-base font-semibold'>API KEY :</p>  <p className=' bg-indigo-900/20 p-2 rounded-md text-indigo-600'> {apiKey} </p>
+                    <p className=' text-base font-semibold'>API KEY :</p>  <p className=' bg-indigo-900/20 p-2 rounded-md dark:text-indigo-500 text-indigo-600'> {apiKey} </p>
 
                     <button className='py-2 px-3 rounded-full bg-indigo-950 text-indigo-50 border border-indigo-200 outline-4 outline-indigo-200/15 p-2.5 hover:bg-indigo-900 active:bg-indigo-900 transition duration-200 cursor-pointer' onClick={() => GenerateApiKey()}>Generate API Key</button>
                 </div>

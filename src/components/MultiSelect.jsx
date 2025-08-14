@@ -76,12 +76,12 @@ const MultiSelect = ({ selected, setSelected, allOptions }) => {
 
             {/* Dropdown Menu */}
             {isOpen && (
-                <ul className="absolute bottom-full max-h-[300px] mb-2 left-0 w-full px-2.5 py-2 rounded-md border bg-indigo-950/60 text-indigo-50 border-indigo-200 overflow-y-auto animate-popUp">
+                <ul className="absolute bottom-full max-h-[300px] mb-2 left-0 w-full p-2 rounded-md border bg-indigo-950/60 text-indigo-50 border-indigo-200 overflow-y-auto animate-popUp">
                     {availableOptions.length > 0 ? (
                         availableOptions.map(opt => (
                             <li
                                 key={opt.value}
-                                className="bg-indigo-950 rounded-md p-1 mb-2 hover:bg-indigo-900 cursor-pointer"
+                                className="bg-indigo-400/20 rounded-md p-1 mb-2 hover:bg-indigo-900 active:bg-indigo-900 cursor-pointer"
                                 onClick={() => handleSelect(opt.value, opt.label)}
                             >
                                 {opt.label}
