@@ -20,7 +20,7 @@ const ProfileEdit = ({ setProfileEdit }) => {
     const onSubmit = async (data) => {
         // console.log(data, '==form');
         setLoading(true);
-        
+
         // Create new form
         const formData = new FormData();
 
@@ -31,10 +31,11 @@ const ProfileEdit = ({ setProfileEdit }) => {
                 formData.append(Keys, data[Keys] ?? '');
             }
         });
-
-        localStorage.removeItem(`user-${user?.name}`);
+        
         localStorage.removeItem(`projects-${user?.name}`);
         localStorage.removeItem(`cursor-${user?.name}`);
+        localStorage.removeItem(`user-${user?.name}`);
+
         // Update profile
         const response = await profileUpdates(formData);
 
