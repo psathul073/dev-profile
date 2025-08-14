@@ -45,6 +45,8 @@ const ProjectAdd = ({ setProjectAddModel }) => {
     { value: 'cv', label: 'Canva' },
     { value: 'fm', label: 'Figma' },
     { value: 'vs', label: 'VS Code' },
+    { value: 'ws', label: 'Websocket' },
+    { value: 'cy', label: 'Cloudinary' },
   ];
 
   // Fetch github repos and add to form.

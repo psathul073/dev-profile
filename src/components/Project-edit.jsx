@@ -46,7 +46,10 @@ const ProjectEdit = ({ projectID, setEditModel }) => {
         { value: 'cv', label: 'Canva' },
         { value: 'fm', label: 'Figma' },
         { value: 'vs', label: 'VS Code' },
+        { value: 'ws', label: 'Websocket' },
+        { value: 'cy', label: 'Cloudinary' },
     ];
+    
     const navigate = useNavigate();
 
     const submit = async (data) => {
