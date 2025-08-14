@@ -20,7 +20,7 @@ const ProfileEdit = ({ setProfileEdit }) => {
     const onSubmit = async (data) => {
         // console.log(data, '==form');
         setLoading(true);
-
+        
         // Create new form
         const formData = new FormData();
 
@@ -32,6 +32,7 @@ const ProfileEdit = ({ setProfileEdit }) => {
             }
         });
 
+        localStorage.removeItem(`user-${user?.name}`);
         // Update profile
         const response = await profileUpdates(formData);
 
@@ -39,7 +40,6 @@ const ProfileEdit = ({ setProfileEdit }) => {
         if (!response?.type) {
             setMsg(response?.message);
         } else {
-            localStorage.removeItem(`user-${user?.name}`);
             navigate(0);
         }
 

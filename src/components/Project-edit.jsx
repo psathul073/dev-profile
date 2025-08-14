@@ -65,10 +65,11 @@ const ProjectEdit = ({ projectID, setEditModel }) => {
             newForm.append('usedTec', JSON.stringify(selected));
         }
 
-        await UpdateProject(newForm);
+        localStorage.removeItem(`projects-${user?.name}`);
+        localStorage.removeItem(`cursor-${user?.name}`);
         
-        localStorage.removeItem(`projects-${user?.name}`)
-        localStorage.removeItem(`cursor-${user?.name}`)
+        await UpdateProject(newForm);
+
         setIsDisable(false);
         navigate(0);
     };
