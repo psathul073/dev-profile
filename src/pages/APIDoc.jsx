@@ -24,7 +24,8 @@ fetch("https://dev-profile-92gb.onrender.com/api/projects?limit=10", {
 .catch(err => console.error(err)); `
 
     return (
-        <div className=" absolute top-0 h-full w-full bg-gradient-to-t from-indigo-950 to-indigo-200 dark:from-slate-950 dark:to-indigo-950 flex justify-center p-3 max-sm:p-2.5 overflow-y-auto scroll-smooth">
+        <div className=" h-full w-full bg-gradient-to-t from-indigo-950 to-indigo-200 dark:from-slate-950 dark:to-indigo-950 flex justify-center p-3 max-sm:p-2.5 overflow-y-auto scroll-smooth">
+        
             <div className="relative h-fit w-full max-w-[1024px] p-3.5 bg-indigo-50/5 text-indigo-950 dark:text-indigo-50/50 backdrop-blur-xs border border-indigo-200 outline-4 outline-indigo-200/15 shadow-2xl rounded-2xl font-poppins">
 
                 <h1 className="font-bold text-xl mb-6">API Document</h1>
