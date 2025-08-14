@@ -33,6 +33,8 @@ const ProfileEdit = ({ setProfileEdit }) => {
         });
 
         localStorage.removeItem(`user-${user?.name}`);
+        localStorage.removeItem(`projects-${user?.name}`);
+        localStorage.removeItem(`cursor-${user?.name}`);
         // Update profile
         const response = await profileUpdates(formData);
 
