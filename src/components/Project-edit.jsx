@@ -6,6 +6,7 @@ import { FetchSingleProject } from '../api/FetchProjects';
 import { UpdateProject } from '../api/Project';
 import { X } from 'lucide-react';
 import MultiSelect from './MultiSelect';
+import { useAuth } from '../contexts/AuthContext'
 
 const ProjectEdit = ({ projectID, setEditModel }) => {
 
@@ -14,6 +15,7 @@ const ProjectEdit = ({ projectID, setEditModel }) => {
     const [isMsg, setIsMsg] = useState(null);
     const [isDisable, setIsDisable] = useState(false);
     const [selected, setSelected] = useState([]);
+    const { user } = useAuth();
 
     const allOptions = [
         { value: 'html', label: 'HTML' },
@@ -64,6 +66,9 @@ const ProjectEdit = ({ projectID, setEditModel }) => {
         }
 
         await UpdateProject(newForm);
+        
+        localStorage.removeItem(`projects-${user?.name}`)
+        localStorage.removeItem(`cursor-${user?.name}`)
         setIsDisable(false);
         navigate(0);
     };

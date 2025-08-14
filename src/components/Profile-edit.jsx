@@ -38,8 +38,8 @@ const ProfileEdit = ({ setProfileEdit }) => {
         setLoading(false);
         if (!response?.type) {
             setMsg(response?.message);
-
         } else {
+            localStorage.removeItem(`user-${user?.name}`);
             navigate(0);
         }
 
