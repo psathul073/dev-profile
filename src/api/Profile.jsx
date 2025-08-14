@@ -8,7 +8,7 @@ const API = axios.create({
 
 export const profileUpdates = async(data) => {
     try {
-        const response = await API.post('/api/profile', data);
+        const response = await API.post('/api/profile-update', data);
         // console.log(response.data);
         return response.data;
     } catch (error) {
@@ -25,6 +25,16 @@ export const profileDelete = async() => {
         // console.log(response.data);
         return response.data;
         
+    } catch (error) {
+        console.warn('API Error ', error);
+    }
+}
+
+// Generate API key.
+export const generateApiKey = async () => {
+    try {
+        const response = await API.get('/api/generate-key');
+        return response.data;
     } catch (error) {
         console.warn('API Error ', error);
     }

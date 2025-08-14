@@ -1,23 +1,7 @@
-import React from "react";
 
 const Svg = ({ name, className }) => {
     const svg = {
-        profileEdit: (
-            <svg
-                className={className}
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                width="1em"
-                height="1em"
-            >
-                <path
-                    fill="currentColor"
-                    fillRule="evenodd"
-                    d="M14.287.303a1 1 0 1 1 1.415 1.414l-.707.708L13.58 1.01zm0 2.829l-6.873 6.873H6V8.59l6.873-6.874zM3 13.5a.5.5 0 0 1-.5-.5V3a.5.5 0 0 1 .5-.5h6.25a.75.75 0 0 0 0-1.5H3a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6.75a.75.75 0 0 0-1.5 0V13a.5.5 0 0 1-.5.5z"
-                    clipRule="evenodd"
-                />
-            </svg>
-        ),
+
         postCard: (
             <svg
                 className={className}
@@ -33,7 +17,6 @@ const Svg = ({ name, className }) => {
                 />
             </svg>
         ),
-
         computer: (
             <svg
                 className={className}
@@ -60,22 +43,6 @@ const Svg = ({ name, className }) => {
                 <path
                     fill="currentColor"
                     d="M4.5 3.5a1 1 0 0 0-1 1v2.25a.75.75 0 0 1-1.5 0V4.5A2.5 2.5 0 0 1 4.5 2h2.25a.75.75 0 0 1 0 1.5zm0 13a1 1 0 0 1-1-1v-2.25a.75.75 0 0 0-1.5 0v2.25A2.5 2.5 0 0 0 4.5 18h2.25a.75.75 0 0 0 0-1.5zm12-12a1 1 0 0 0-1-1h-2.25a.75.75 0 0 1 0-1.5h2.25A2.5 2.5 0 0 1 18 4.5v2.25a.75.75 0 0 1-1.5 0zm-1 12a1 1 0 0 0 1-1v-2.25a.75.75 0 0 1 1.5 0v2.25a2.5 2.5 0 0 1-2.5 2.5h-2.25a.75.75 0 0 1 0-1.5zm-4.25-6.192c0 .68-.56 1.23-1.25 1.23a1.24 1.24 0 0 1-1.25-1.23c0-.68.56-1.231 1.25-1.231s1.25.551 1.25 1.23M5 9.077v3.692C5 13.45 5.56 14 6.25 14h7.5c.69 0 1.25-.551 1.25-1.23V9.076c0-.68-.56-1.23-1.25-1.23H12.5l-.879-1.299A1.25 1.25 0 0 0 10.581 6H9.419c-.418 0-.808.206-1.04.548L7.5 7.846H6.25c-.69 0-1.25.551-1.25 1.23m5-1.23c1.38 0 2.5 1.101 2.5 2.46c0 1.36-1.12 2.462-2.5 2.462s-2.5-1.102-2.5-2.461c0-1.36 1.12-2.462 2.5-2.462"
-                />
-            </svg>
-        ),
-        X: (
-            <svg
-                className={className}
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                width="1em"
-                height="1em"
-            >
-                <path
-                    fill="none"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    d="m6 6l12 12m0-12L6 18"
                 />
             </svg>
         ),
@@ -366,46 +333,6 @@ const Svg = ({ name, className }) => {
                     d="M18.001 20A9.96 9.96 0 0 1 12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10c0 .863-.11 1.701-.315 2.5c-.223.867-1.17 1.27-2.015.973c-.718-.253-1.048-1.073-.868-1.813A7 7 0 1 0 15.608 18"
                     color="currentColor"
                 />
-            </svg>
-        ),
-        delete: (
-            <svg
-                className={className}
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                width="1em"
-                height="1em"
-            >
-                <path
-                    fill="none"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="1.5"
-                    d="m19.5 5.5l-.62 10.025c-.158 2.561-.237 3.842-.88 4.763a4 4 0 0 1-1.2 1.128c-.957.584-2.24.584-4.806.584c-2.57 0-3.855 0-4.814-.585a4 4 0 0 1-1.2-1.13c-.642-.922-.72-2.205-.874-4.77L4.5 5.5M3 5.5h18m-4.944 0l-.683-1.408c-.453-.936-.68-1.403-1.071-1.695a2 2 0 0 0-.275-.172C13.594 2 13.074 2 12.035 2c-1.066 0-1.599 0-2.04.234a2 2 0 0 0-.278.18c-.395.303-.616.788-1.058 1.757L8.053 5.5m1.447 11v-6m5 6v-6"
-                    color="currentColor"
-                />
-            </svg>
-        ),
-        edit: (
-            <svg
-                className={className}
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                width="1em"
-                height="1em"
-            >
-                <g
-                    fill="none"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="1.5"
-                    color="currentColor"
-                >
-                    <path d="m16.214 4.982l1.402-1.401a1.982 1.982 0 0 1 2.803 2.803l-1.401 1.402m-2.804-2.804l-5.234 5.234c-1.045 1.046-1.568 1.568-1.924 2.205S8.342 14.561 8 16c1.438-.342 2.942-.7 3.579-1.056s1.16-.879 2.205-1.924l5.234-5.234m-2.804-2.804l2.804 2.804" />
-                    <path d="M21 12c0 4.243 0 6.364-1.318 7.682S16.242 21 12 21s-6.364 0-7.682-1.318S3 16.242 3 12s0-6.364 1.318-7.682S7.758 3 12 3" />
-                </g>
             </svg>
         ),
         project: (

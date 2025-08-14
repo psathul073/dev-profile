@@ -50,13 +50,13 @@ const BentoGrid = ({ setProfileEdit, setProjectAddModel, setProfileDelModel }) =
                     Update Profile
                     <button
                         onClick={() => setProfileEdit(true)}
-                        className="text-indigo-50 bg-indigo-950 p-2 rounded-full hover:bg-indigo-800 cursor-pointer">
+                        className="text-indigo-50 bg-indigo-950 p-2 rounded-full hover:bg-indigo-800 active:bg-indigo-800 cursor-pointer">
                         <Edit strokeWidth={1.5} />
                     </button>
                 </h1>
 
                 <div className="flex flex-col items-center gap-3 rounded-2xl p-2.5">
-                    <img src={user?.avatar} alt="avatar" loading="lazy"
+                    <img src={user?.avatar ? user.avatar : '/avatar.webp'} alt="avatar" loading="lazy"
                         className="w-32 h-32 object-contain object-center border border-indigo-200 p-1 rounded-full" />
                     <div className="space-y-1 text-center text-[17px]">
                         <p className="text-indigo-500 font-extralight">@{user?.name}</p>
@@ -65,8 +65,8 @@ const BentoGrid = ({ setProfileEdit, setProjectAddModel, setProfileDelModel }) =
                 </div>
 
                 <div className="flex flex-row justify-center gap-5 space-x-1 my-2">
-                    <div className="flex flex-row justify-center items-center gap-2 bg-rose-400/10 text-rose-500 px-2 py-1.5 rounded-full text-[15px] "><Heart size={18} strokeWidth={1.4} /> <span>Likes : {count?.totalLikes || '000'}</span></div>
-                    <div className="flex flex-row justify-center items-center gap-2 bg-orange-400/10 text-orange-500 px-2 py-1.5 rounded-full text-[15px]"><FolderOpen size={18} strokeWidth={1.4} /> <span>Projects: {count?.totalProject || '000'}</span></div>
+                    <div className="flex flex-row justify-center items-center gap-2 bg-rose-400/10 text-rose-400 px-2 py-1.5 rounded-full text-[15px] "><Heart size={18} strokeWidth={1.4} /> <span>Likes : {count?.totalLikes || '000'}</span></div>
+                    <div className="flex flex-row justify-center items-center gap-2 bg-orange-400/10 text-orange-400 px-2 py-1.5 rounded-full text-[15px]"><FolderOpen size={18} strokeWidth={1.4} /> <span>Projects: {count?.totalProject || '000'}</span></div>
                 </div>
 
             </div>
@@ -78,7 +78,7 @@ const BentoGrid = ({ setProfileEdit, setProjectAddModel, setProfileDelModel }) =
                     Showcase your latest work by adding a new project with a title, description, links, and images.
                 </p>
                 <div className="content-end h-full self-end">
-                    <button onClick={() => setProjectAddModel(true)} className=" bg-indigo-950 text-white p-2 rounded-full hover:bg-indigo-800 transition cursor-pointer"><PackagePlus /></button>
+                    <button onClick={() => setProjectAddModel(true)} className=" bg-indigo-950 text-white p-2 rounded-full hover:bg-indigo-800 active:bg-indigo-800 transition cursor-pointer"><PackagePlus /></button>
                 </div>
 
             </div>
@@ -92,7 +92,7 @@ const BentoGrid = ({ setProfileEdit, setProjectAddModel, setProfileDelModel }) =
                 </p>
 
                 <div className="content-end h-full self-end">
-                    <button onClick={() => navigate('/project')} className=" bg-indigo-950 text-white p-2 rounded-full hover:bg-indigo-800 transition cursor-pointer"><FilePen /></button>
+                    <button onClick={() => navigate('/project')} className=" bg-indigo-950 text-white p-2 rounded-full hover:bg-indigo-800 active:bg-indigo-800 transition cursor-pointer"><FilePen /></button>
                 </div>
 
             </div>
@@ -107,23 +107,23 @@ const BentoGrid = ({ setProfileEdit, setProjectAddModel, setProfileDelModel }) =
 
                 <div className="flex flex-row justify-between items-center mb-6">
                     <p className="text-[17px">API Doc</p>
-                    <button className=" p-2 rounded-full bg-indigo-50/10 dark:bg-indigo-950/20 border border-indigo-200/10 hover:bg-indigo-700/10 hover:text-indigo-800 transition cursor-pointer"><BookMarked strokeWidth={1.5} /> </button>
+                    <button className=" p-2 rounded-full bg-indigo-50/10 dark:bg-indigo-950/20 border border-indigo-200/10 hover:bg-indigo-400/10 hover:text-indigo-400 active:bg-indigo-400/10 active:text-indigo-400 transition cursor-pointer" onClick={() => navigate('/api-doc')}><BookMarked strokeWidth={1.5} /> </button>
                 </div>
 
                 <div className="flex flex-row justify-between items-center mb-6">
                     <p className="text-[17px">Account Removal</p>
-                    <button onClick={() => setProfileDelModel(true)} className=" p-2 rounded-full bg-indigo-50/10 dark:bg-indigo-950/20 border border-indigo-200/10 hover:bg-red-800/10 hover:text-red-800 transition cursor-pointer"><Trash2 strokeWidth={1.5} /> </button>
+                    <button onClick={() => setProfileDelModel(true)} className=" p-2 rounded-full bg-indigo-50/10 dark:bg-indigo-950/20 border border-indigo-200/10 hover:bg-red-400/10 hover:text-red-400 active:bg-red-400/10 active:text-red-400 transition cursor-pointer"><Trash2 strokeWidth={1.5} /> </button>
                 </div>
 
                 <div className="flex flex-row justify-between items-center mb-6">
                     <p className="text-[17px">Log Out</p>
-                    <button className=" p-2 rounded-full bg-indigo-50/10 dark:bg-indigo-950/20 border border-indigo-200/10 hover:bg-red-800/10 hover:text-red-800 transition cursor-pointer" onClick={() => handleLogout()}><LogOut /></button>
+                    <button className=" p-2 rounded-full bg-indigo-50/10 dark:bg-indigo-950/20 border border-indigo-200/10 hover:bg-red-400/10 hover:text-red-400 active:bg-red-400/10 active:text-red-400 transition cursor-pointer" onClick={() => handleLogout()}><LogOut /></button>
                 </div>
 
-                <div className=" h-full content-end text-center">
-                    <Link className="mr-2 transition hover:text-blue-600">Privacy Policy</Link>
+                <div className=" h-full content-end text-center text-[14px]">
+                    <Link to={"/privacy-policy"} className="mr-2 transition hover:text-blue-500 active:text-blue-500">Privacy Policy</Link>
                     .
-                    <Link className="ml-2 transition hover:text-blue-600">Terms of Service</Link>
+                    <Link to={"/terms-conditions"} className="ml-2 transition hover:text-blue-500">Terms of Conditions</Link>
                 </div>
 
             </div>

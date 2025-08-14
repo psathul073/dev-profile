@@ -46,7 +46,7 @@ const ShareLink = ({ shareUrl, setShareLinkModel, userData }) => {
 
                     <div className='url-box w-44 h-40 flex flex-col items-center justify-center rounded-xl bg-indigo-50/5 backdrop-blur-xs shadow mb-4 cursor-pointer hover:-translate-y-4 duration-200'>
                         <img className=' w-20 h-20 rounded-full border border-indigo-200 p-0.5 ' src={userData?.avatar ?? '/avatar.webp'} alt="avatar" />
-                        <p className=" flex flex-row items-center justify-center gap-1.5 my-0.5 text-[15px] ">@{userData?.name} {userData?.verified && <BadgeCheck size={20} className='text-blue-500' />}</p>
+                        <p className=" flex flex-row items-center justify-center gap-1.5 my-0.5 text-[15px] ">@{userData?.name} {userData?.verified && <BadgeCheck size={16} className='text-blue-500' />}</p>
                         <p className='text-xs'>/{userData?.name}</p>
                     </div>
 

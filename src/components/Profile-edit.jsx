@@ -46,14 +46,21 @@ const ProfileEdit = ({ setProfileEdit }) => {
     };
 
     const handleChange = (e) => {
-
+        setMsg('');
         const MAX_FILE_SIZE = 1.5 * 1024 * 1024; // 1.5Mb in bytes
+        const allowedTypes = ['image/png', 'image/webp', 'image/jpeg'];
         const selectedIMG = e.target.files[0];
+        const invalidFile = !allowedTypes.includes(selectedIMG.type);
 
         if (!selectedIMG) return; // If no file selected.
+
         if (selectedIMG.size > MAX_FILE_SIZE) {
             setMsg('file size > 1.5Mb')
             return; // Set maximum size below 1.5Mb. 
+        }
+        if (invalidFile) {
+            setMsg('Invalid file type!');
+            return;
         }
 
         setValue(e.target.id, selectedIMG); // Directly store  in the form
@@ -119,7 +126,7 @@ const ProfileEdit = ({ setProfileEdit }) => {
                     <div className='relative p-2 flex flex-col justify-center items-center rounded-full group transform duration-200'>
                         <img src={avatar ? avatar : user?.avatar} alt="avatar" className=' w-40 h-40 rounded-full object-contain bg-center border border-indigo-200 p-1' loading='lazy' />
                         <label htmlFor="avatar" className='invisible absolute h-36 w-36  rounded-full flex justify-center items-center text-2xl text-shadow-white cursor-pointer bg-transparent backdrop-blur-xs group-hover:visible group-active:visible'> <Svg name={'camera'} className={"text-white"} /> </label>
-                        <input type="file" name="avatar" id="avatar" accept="image/png, image/jpeg" className=' hidden' onChange={handleChange} />
+                        <input type="file" name="avatar" id="avatar" accept="image/png, image/webp, image/jpeg" className=' hidden' onChange={handleChange} />
                     </div>
 
                     {msg && <p className='text-center font-light text-red-400'>{msg}</p>}

@@ -27,7 +27,7 @@ const Switch = () => {
                 <div className='flex h-[38px] w-[70px] items-center justify-center rounded-full bg-indigo-50/10 dark:bg-indigo-950/20 border border-indigo-200/10'>
 
                     <span
-                        className={`flex h-8 w-8 items-center justify-center rounded-full  ${!isChecked ? 'bg-indigo-950 hover:bg-indigo-900 text-white' : 'text-indigo-950 dark:text-indigo-50'
+                        className={`flex h-8 w-8 items-center justify-center rounded-full  ${!isChecked ? 'bg-indigo-950 hover:bg-indigo-900 active:bg-indigo-900 text-white' : 'text-indigo-950 dark:text-indigo-50'
                             }`}
                     >
                         <svg
@@ -54,7 +54,7 @@ const Switch = () => {
                     </span>
 
                     <span
-                        className={`flex h-8 w-8 items-center justify-center rounded-full  ${isChecked ? 'bg-indigo-950 hover:bg-indigo-900 text-white' : 'text-indigo-950 dark:text-indigo-50'
+                        className={`flex h-8 w-8 items-center justify-center rounded-full  ${isChecked ? 'bg-indigo-950 hover:bg-indigo-900 active:bg-indigo-900 text-white' : 'text-indigo-950 dark:text-indigo-50'
                             }`}
                     >
                         <svg

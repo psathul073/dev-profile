@@ -1,6 +1,7 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth, signInAnonymously } from 'firebase/auth';
 import { getDatabase, get, ref, onValue, runTransaction } from 'firebase/database';
+import { getFirestore } from 'firebase/firestore';
 
  // Firebase configuration
   const firebaseConfig = {
@@ -18,8 +19,10 @@ import { getDatabase, get, ref, onValue, runTransaction } from 'firebase/databas
 const app = initializeApp(firebaseConfig);
 // Creates a reference to Firebase Realtime Database.
 const db = getDatabase(app);
+// Firestore database.
+const fdb = getFirestore(app);
 // Add authentication.
 const auth = getAuth(app);
 
 
-export { db, auth, signInAnonymously, get, ref, onValue, runTransaction };
+export { db, fdb, auth, signInAnonymously, get, ref, onValue, runTransaction };

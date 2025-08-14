@@ -58,6 +58,7 @@ const PublicProject = ({ projectID, username, setIsShowHome }) => {
 
     // Add likes and like counts.
     runTransaction(projectLikeRef, (currentData) => {
+
       // There is no data exists.
       if (!currentData) {
         // return current project like reference
@@ -67,19 +68,22 @@ const PublicProject = ({ projectID, username, setIsShowHome }) => {
             [user.uid]: true,
           },
         };
-      };
+      }
+
+      // If already liked, just return same data.
+      if (currentData.userLikes?.[user.uid]) {
+        return currentData;
+      }
 
       // Update the total likes and increment if user is not liked.
-      const newData = {
+      return {
         ...currentData,
         totalLikes: (currentData.totalLikes || 0) + 1,
         userLikes: {
-          ...(currentData.users || {}),
+          ...(currentData.userLikes || {}),
           [user.uid]: true,
         },
       };
-      // Update the database
-      return newData;
 
     })
       .then(() => {

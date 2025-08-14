@@ -3,9 +3,10 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { FetchProjects } from '../api/FetchProjects';
 import ProjectEdit from '../components/Project-edit';
-import { Edit, Trash2, X } from 'lucide-react';
-import { DeleteProject } from '../api/Project';
+import { Edit, Eye, EyeOff, Trash2, X } from 'lucide-react';
+import { DeleteProject, ProjectToPrivate, ProjectToPublic } from '../api/Project';
 import ConfirmModel from '../components/Confirm-model';
+import { useAuth } from '../contexts/AuthContext';
 
 const Projects = () => {
 
@@ -21,7 +22,7 @@ const Projects = () => {
   const [disabled, setDisabled] = useState(false);
   const navigate = useNavigate();
   const observer = useRef();
-
+  const { user } = useAuth();
 
   // Fetch all projects.
   const fetchAllProjects = async (cursor = null, replace = false) => {
@@ -40,6 +41,27 @@ const Projects = () => {
     setLoading(false);
   };
 
+  // Project make to public.
+  const projectToPublic = async (projectID) => {
+    setDisabled(true);
+    await ProjectToPublic(projectID);
+    setDisabled(false);
+    // Full refresh from the start.
+    fetchAllProjects(null, true);
+    // Remove cached public projects.
+    localStorage.removeItem(`projects-${user?.name}`);
+  };
+
+  // Project make to private.
+  const projectToPrivate = async (projectID) => {
+    setDisabled(true);
+    await ProjectToPrivate(projectID);
+    setDisabled(false);
+    // Full refresh from the start.
+    fetchAllProjects(null, true);
+    // Remove cached public projects.
+    localStorage.removeItem(`projects-${user?.name}`);
+  };
 
   // Last project reference.
   const lastProjectRef = useCallback(
@@ -58,7 +80,6 @@ const Projects = () => {
     [loading, hasMore, nextCursor]
   );
 
-
   // Delete project.
   const deleteProject = async () => {
     setDisabled(true);
@@ -69,6 +90,8 @@ const Projects = () => {
     setProjects((prev) => prev.filter((p) => p.id !== projectID));
     // Full refresh from the start.
     fetchAllProjects(null, true);
+    // Remove cached public projects.
+    localStorage.removeItem(`projects-${user?.name}`);
     // Close model.
     setDeleteModel(false);
   };
@@ -104,12 +127,13 @@ const Projects = () => {
                     <img className='w-10 h-10 mx-2 rounded-md object-center object-contain' src={project.picture ? project.picture : "/addImg.webp"} alt="project-photo" loading='lazy' />
 
                     <div className='w-full flex flex-row max-[425px]:flex-col items-center max-[425px]:items-end max-sm:text-sm overflow-hidden'>
-                      
+
                       <h2 className='text-left w-full'> {project.title}</h2>
-                    
+
                       <div className=' w-fit flex justify-end items-center gap-4 mr-1.5'>
-                        <button onClick={() => { setDeleteModel(true), setProjectID(project.id), setPictureId(project.pictureID); setProjectName(project.title) }} className='flex items-center justify-center gap-1.5 p-2 bg-red-800/10 rounded-full text-red-800 hover:bg-red-800/20 active:bg-red-800/20 cursor-pointer transition-colors duration-200 '> <Trash2 /> </button>
+                        <button disabled={disabled} onClick={() => { setDeleteModel(true), setProjectID(project.id), setPictureId(project.pictureID); setProjectName(project.title) }} className='flex items-center justify-center gap-1.5 p-2 bg-red-800/10 rounded-full text-red-800 hover:bg-red-800/20 active:bg-red-800/20 cursor-pointer transition-colors duration-200 '> <Trash2 /> </button>
                         <button onClick={() => { setEditModel(true), setProjectID(project.id) }} className='flex items-center justify-center gap-1.5 p-2 rounded-full bg-green-800/10 text-green-700 hover:bg-green-800/20 active:bg-green-700/20 cursor-pointer transition-colors duration-200'> <Edit /> </button>
+                        <button disabled={disabled} onClick={() => { project.public ? projectToPrivate(project.id) : projectToPublic(project.id) }} className='flex items-center justify-center gap-1.5 p-2 rounded-full bg-blue-800/10 text-blue-700 hover:bg-blue-800/20 active:bg-blue-700/20 cursor-pointer transition-colors duration-200'>{project.public ? <Eye /> : <EyeOff />}</button>
                       </div>
 
                     </div>
@@ -119,8 +143,8 @@ const Projects = () => {
               })
             }
 
-            {loading && <p className='text-indigo-600 animate-pulse'>Loading...</p>}
-            {!hasMore && <p className="text-indigo-600 pb-5">No more projects.</p>}
+            {loading && <p className='text-red-400 animate-pulse'>Loading...</p>}
+            {!hasMore && <p className="text-green-400 pb-5">No more projects.</p>}
 
           </div>
 

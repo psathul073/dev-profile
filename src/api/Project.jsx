@@ -7,16 +7,16 @@ const API = axios.create({
 });
 
 // Add project API. ☑️
-export const UploadProject = async (data) =>{
+export const UploadProject = async (data) => {
     try {
-         const response = await API.post('/project/add', data);
+        const response = await API.post('/project/add', data);
         //  console.log(response.data, '--project add');
-         return response.data;
+        return response.data;
     } catch (err) {
         console.warn('API fetching failed', err);
         return null;
     }
-   
+
 };
 
 // Update project API. ☑️
@@ -25,7 +25,7 @@ export const UpdateProject = async (data) => {
         const response = await API.put('/project/update', data);
         // console.log(response.data, '--project add');
         return response.data;
-        
+
     } catch (err) {
         console.warn('API fetching failed', err);
         return null;
@@ -50,4 +50,41 @@ export const DeleteProject = async (projectID, pictureID) => {
         console.warn('API fetching failed', err);
         return null;
     }
-}
+};
+
+// Project to public ☑️
+export const ProjectToPublic = async (projectID) => {
+    try {
+        const response = await API.put('/project/public', {}, {
+            params: {
+                projectID,
+            }
+        });
+
+        // console.log(response.data, 'delete response');
+        return response.data;
+
+    } catch (err) {
+        console.warn('API fetching failed', err);
+        return null;
+    }
+};
+
+// Project to private ☑️
+export const ProjectToPrivate = async (projectID) => {
+
+    try {
+        const response = await API.put('/project/private', {}, {
+            params: {
+                projectID,
+            }
+        });
+
+        // console.log(response.data, 'delete response');
+        return response.data;
+
+    } catch (err) {
+        console.warn('API fetching failed', err);
+        return null;
+    }
+};

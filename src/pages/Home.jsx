@@ -19,6 +19,7 @@ const Home = () => {
   const accountDelete = async () => {
     setLoading(true);
     await profileDelete();
+    localStorage.clear();
     navigate('/login');
   };
 

@@ -117,8 +117,8 @@ function PublicHome({ setIsShowHome, username, setProjectID }) {
                         })
                     }
 
-                    {loading && <p className='text-rose-500 mb-4 animate-pulse'>Loading...</p>}
-                    {!hasMore && <p className=" text-green-500 mb-8 animate-pulse ">No more projects.</p>}
+                    {loading && <p className='text-rose-400 mb-4 animate-pulse'>Loading...</p>}
+                    {!hasMore && <p className=" text-green-400 mb-8 animate-pulse ">No more projects.</p>}
 
                 </div>
 
