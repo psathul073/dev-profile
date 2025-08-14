@@ -13,6 +13,7 @@ const BentoGrid = ({ setProfileEdit, setProjectAddModel, setProfileDelModel }) =
 
     const handleLogout = async () => {
         await LogoutUser();
+        localStorage.clear();
         navigate("/login");
     };
 
