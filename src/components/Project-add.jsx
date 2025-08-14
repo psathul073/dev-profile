@@ -76,9 +76,7 @@ const ProjectAdd = ({ setProjectAddModel }) => {
       }
     });
 
-    if (selected.length) {
-      newForm.append('usedTec', JSON.stringify(selected));
-    }
+      newForm.append('usedTec', JSON.stringify(selected || []));
     // Add project.
     await UploadProject(newForm);
     setIsSubmitting(false);
