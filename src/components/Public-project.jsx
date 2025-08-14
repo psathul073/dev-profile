@@ -118,9 +118,9 @@ const PublicProject = ({ projectID, username, setIsShowHome }) => {
       <div className=" relative h-fit w-full max-w-[768px] p-3.5 bg-indigo-50/5 text-indigo-950 dark:text-indigo-50/50 backdrop-blur-xs border border-indigo-200/50 shadow-2xl rounded-2xl font-poppins animate-popIn">
 
         <div className=' relative flex flex-col md:flex-row gap-4'>
-         
+
           <button onClick={() => setIsShowHome(true)} className='absolute top-2 right-2 md:hidden text-lg  p-1.5 rounded-full bg-indigo-50/10 dark:bg-indigo-950/20 border border-indigo-200/10 hover:bg-red-800/10 hover:text-red-800 transition cursor-pointer'><X size={18} /> </button>
-     
+
           <img className=' w-full md:w-80 h-80 object-scale-down bg-center p-2.5 rounded-md border border-indigo-200 outline-4 outline-indigo-200/15 ' src={project?.picture ? project?.picture : "/addImg.webp"} alt="project img" loading='lazy' />
 
           <div className='w-full flex flex-col gap-2 p-2.5 rounded-md border border-indigo-200 outline-4 outline-indigo-200/15 '>
@@ -131,6 +131,16 @@ const PublicProject = ({ projectID, username, setIsShowHome }) => {
             </div>
 
             <p className='text-[15px] font-extralight'>{project?.description}</p>
+
+            <ul className='flex flex-row items-center flex-wrap gap-1.5 my-2'>
+              {
+                project.usedTec && project.usedTec.map((obj, idx) => (
+                  <li key={obj.value || idx} className=' bg-indigo-400/15 text-[12px] px-2 py-0.5 rounded-md'>{obj.label}</li>
+                ))
+              }
+            </ul>
+
+
 
             <div className='h-full flex justify-center p-2'>
 
