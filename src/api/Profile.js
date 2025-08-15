@@ -8,7 +8,7 @@ const API = axios.create({
 
 export const profileUpdates = async(data) => {
     try {
-        const response = await API.post('/api/profile-update', data);
+        const response = await API.post('/user/profile-update', data);
         // console.log(response.data);
         return response.data;
     } catch (error) {
@@ -21,7 +21,7 @@ export const profileUpdates = async(data) => {
 
 export const profileDelete = async() => {
     try {
-        const response = await API.delete('/api/delete-account');
+        const response = await API.delete('/user/delete-account');
         // console.log(response.data);
         return response.data;
         
@@ -33,7 +33,7 @@ export const profileDelete = async() => {
 // Generate API key.
 export const generateApiKey = async () => {
     try {
-        const response = await API.get('/api/generate-key');
+        const response = await API.get('/user/generate-key');
         return response.data;
     } catch (error) {
         console.warn('API Error ', error);
