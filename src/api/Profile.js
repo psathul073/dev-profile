@@ -8,7 +8,7 @@ const API = axios.create({
 
 export const profileUpdates = async(data) => {
     try {
-        const response = await API.post('/user/profile-update', data);
+        const response = await API.post('/u/profile-update', data);
         // console.log(response.data);
         return response.data;
     } catch (error) {
@@ -21,7 +21,7 @@ export const profileUpdates = async(data) => {
 
 export const profileDelete = async() => {
     try {
-        const response = await API.delete('/user/delete-account');
+        const response = await API.delete('/u/delete-account');
         // console.log(response.data);
         return response.data;
         
@@ -30,10 +30,26 @@ export const profileDelete = async() => {
     }
 }
 
+// Fetch profile for public.
+export const FetchProfileForPublic = async (username) => {
+    try {
+        const response = await API.get('/u/public-profile', {
+            params: { username },
+        });
+
+        // console.log(response.data, 'profile for public --');
+        return response.data;
+
+    } catch (err) {
+        console.warn('API fetching failed', err);
+        return null;
+    }
+};
+
 // Generate API key.
 export const generateApiKey = async () => {
     try {
-        const response = await API.get('/user/generate-key');
+        const response = await API.get('/u/generate-key');
         return response.data;
     } catch (error) {
         console.warn('API Error ', error);

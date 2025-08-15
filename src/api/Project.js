@@ -9,7 +9,7 @@ const API = axios.create({
 // Add project API. ☑️
 export const UploadProject = async (data) => {
     try {
-        const response = await API.post('/project/add', data);
+        const response = await API.post('/p/add', data);
         //  console.log(response.data, '--project add');
         return response.data;
     } catch (err) {
@@ -22,7 +22,7 @@ export const UploadProject = async (data) => {
 // Update project API. ☑️
 export const UpdateProject = async (data) => {
     try {
-        const response = await API.put('/project/update', data);
+        const response = await API.put('/p/update', data);
         // console.log(response.data, '--project add');
         return response.data;
 
@@ -36,7 +36,7 @@ export const UpdateProject = async (data) => {
 // Delete project API. ☑️
 export const DeleteProject = async (projectID, pictureID) => {
     try {
-        const response = await API.delete('/project/delete', {
+        const response = await API.delete('/p/delete', {
             params: {
                 projectID,
                 pictureID
@@ -55,7 +55,7 @@ export const DeleteProject = async (projectID, pictureID) => {
 // Project to public ☑️
 export const ProjectToPublic = async (projectID) => {
     try {
-        const response = await API.put('/project/public', {}, {
+        const response = await API.put('/p/public', {}, {
             params: {
                 projectID,
             }
@@ -74,7 +74,7 @@ export const ProjectToPublic = async (projectID) => {
 export const ProjectToPrivate = async (projectID) => {
 
     try {
-        const response = await API.put('/project/private', {}, {
+        const response = await API.put('/p/private', {}, {
             params: {
                 projectID,
             }

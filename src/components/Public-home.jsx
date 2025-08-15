@@ -1,9 +1,10 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import Svg from './Svg';
-import { FetchProfileForPublic, FetchProjectsForPublic } from '../api/FetchProjects';
+import { FetchProjectsForPublic } from '../api/FetchProjects';
 import ShareLink from './Share-link';
 import { getWithExpiry, setWithExpiry } from '../utils/localStorage.js';
 import { BadgeCheck, Share2 } from 'lucide-react';
+import { FetchProfileForPublic } from '../api/Profile.js';
 
 function PublicHome({ setIsShowHome, username, setProjectID }) {
 

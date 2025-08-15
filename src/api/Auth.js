@@ -9,7 +9,7 @@ const API = axios.create({
 
 export const FetchUser = async () => {
     try {
-        const response = await API.get('/auth/user');
+        const response = await API.get('/u/user-data');
         // console.log(response.data, '==google');
         return response.data;
 
@@ -22,7 +22,7 @@ export const FetchUser = async () => {
 
 export const LogoutUser = async () => {
 try {
-    const response = await API.get('/auth/logout');
+    const response = await API.get('/u/logout');
     return response.data;
     
 } catch (err) {

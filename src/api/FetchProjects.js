@@ -8,7 +8,7 @@ const API = axios.create({
 
 export const FetchProjects = async (nextCursor, limit = 5) => {
     try {
-        const response = await API.get('/project/get', {
+        const response = await API.get('/p/get', {
             params: {
                 limit: limit,
                 startAfter: nextCursor,
@@ -28,7 +28,7 @@ export const FetchSingleProject = async (projectID) => {
     // console.log(projectID, 'project id');
 
     try {
-        const response = await API.get('/project/single', {
+        const response = await API.get('/p/single', {
             params: { projectID },
         });
 
@@ -44,26 +44,9 @@ export const FetchSingleProject = async (projectID) => {
 // Fetch total like and projects count.
 export const FetchCounts = async () => {
     try {
-        const response = await API.get('/project/counts');
+        const response = await API.get('/p/counts');
 
         // console.log(response.data, 'single projects--');
-        return response.data;
-
-    } catch (err) {
-        console.warn('API fetching failed', err);
-        return null;
-    }
-};
-
-
-// Fetch profile for public.
-export const FetchProfileForPublic = async (username) => {
-    try {
-        const response = await API.get('/project/public-profile', {
-            params: { username },
-        });
-
-        // console.log(response.data, 'profile for public --');
         return response.data;
 
     } catch (err) {
@@ -75,7 +58,7 @@ export const FetchProfileForPublic = async (username) => {
 // Fetch all projects for public.
 export const FetchProjectsForPublic = async (username, nextCursor) => {
     try {
-        const response = await API.get('/project/public-all', {
+        const response = await API.get('/p/public-all', {
             params: {
                 username, 
                 limit: 5,
@@ -95,7 +78,7 @@ export const FetchProjectsForPublic = async (username, nextCursor) => {
 // Fetch single project for public.
 export const FetchProjectForPublic = async (username, projectID) => {
     try {
-        const response = await API.get('/project/public-single', {
+        const response = await API.get('/p/public-single', {
             params: { username, projectID },
         });
 
