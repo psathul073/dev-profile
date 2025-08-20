@@ -14,7 +14,7 @@ const APIDoc = () => {
 
 
     const exampleCode = `
-fetch("https://dev-profile-92gb.onrender.com/api/projects?limit=10", {
+fetch("https://dev-profile-qd3u.onrender.com/api/projects?limit=10", {
   headers: { 
     "x-api-key": "YOUR_GENERATED_API_KEY"
   }
@@ -46,7 +46,7 @@ fetch("https://dev-profile-92gb.onrender.com/api/projects?limit=10", {
                 <p className='font-semibold mb-4'>Base URL</p>
                 <pre className='flex flex-wrap'>
                     <code className='text-wrap bg-indigo-900/20 p-3 rounded '>
-                        https://dev-profile-92gb.onrender.com/api
+                        https://dev-profile-qd3u.onrender.com/api
                     </code>
                 </pre>
 
