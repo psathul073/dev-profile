@@ -17,38 +17,6 @@ const ProjectEdit = ({ projectID, setEditModel }) => {
     const [selected, setSelected] = useState([]);
     const { user } = useAuth();
 
-    const allOptions = [
-        { value: 'html', label: 'HTML' },
-        { value: 'css', label: 'CSS' },
-        { value: 'js', label: 'JavaScript' },
-        { value: 'ts', label: 'TypeScript' },
-        { value: 'tw', label: 'Tailwindcss.' },
-        { value: 'bt', label: 'Bootstrap' },
-        { value: 'sass', label: 'Sass' },
-        { value: 'react', label: 'React' },
-        { value: 'nx', label: 'Next.js' },
-        { value: 'rq', label: 'React Query' },
-        { value: 'rr', label: 'React Router' },
-        { value: 'rhf', label: 'React Hook Form.' },
-        { value: 'axios', label: 'Axios' },
-        { value: 'git', label: 'Git' },
-        { value: 'gh', label: 'Github' },
-        { value: 'npm', label: 'NPM' },
-        { value: 'nodeJs', label: 'Node.js' },
-        { value: 'ex', label: 'Express.js' },
-        { value: '3', label: 'Three.js' },
-        { value: 'pg', label: 'PostgreSQL' },
-        { value: 'mdb', label: 'MongoDB' },
-        { value: 'fb', label: 'Firebase' },
-        { value: 'sqz', label: 'Sequelize' },
-        { value: 'dk', label: 'Docker' },
-        { value: 'bdr', label: 'Blender' },
-        { value: 'cv', label: 'Canva' },
-        { value: 'fm', label: 'Figma' },
-        { value: 'vs', label: 'VS Code' },
-        { value: 'ws', label: 'Websocket' },
-        { value: 'cy', label: 'Cloudinary' },
-    ];
     
     const navigate = useNavigate();
 
@@ -168,7 +136,7 @@ const ProjectEdit = ({ projectID, setEditModel }) => {
 
                     {isMsg && <p className=' text-center my-2 text-red-400 '>{isMsg}</p>}
 
-                    <MultiSelect allOptions={allOptions} selected={selected} setSelected={setSelected} />
+                    <MultiSelect  selected={selected} setSelected={setSelected} />
 
                     <button disabled={isDisable} className=' relative left-1/2 -translate-x-1/2 mt-6 flex flex-row justify-center items-center py-2 px-3 rounded-full bg-indigo-950 text-indigo-50 border border-indigo-200 outline-4 outline-indigo-200/15 p-2.5  hover:bg-indigo-900 transition duration-200 cursor-pointer' type="submit">{isDisable ? <span className='loader'></span> : 'Update'}</button>
 

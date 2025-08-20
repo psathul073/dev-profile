@@ -1,9 +1,42 @@
 import { useState, useRef, useEffect } from "react";
 import { ArrowUpFromLine, ArrowDownFromLine, X } from "lucide-react";
 
-const MultiSelect = ({ selected, setSelected, allOptions }) => {
+const MultiSelect = ({ selected, setSelected }) => {
     const [isOpen, setIsOpen] = useState(false);
     const dropdownRef = useRef(null);
+
+      const allOptions = [
+        { value: 'html', label: 'HTML' },
+        { value: 'css', label: 'CSS' },
+        { value: 'js', label: 'JavaScript' },
+        { value: 'ts', label: 'TypeScript' },
+        { value: 'tw', label: 'Tailwindcss.' },
+        { value: 'bt', label: 'Bootstrap' },
+        { value: 'sass', label: 'Sass' },
+        { value: 'react', label: 'React' },
+        { value: 'nx', label: 'Next.js' },
+        { value: 'rq', label: 'React Query' },
+        { value: 'rr', label: 'React Router' },
+        { value: 'rhf', label: 'React Hook Form.' },
+        { value: 'axios', label: 'Axios' },
+        { value: 'git', label: 'Git' },
+        { value: 'gh', label: 'Github' },
+        { value: 'npm', label: 'NPM' },
+        { value: 'nodeJs', label: 'Node.js' },
+        { value: 'exJs', label: 'Express.js' },
+        { value: 'threeJs', label: 'Three.js' },
+        { value: 'pg', label: 'PostgreSQL' },
+        { value: 'mdb', label: 'MongoDB' },
+        { value: 'fb', label: 'Firebase' },
+        { value: 'sqz', label: 'Sequelize' },
+        { value: 'dk', label: 'Docker' },
+        { value: 'bdr', label: 'Blender' },
+        { value: 'cv', label: 'Canva' },
+        { value: 'fm', label: 'Figma' },
+        { value: 'vs', label: 'VS Code' },
+        { value: 'ws', label: 'Websocket' },
+        { value: 'cy', label: 'Cloudinary' },
+      ];
 
     // Filter out selected options from available list.
     const availableOptions = allOptions.filter(
