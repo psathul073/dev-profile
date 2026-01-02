@@ -2,7 +2,7 @@ const PublicProjectSkeleton = () => {
   return (
     <>
       {/* Public project section */}
-      <div className=" relative h-fit w-full max-md:max-w-80 max-w-[768px] p-3 rounded-2xl bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm text-gray-600 dark:text-gray-300 border border-gray-300 dark:border-gray-700 animate-popIn">
+      <div className=" relative h-fit w-full max-md:max-w-lg max-w-[768px] p-3 rounded-2xl bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm text-gray-600 dark:text-gray-300 border border-gray-300 dark:border-gray-700 animate-popIn">
         <div className=" relative h-full flex flex-col md:flex-row justify-between max-md:items-center gap-3 group ">
           {/* Image section */}
           <div className="w-72 h-80 shrink-0 object-center rounded-lg  bg-gray-200 dark:bg-gray-800 animate-pulse" />

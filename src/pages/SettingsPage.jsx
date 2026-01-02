@@ -38,7 +38,7 @@ const SettingsPage = () => {
     <SidebarLayout>
       <div className="relative h-full px-2 md:px-4 w-full max-w-6xl mx-auto text-gray-700 dark:text-gray-300 ">
         {/* Head section */}
-        <div className=" w-full flex justify-between items-center mt-2  backdrop-blur-sm">
+        <div className=" w-full flex justify-between items-center mt-2 px-2 backdrop-blur-sm">
           <h2 className="text-lg">Settings</h2>
           <button
             aria-label="Back Button"

@@ -94,8 +94,10 @@ const LandingPage = () => {
 
   return (
     <div className="relative min-h-screen flex items-center justify-center bg-grid-pattern bg-black">
-      <div className="relative z-10 w-6xl h-screen flex flex-col items-center justify-between p-2.5">
+
+      <div className="relative z-10 w-6xl h-screen flex flex-col items-center justify-between p-3">
         {/* Header */}
+      
         <header className="w-full inline-flex items-center justify-between">
           <div className="inline-flex items-center gap-4">
             <Svg
@@ -103,14 +105,14 @@ const LandingPage = () => {
               className="p-1 rounded-lg bg-gradient-to-tl from-yellow-500 via-yellow-300 to-yellow-100 text-gray-900 "
               aria-hidden="true"
             />
-            <h1 className="text-2xl font-poppins font-bold bg-gradient-to-tr from-slate-800 via-violet-500 to-zinc-400 bg-clip-text text-transparent tracking-wide antialiased">
+            <h1 className="text-2xl font-poppins font-bold bg-gradient-to-tr from-slate-800 via-indigo-500 to-zinc-400 bg-clip-text text-transparent tracking-wide antialiased">
               Dev Profile
             </h1>
           </div>
           <button
             ref={authBtnRef}
             onClick={() => setShowAuthModel(!showAuthModel)}
-            className="px-4 py-1 rounded-2xl bg-gradient-to-br from-slate-800 via-violet-500 to-zinc-400 text-violet-950 font-semibold hover:via-violet-600 transition-colors cursor-pointer"
+            className="px-4 py-1 rounded-full bg-gradient-to-br from-slate-800 via-indigo-500 to-zinc-400 text-indigo-950 font-medium hover:via-indigo-700 transition-colors cursor-pointer"
             aria-label="Log in to Dev Profile"
           >
             Log In
@@ -118,9 +120,9 @@ const LandingPage = () => {
         </header>
 
         {/* Main Content */}
-        <main className="h-full w-full flex flex-row items-center justify-between max-sm:flex-col gap-2 p-2 overflow-y-auto text-indigo-100">
+        <main className="h-full w-full flex flex-row items-center justify-evenly max-sm:flex-col gap-2 p-2 overflow-y-auto text-indigo-100">
           <div className="my-6">
-            <h2 className="font-bold max-sm:text-lg text-2xl mb-4 font-poppins">
+            <h2 className="font-semibold max-sm:text-lg text-2xl mb-4 ">
               Your Developer Portfolio, Simplified.
             </h2>
             <p className="text-base/7 font-poppins max-w-xl mb-6">
@@ -132,7 +134,7 @@ const LandingPage = () => {
             <button
               ref={startBtnRef}
               onClick={() => setShowAuthModel(!showAuthModel)}
-              className="bg-violet-700 px-3 py-1 rounded-full font-semibold max-sm:text-base text-base hover:bg-violet-600 transition-colors cursor-pointer"
+              className="bg-indigo-500 px-4 py-2.5 mt-2 rounded-full font-semibold max-sm:text-base text-base hover:bg-indigo-600 transition-colors cursor-pointer"
               aria-label="Get started with Dev Profile"
             >
               Let's Start

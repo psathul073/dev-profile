@@ -10,7 +10,7 @@ export default function PublicProfile() {
   const [projectID, setProjectID] = useState(null);
 
   return (
-    <div className="z-20 fixed top-0 h-full w-full flex justify-center py-2 bg-grid-pattern bg-white dark:bg-black text-gray-700 dark:text-gray-300 overflow-hidden ">
+    <div className="z-20 fixed top-0 h-full w-full flex justify-center p-2 bg-grid-pattern bg-white dark:bg-black text-gray-700 dark:text-gray-300 overflow-hidden ">
       {isShowHome ? (
         <PublicHome
           setIsShowHome={setIsShowHome}

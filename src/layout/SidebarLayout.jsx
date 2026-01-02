@@ -120,11 +120,11 @@ const SidebarLayout = ({ children }) => {
       </aside>
 
       <main className=" relative flex-auto max-sm:mt-11  overflow-y-scroll">
-        <nav className=" fixed top-0  hidden max-sm:inline-flex items-center gap-2.5 py-2">
+        <nav className=" fixed top-0  hidden max-sm:inline-flex items-center gap-2.5 py-2 px-2.5">
           <button aria-label="Menu button" onClick={() => setShowSidebar(true)}>
             <Svg name={"menu"} />
           </button>
-          <p className=" font-semibold">DEV PROFILE</p>
+          <p className="font-semibold">DEV PROFILE</p>
         </nav>
         <section className=" flex justify-center">{children}</section>
       </main>

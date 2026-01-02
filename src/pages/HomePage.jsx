@@ -15,7 +15,7 @@ const HomePage = () => {
     <SidebarLayout>
       <div className="relative px-2 md:px-3 h-full w-full max-w-7xl mx-auto">
         {/* Sticky Header */}
-        <div className="sticky top-0 z-10 py-2.5 flex items-center justify-between bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm">
+        <div className="sticky top-0 z-10 px-2 py-2.5 flex items-center justify-between bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm">
           <h2 className=" text-lg ">Public profile</h2>
         </div>
 

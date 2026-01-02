@@ -128,7 +128,7 @@ const PublicProject = ({ projectID, username, setIsShowHome }) => {
       {isFetching ? (
         <PublicProjectSkeleton />
       ) : (
-        <div className=" relative h-fit w-full max-md:max-w-80 max-w-[768px] p-3 rounded-2xl bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm text-gray-600 dark:text-gray-300 border border-gray-300 dark:border-gray-700 animate-popIn">
+        <div className=" relative h-fit w-full max-md:max-w-lg max-w-[768px] p-3 rounded-2xl bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm text-gray-600 dark:text-gray-300 border border-gray-300 dark:border-gray-700 animate-popIn">
           <div className=" relative h-full flex flex-col md:flex-row justify-between max-md:items-center gap-3 group ">
             <button
               onClick={() => setIsShowHome(true)}
@@ -151,7 +151,7 @@ const PublicProject = ({ projectID, username, setIsShowHome }) => {
               fetchPriority="high"
             />
             {/* Details section */}
-            <div className=" w-full max-h-full flex flex-col justify-between  rounded-md  ">
+            <div className=" w-full max-h-full flex flex-col justify-between rounded-md  ">
               <div>
                 {/* Header */}
                 <div className=" w-full inline-flex justify-between items-center mb-3">
