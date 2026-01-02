@@ -12,7 +12,13 @@ const ShareLink = ({ shareUrl, setShareLinkModel, userData }) => {
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard
         .writeText(shareUrl)
-        .then(() => showToast({ message: "Link copied to clipboard!", duration: 3000}))
+        .then(() =>
+          showToast({
+            message: "Link copied to clipboard!",
+            duration: 3000,
+            className: "dark:!bg-gray-800 dark:!text-white",
+          })
+        )
         .catch(() => fallbackCopy());
     } else {
       fallbackCopy();
@@ -26,9 +32,18 @@ const ShareLink = ({ shareUrl, setShareLinkModel, userData }) => {
     input.select();
     try {
       document.execCommand("copy");
-      showToast({ message: "Link copied (fallback)!", duration: 3000 });
+      showToast({
+        message: "Link copied (fallback)!",
+        duration: 3000,
+        className: "dark:!bg-gray-800 dark:!text-white",
+      });
     } catch (err) {
-      showToast({ message: `Failed to copy ${err}`, type: "error", duration: 4000 });
+      showToast({
+        message: `Failed to copy ${err}`,
+        type: "error",
+        duration: 4000,
+        className: "dark:!bg-gray-800 dark:!text-white",
+      });
     }
     document.body.removeChild(input);
   };
