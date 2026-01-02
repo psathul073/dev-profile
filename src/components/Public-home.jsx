@@ -78,17 +78,23 @@ function PublicHome({ setIsShowHome, username, setProjectID }) {
     setUserDataFetching(true);
     try {
       const result = await FetchProfileForPublic(username);
-      if (result) {
+      if (result.type === "success") {
         setUserData(result);
         setWithExpiry(`user-${username}`, result);
+        setUserDataFetching(false);
+      } else {
+        setUserDataFetching(true);
+        showToast({
+          message: "Something went wrong, User not found.",
+          ...TOAST_CONFIG.error,
+        });
+        return;
       }
     } catch (error) {
       showToast({
         message: error?.message || "Something went wrong, Profile fetch error.",
         ...TOAST_CONFIG.error,
       });
-    } finally {
-      setUserDataFetching(false);
     }
   }, [showToast, username]);
 
