@@ -210,6 +210,20 @@ const ProfilePage = () => {
             </div>
 
             <div className="flex flex-row items-center gap-2 text-[17px] p-3 backdrop-blur-sm rounded-md border border-gray-300 dark:border-gray-700 outline-4 outline-gray-200/15 dark:outline-gray-700/30">
+              <Svg className={"inline-block"} name={"pf"}></Svg>
+              <input
+                type="url"
+                name="pf"
+                id="pf"
+                placeholder="Portfolio URL"
+                className=" w-full outline-0"
+                defaultValue={user?.links.pf}
+                disabled={!editMode}
+                required
+              />
+            </div>
+
+            <div className="flex flex-row items-center gap-2 text-[17px] p-3 backdrop-blur-sm rounded-md border border-gray-300 dark:border-gray-700 outline-4 outline-gray-200/15 dark:outline-gray-700/30">
               <Svg className={"inline-block"} name={"ig"}></Svg>
               <input
                 type="url"
