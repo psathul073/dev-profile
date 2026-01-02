@@ -32,7 +32,6 @@ export default defineConfig({
           firebaseFirestore: ['firebase/firestore'],
           firebaseStorage: ['firebase/storage'],
           ui: ['react-router', 'axios', 'react-hook-form'],
-          icons: ['lucide-react'],
         },
       },
     },
