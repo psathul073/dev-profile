@@ -56,7 +56,7 @@ const Login = ({ ref }) => {
       ref={ref}
       className=" fixed top-1/2 right-60 max-sm:right-1/2 -translate-y-1/2 max-sm:translate-x-1/2 z-20 w-full max-w-[380px] h-fit px-5 rounded-xl backdrop-blur-xl bg-violet-400/5 content-center text-center border border-indigo-200 outline-4 outline-indigo-200/15 shadow-2xl shadow-violet-600/20 animate-scale "
     >
-      <h1 className=" text-xl text-violet-50 my-10">Hello, Developer </h1>
+      <h1 className=" text-xl text-indigo-50 my-10">Hello, Developer </h1>
 
       <div className=" w-full flex flex-col items-center justify-center gap-5 mt-15 mb-10 text-indigo-100">
         <button

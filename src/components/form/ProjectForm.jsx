@@ -257,7 +257,7 @@ const ProjectForm = ({ initialData = null, setInitialData, close }) => {
             <button
               disabled={repoFetching}
               aria-label="Project Fetch Button"
-              className=" bg-indigo-500 text-white p-2.5 w-80 rounded-lg flex justify-center items-center gap-2 font-semibold disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer"
+              className=" bg-indigo-500 text-white p-2.5 w-full max-w-90 rounded-lg flex justify-center items-center gap-2 font-semibold disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer"
               type="submit"
             >
               <Svg name={repoFetching ? "loading" : "fileDownload"} />

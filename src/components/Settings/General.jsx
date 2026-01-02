@@ -36,7 +36,7 @@ const General = () => {
         <button
           onClick={() => handleTheme("system")}
           className={`${
-            theme === "system" && "bg-gray-100"
+            theme === "system" && "bg-gray-100 dark:bg-gray-800"
           } w-full max-w-44 flex flex-col items-center justify-center rounded-xl px-8 py-5 border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer`}
         >
           <Svg name={"computer2"} />

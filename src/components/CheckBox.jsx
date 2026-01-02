@@ -35,14 +35,14 @@ const CheckBox = ({ isChecked, setIsChecked }) => {
         </span>
       </label>
       <label
-        className="cursor-pointer ml-2 text-slate-600 text-sm"
+        className="cursor-pointer ml-2 text-slate-200 text-sm"
         htmlFor="check-with-link"
       >
         <p>
           I agree with the
           <Link
             to={"/terms-conditions"}
-            className=" ml-1 font-medium hover:text-blue-500/80 underline"
+            className=" ml-1 font-medium hover:text-blue-500/80"
           >
             terms and conditions
           </Link>
