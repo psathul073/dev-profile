@@ -6,12 +6,13 @@ const API = axios.create({
     withCredentials: true, // Allow cookies & sessions to be sent
 });
 
-export const FetchProjects = async (nextCursor, limit = 5) => {
+export const FetchProjects = async (nextCursor, limit = 5, searchTerm) => {
     try {
         const response = await API.get('/p/get', {
             params: {
                 limit: limit,
                 startAfter: nextCursor,
+                searchTerm: searchTerm.trim(),
             },
         });
 
@@ -19,8 +20,8 @@ export const FetchProjects = async (nextCursor, limit = 5) => {
         return response.data;
 
     } catch (err) {
-        console.warn('API fetching failed', err);
-        return null;
+        console.error('Fetch all projects error:', err);
+        return err.response?.data || "Projects fetch error.";
     }
 };
 
@@ -36,8 +37,8 @@ export const FetchSingleProject = async (projectID) => {
         return response.data;
 
     } catch (err) {
-        console.warn('API fetching failed', err);
-        return null;
+        console.error('Fetch single project error:', err);
+        return err.response?.data || "Project fetch error.";
     }
 };
 
@@ -50,8 +51,8 @@ export const FetchCounts = async () => {
         return response.data;
 
     } catch (err) {
-        console.warn('API fetching failed', err);
-        return null;
+        console.error('Fetch counts error:', err);
+        return err.response?.data || "Fetch counts error.";
     }
 };
 
@@ -70,8 +71,8 @@ export const FetchProjectsForPublic = async (username, nextCursor) => {
         return response.data;
 
     } catch (err) {
-        console.warn('API fetching failed', err);
-        return null;
+        console.error('Fetch all public projects error:', err);
+        return err.response?.data || "Fetch public projects error.";
     }
 };
 
@@ -86,8 +87,8 @@ export const FetchProjectForPublic = async (username, projectID) => {
         return response.data;
 
     } catch (err) {
-        console.warn('API fetching failed', err);
-        return null;
+        console.error('Fetch public project error:', err);
+        return err.response?.data || "Fetch public project error";
     }
 };
 

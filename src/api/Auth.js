@@ -6,27 +6,25 @@ const API = axios.create({
     withCredentials: true, // Allow cookies & sessions to be sent
 });
 
-
 export const FetchUser = async () => {
     try {
         const response = await API.get('/u/user-data');
-        // console.log(response.data, '==google');
         return response.data;
 
     } catch (err) {
-        console.warn('API fetching failed', err);
-        return null;
+        console.error('API fetching failed', err);
+        return err.response?.data || 'API fetching failed';
     }
 
 };
 
 export const LogoutUser = async () => {
-try {
-    const response = await API.get('/u/logout');
-    return response.data;
-    
-} catch (err) {
-    console.warn('API fetching failed', err);
-    return null;
-}
-}
+    try {
+        const response = await API.get('/u/logout');
+        return response.data;
+
+    } catch (err) {
+        console.error('API fetching failed', err);
+        return err.response?.data || 'API fetching failed';
+    }
+};

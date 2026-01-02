@@ -12,9 +12,8 @@ export const profileUpdates = async(data) => {
         // console.log(response.data);
         return response.data;
     } catch (error) {
-        console.warn('API Error ', error);
-        const message = error.response?.data || "Something went wrong";
-        return message;
+        console.error('Profile update error:', error);
+        return error.response?.data || "Something went wrong";;
     }
     
 };
@@ -26,7 +25,8 @@ export const profileDelete = async() => {
         return response.data;
         
     } catch (error) {
-        console.warn('API Error ', error);
+        console.error('Account delete error:', error);
+        return error.response?.data || "Something went wrong";;
     }
 }
 
@@ -40,9 +40,9 @@ export const FetchProfileForPublic = async (username) => {
         // console.log(response.data, 'profile for public --');
         return response.data;
 
-    } catch (err) {
-        console.warn('API fetching failed', err);
-        return null;
+    } catch (error) {
+        console.error('Profile fetching error:', error);
+        return error.response?.data || "Something went wrong";;
     }
 };
 
@@ -52,6 +52,7 @@ export const generateApiKey = async () => {
         const response = await API.get('/u/generate-key');
         return response.data;
     } catch (error) {
-        console.warn('API Error ', error);
+        console.error('API key generate error:', error);
+        return error.response?.data || "Something went wrong";;
     }
 }

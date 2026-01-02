@@ -13,8 +13,8 @@ export const FetchRepo = async(data) => {
         return response.data;
 
     } catch (err) {
-        console.warn('API fetching failed', err);
-        return null;
+        console.error('Github repo fetch error:', err);
+        return err.response?.data || "Github repo fetching error.";
     }
 
 };

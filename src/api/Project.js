@@ -13,8 +13,8 @@ export const UploadProject = async (data) => {
         //  console.log(response.data, '--project add');
         return response.data;
     } catch (err) {
-        console.warn('API fetching failed', err);
-        return null;
+        console.error('Project add API error:', err);
+        return err.response?.data || 'Project add error.';
     }
 
 };
@@ -27,8 +27,8 @@ export const UpdateProject = async (data) => {
         return response.data;
 
     } catch (err) {
-        console.warn('API fetching failed', err);
-        return null;
+        console.error('Project update API error:', err);
+        return err.response?.data || 'Project update error.';
     }
 
 };
@@ -47,44 +47,63 @@ export const DeleteProject = async (projectID, pictureID) => {
         return response.data;
 
     } catch (err) {
-        console.warn('API fetching failed', err);
-        return null;
+        console.error('Project delete API error:', err);
+        return err.response?.data || 'Project delete error.';
     }
 };
 
 // Project to public ☑️
-export const ProjectToPublic = async (projectID) => {
-    try {
-        const response = await API.put('/p/public', {}, {
-            params: {
-                projectID,
-            }
-        });
+// export const ProjectToPublic = async (projectID) => {
+//     try {
+//         const response = await API.put('/p/public', {}, {
+//             params: {
+//                 projectID,
+//             }
+//         });
 
-        // console.log(response.data, 'delete response');
-        return response.data;
+//         // console.log(response.data, 'delete response');
+//         return response.data;
 
-    } catch (err) {
-        console.warn('API fetching failed', err);
-        return null;
-    }
-};
+//     } catch (err) {
+//         console.warn('API fetching failed', err);
+//         return null;
+//     }
+// };
 
 // Project to private ☑️
-export const ProjectToPrivate = async (projectID) => {
+// export const ProjectToPrivate = async (projectID) => {
+
+//     try {
+//         const response = await API.put('/p/private', {}, {
+//             params: {
+//                 projectID,
+//             }
+//         });
+
+//         // console.log(response.data, 'delete response');
+//         return response.data;
+
+//     } catch (err) {
+//         console.warn('API fetching failed', err);
+//         return null;
+//     }
+// };
+
+// Project status set API[public / private]
+export const ProjectStatus = async (projectID, status) => {
 
     try {
-        const response = await API.put('/p/private', {}, {
+        const response = await API.put(`/p/status`, {}, {
             params: {
                 projectID,
+                status,
             }
         });
 
-        // console.log(response.data, 'delete response');
         return response.data;
 
     } catch (err) {
-        console.warn('API fetching failed', err);
-        return null;
+        console.error('Add project status API error:', err);
+        return err.response?.data || 'Add project status error.';
     }
 };

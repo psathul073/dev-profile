@@ -30,4 +30,25 @@ const getWithExpiry = (key) => {
     }
 };
 
-export { setWithExpiry, getWithExpiry }
+// Clear only specific user's projects cache.
+
+const clearSpecificItem = (cacheKey, id, data) => {
+
+    const cachedData = localStorage.getItem(cacheKey);
+
+    if (cachedData) {
+        const parsed = JSON.parse(cachedData);
+
+        // Filter out the updated project data...
+        const updatedData = {
+            ...parsed,
+            value: parsed.value.map((p) =>
+                p.id === id ? { ...p, ...data } : p
+            ),
+        };
+        localStorage.setItem(cacheKey, JSON.stringify(updatedData));
+    }
+
+};
+
+export { setWithExpiry, getWithExpiry, clearSpecificItem }

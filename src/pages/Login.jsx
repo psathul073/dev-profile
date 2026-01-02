@@ -1,70 +1,87 @@
-import { useState } from "react";
+import { memo, useState } from "react";
 import CheckBox from "../components/CheckBox";
 import Svg from "../components/Svg";
+import { useToast } from "d9-toast";
 
+const Login = ({ ref }) => {
+  const [isChecked, setIsChecked] = useState(false);
+  const [disabled, setDisabled] = useState(false);
+  const [loading, setLoading] = useState({ google: false, github: false });
+  const { showToast } = useToast();
 
-const Login = () => {
+  const handleLogin = async () => {
+    if (!isChecked) {
+      showToast({
+        message: "Please accept the terms and conditions!",
+        type: "warning",
+        position: "top-right",
+        theme: "dark",
+        title: false,
+        duration: 3000,
+      });
+      return;
+    } else {
+      setLoading(prev => ({...prev, google: true}));
+      setDisabled(true);
+      window.open(
+        `${import.meta.env.VITE_BACKEND_API_URL}/auth/google`,
+        "_self"
+      ); // Redirect to Google login
+    }
+  };
 
-    const [isChecked, setIsChecked] = useState(false);
-    const [message, setMessage] = useState('');
+  const handleGitHubSignIn = async () => {
+    if (!isChecked) {
+      showToast({
+        message: "Please accept the terms and conditions!",
+        type: "warning",
+        position: "top-right",
+        theme: "dark",
+        title: false,
+        duration: 3000,
+      });
+      return;
+    } else {
+      setLoading((prev) => ({ ...prev, github: true }));
+      setDisabled(true);
+      window.open(
+        `${import.meta.env.VITE_BACKEND_API_URL}/auth/github`,
+        "_self"
+      );
+    }
+  };
 
-    const handleLogin = async () => {
-        if (!isChecked) {
-            setMessage('Please accept the terms and conditions!');
-            return;
-        } else {
-            window.open(`${import.meta.env.VITE_BACKEND_API_URL}/auth/google`, "_self"); // Redirect to Google login
-        }
+  return (
+    <div
+      ref={ref}
+      className=" fixed top-1/2 right-60 max-sm:right-1/2 -translate-y-1/2 max-sm:translate-x-1/2 z-20 w-full max-w-[380px] h-fit px-5 rounded-xl backdrop-blur-xl bg-violet-400/5 content-center text-center border border-indigo-200 outline-4 outline-indigo-200/15 shadow-2xl shadow-violet-600/20 animate-scale "
+    >
+      <h1 className=" text-xl text-violet-50 my-10">Hello, Developer </h1>
 
-    };
+      <div className=" w-full flex flex-col items-center justify-center gap-5 mt-15 mb-10 text-indigo-100">
+        <button
+          disabled={disabled}
+          onClick={handleLogin}
+          className=" disabled:cursor-not-allowed w-[95%] flex justify-center items-center gap-2 text-lg px-4 py-3 rounded-xl backdrop-blur-3xl border border-indigo-200 outline-4 outline-indigo-200/15 hover:bg-indigo-900/20 active:bg-indigo-900/20 cursor-pointer "
+        >
+          <Svg name={loading.google ? "loading" : "google"} /> Sign in with Google
+        </button>
 
-    const handleGitHubSignIn = async () => {
-        if (!isChecked) {
-            setMessage('Please accept the terms and conditions!');
-            return;
-        } else {
-            window.open(`${import.meta.env.VITE_BACKEND_API_URL}/auth/github`, "_self");
-        }
-    };
+        <p>OR</p>
 
-    return (
-        <div className="relative min-h-screen bg-gradient-to-t from-slate-950 to-indigo-950 ">
+        <button
+          disabled={disabled}
+          onClick={handleGitHubSignIn}
+          className=" disabled:cursor-not-allowed w-[95%] flex justify-center items-center gap-2 text-lg px-4 py-3  text-md rounded-xl bg-indigo-800/20 border border-indigo-200 outline-4 outline-indigo-200/15 shadow-[0_8px_32px_0_rgb(0,0,0,0.18)] hover:bg-indigo-900/20 active:bg-indigo-900/20 cursor-pointer "
+        >
+          <Svg name={loading.github ? "loading" : "github"} className={"text-2xl"} />{" "}
+          Sign in with Github
+        </button>
+      </div>
 
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_left,_rgba(255,255,255,0.15),transparent_70%)]"></div>
+      <CheckBox isChecked={isChecked} setIsChecked={setIsChecked} />
+    </div>
+  );
+};
 
-            <div className="relative z-10 flex flex-row items-center justify-evenly w-full h-screen backdrop-blur-2xl p-2.5 ">
-
-                <div className="max-sm:hidden " >
-                    <img src="/computer.webp" alt="computer image" className=" brightness-150 grayscale-25 drop-shadow-2xl drop-shadow-indigo-800/30 " />
-                </div>
-
-                <div className=" w-full max-w-[400px] relative px-5 rounded-xl bg-indigo-950/10 content-center text-center border border-indigo-200 outline-4 outline-indigo-200/15 shadow-[0_8px_32px_0_rgb(0,0,0,0.18)] ">
-
-                    <h1 className=" text-2xl  text-indigo-200 my-10">Hey, Developer </h1>
-
-                    {message && <p className="text-red-800 font-medium animate-popIn">{message}</p>}
-
-                    <div className=" w-full flex flex-col items-center justify-center gap-5 mt-15 mb-10 text-indigo-100">
-
-                        <button onClick={handleLogin} className=" w-[95%] flex justify-center items-center gap-2 text-lg px-4 py-3.5 rounded-md border border-indigo-200 outline-4 outline-indigo-200/15 shadow-[0_8px_32px_0_rgb(0,0,0,0.18)] hover:bg-indigo-900/20 active:bg-indigo-900/20 cursor-pointer ">
-                            <Svg name={'google'} /> Sign in with Google
-                        </button>
-
-                        <p>or</p>
-
-                        <button onClick={handleGitHubSignIn} className=" w-[95%] flex justify-center items-center gap-2 text-lg px-4 py-3.5  text-md rounded-md border border-indigo-200 outline-4 outline-indigo-200/15 shadow-[0_8px_32px_0_rgb(0,0,0,0.18)] hover:bg-indigo-900/20 active:bg-indigo-900/20 cursor-pointer ">
-                            <Svg name={'github'} className={'text-2xl'} /> Sign in with Github
-                        </button>
-                    </div>
-
-                    <CheckBox isChecked={isChecked} setIsChecked={setIsChecked} setMessage={setMessage} />
-
-                </div>
-
-            </div>
-
-        </div>
-    )
-}
-
-export default Login
+export default memo(Login);

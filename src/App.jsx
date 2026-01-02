@@ -1,39 +1,49 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router";
 import { AuthProvider } from "./contexts/AuthContext";
-import PrivateRoute from "./Routes/PrivateRoute";
-import Home from "./pages/Home";
 import { ThemeProvider } from "./contexts/ThemeContext";
-import { lazy, Suspense } from "react";
-import Loader from "./components/Loader";
+import { SidebarProvider } from "./contexts/SidebarContext";
+import { ToastProvider } from "d9-toast";
+import { lazy } from "react";
 import TermsCondition from "./pages/TermsCondition";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
-import APIDoc from "./pages/APIDoc";
-const Login = lazy(() => import('./pages/Login'));
-const Projects = lazy(() => import("./pages/Projects"));
+
+const HomePage = lazy(() => import("./pages/HomePage"));
+const ProfilePage = lazy(() => import("./pages/ProfilePage"));
+const ProjectPage = lazy(() => import("./pages/ProjectPage"));
 const PublicProfile = lazy(() => import("./pages/PublicProfile"));
+const LandingPage = lazy(() => import("./pages/LandingPage"));
+const SettingsPage = lazy(() => import("./pages/SettingsPage"));
+const APIDocPage = lazy(() => import("./pages/APIDocPage"));
 
 function App() {
   return (
     <ThemeProvider>
-      <Router>
-        <AuthProvider>
+      <ToastProvider>
+        <SidebarProvider>
+          <Router>
           <Routes>
-            <Route path="/login" element={<Suspense fallback={<Loader />}><Login /></Suspense>} />
+            {/* Private routes */}
+            <Route  path="/" element={<AuthProvider><HomePage /></AuthProvider>}/>
+            <Route path="/api-doc" element={<AuthProvider><APIDocPage /></AuthProvider>}/>
+            <Route path="/project" element={<AuthProvider><ProjectPage /></AuthProvider> }/>
+            <Route path="/profile" element={<AuthProvider><ProfilePage /></AuthProvider>}/>
+            <Route path="/settings" element={<AuthProvider><SettingsPage /></AuthProvider>}/>
+          
+            {/* 404 */}
+            <Route path="*" element={<AuthProvider><HomePage /></AuthProvider>} />
+
+            {/* Public route */}
+            <Route path="/u/:username" element={<PublicProfile />} /> 
+            <Route path="/landing" element={<LandingPage />} />
             <Route path="/terms-conditions" element={<TermsCondition />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-             <Route path="/" element={<PrivateRoute> <Home /> </PrivateRoute>} />
-            <Route path="/api-doc" element={<PrivateRoute> <APIDoc /> </PrivateRoute>} />
-            <Route path="/project" element={<PrivateRoute> <Suspense fallback={<Loader />}> <Projects /> </Suspense> </PrivateRoute>} />
-            <Route path="/u/:username" element={<Suspense fallback={<Loader />} > <PublicProfile /> </Suspense>} />
-            {/* 404 */}
-            <Route path="*" element={<PrivateRoute> <Home /> </PrivateRoute>} />
-          </Routes>
-        </AuthProvider>
-      </Router>
-    </ThemeProvider>
 
+          </Routes>
+        </Router>
+      </SidebarProvider>
+      </ToastProvider>
+    </ThemeProvider>
   );
 }
 
 export default App;
-
