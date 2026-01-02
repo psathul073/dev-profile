@@ -13,6 +13,17 @@ const Account = () => {
   const { user } = useAuth();
   const { showToast } = useToast();
 
+  const clearLocalData = () => {
+    if (localStorage.getItem(`user-${user?.name}`) !== null) {
+      localStorage.clear();
+      showToast({
+        message: "Successfully cleared all local data.",
+        duration: 3000,
+        className: "dark:!bg-gray-800 dark:!text-white",
+      });
+    }
+  };
+
   const handleLogout = useCallback(async () => {
     try {
       setDisabled(true);
@@ -23,6 +34,7 @@ const Account = () => {
       setTimeout(() => {
         showToast({
           message: "logout successfully.",
+          className: "dark:!bg-gray-800 dark:!text-white",
           duration: 2000,
         });
         navigate("/landing");
@@ -30,6 +42,7 @@ const Account = () => {
     } catch (error) {
       showToast({
         message: error?.message || "Logout error.",
+        className: "dark:!bg-gray-800 dark:!text-white",
         type: "error",
         duration: 3000,
       });
@@ -46,6 +59,7 @@ const Account = () => {
       setTimeout(() => {
         showToast({
           message: "Account delete successfully.",
+          className: "dark:!bg-gray-800 dark:!text-white",
           duration: 2000,
         });
         navigate("/landing");
@@ -53,6 +67,7 @@ const Account = () => {
     } catch (error) {
       showToast({
         message: error?.message || "Account delete error.",
+        className: "dark:!bg-gray-800 dark:!text-white",
         type: "error",
         duration: 3000,
       });
@@ -71,6 +86,17 @@ const Account = () => {
         <p>Email address</p>
         <span className="">{user?.email || "ab*****01@gmail.com"}</span>
       </div>
+      <div className=" flex justify-between items-center py-4 text-sm border-b border-gray-300 dark:border-gray-700">
+        <p>Clear all local data</p>
+        <button
+          disabled={disabled}
+          onClick={clearLocalData}
+          className=" px-3.5 pt-1.5 pb-2 rounded-full text-red-400 border border-red-600 dark:border-red-500 hover:bg-red-200/40 dark:hover:bg-red-700/40 disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer"
+        >
+          Clear all
+        </button>
+      </div>
+
       <div className=" flex justify-between items-center py-4 text-sm border-b border-gray-300 dark:border-gray-700">
         <p>Log out of all devices</p>
         <button
