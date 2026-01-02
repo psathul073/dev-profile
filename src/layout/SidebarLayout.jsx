@@ -52,7 +52,7 @@ const SidebarLayout = ({ children }) => {
       <aside
         className={`${
           showSidebar ? "w-60 block" : "w-[55px] max-sm:hidden"
-        } z-40 shrink-0  p-2 max-sm:fixed min-h-full rounded-r-lg bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm border-r border-gray-200 dark:border-gray-700 transition-[width] duration-500 `}
+        } z-50 shrink-0  p-2 max-sm:fixed min-h-full rounded-r-lg bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm border-r border-gray-200 dark:border-gray-700 transition-[width] duration-500 `}
       >
         {/* Header */}
         <div

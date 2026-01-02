@@ -73,7 +73,7 @@ const MultiSelect = ({ selected, setSelected }) => {
   return (
     <div
       ref={dropdownRef}
-      className="relative inline-block w-full z-50 rounded-md border border-gray-300 dark:border-gray-700 outline-4 outline-gray-200/15 dark:outline-gray-700/30"
+      className="relative inline-block w-full z-40 rounded-md border border-gray-300 dark:border-gray-700 outline-4 outline-gray-200/15 dark:outline-gray-700/30"
     >
       {/* Dropdown Toggle */}
       <button

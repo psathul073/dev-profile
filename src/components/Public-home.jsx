@@ -188,7 +188,7 @@ function PublicHome({ setIsShowHome, username, setProjectID }) {
               )}
             </p>
 
-            <div className="w-full h-full flex flex-row items-center justify-center overflow-x-scroll gap-10 ">
+            <div className="w-full h-full flex flex-row items-center justify-center overflow-x-scroll px-2 gap-10 ">
               {userData !== null &&
                 userData?.links &&
                 Object?.keys(userData?.links).map((key) => {
