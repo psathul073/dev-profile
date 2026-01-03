@@ -24,7 +24,7 @@ const APIDocPage = () => {
         title: false,
         type: result?.type || "success",
         message: "API key is generated successfully.",
-        className: "dark:!bg-gray-800 dark:!text-white !border-gray-800",
+        className: "dark:!bg-gray-800 dark:!text-white dark:!border-gray-800",
         duration: 3000,
       });
     } catch (error) {
@@ -33,7 +33,7 @@ const APIDocPage = () => {
         title: false,
         type: "error",
         message: "API key generation failed",
-        className: "dark:!bg-gray-800 dark:!text-white !border-gray-800",
+        className: "dark:!bg-gray-800 dark:!text-white dark:!border-gray-800",
         duration: 4000,
       });
     } finally {

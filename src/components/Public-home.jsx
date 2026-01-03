@@ -11,17 +11,17 @@ const TOAST_CONFIG = {
   success: {
     type: "success",
     duration: 3000,
-    className: "dark:!bg-gray-800 dark:!text-white !border-gray-800",
+    className: "dark:!bg-gray-800 dark:!text-white dark:!border-gray-800",
   },
   error: {
     type: "error",
     duration: 4000,
-    className: "dark:!bg-gray-800 dark:!text-white !border-gray-800",
+    className: "dark:!bg-gray-800 dark:!text-white dark:!border-gray-800",
   },
   info: {
     type: "info",
     duration: 3000,
-    className: "dark:!bg-gray-800 dark:!text-white !border-gray-800",
+    className: "dark:!bg-gray-800 dark:!text-white dark:!border-gray-800",
   },
 };
 

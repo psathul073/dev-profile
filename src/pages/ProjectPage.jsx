@@ -17,19 +17,19 @@ const TOAST_CONFIG = {
     position: "top-right",
     title: false,
     duration: 3000,
-    className: "dark:!bg-gray-800 dark:!text-white !border-gray-800",
+    className: "dark:!bg-gray-800 dark:!text-white dark:!border-gray-800",
   },
   error: {
     type: "error",
     position: "top-right",
     duration: 4000,
-    className: "dark:!bg-gray-800 dark:!text-white !border-gray-800",
+    className: "dark:!bg-gray-800 dark:!text-white dark:!border-gray-800",
   },
   info: {
     type: "info",
     position: "top-right",
     duration: 3000,
-    className: "dark:!bg-gray-800 dark:!text-white !border-gray-800",
+    className: "dark:!bg-gray-800 dark:!text-white dark:!border-gray-800",
   },
 };
 

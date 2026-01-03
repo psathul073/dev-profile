@@ -26,7 +26,7 @@ const ProfilePage = () => {
         title: false,
         position: "center-top",
         duration: 3000,
-        className: "dark:!bg-gray-800 dark:!text-white",
+        className: "dark:!bg-gray-800 dark:!text-white dark:!border-gray-800",
       });
       setEditMode(true);
     } else {
@@ -36,7 +36,7 @@ const ProfilePage = () => {
         title: false,
         position: "center-top",
         duration: 3000,
-        className: "dark:!bg-gray-800 dark:!text-white !border-gray-800",
+        className: "dark:!bg-gray-800 dark:!text-white dark:!border-gray-800",
       });
       setEditMode(false);
     }
@@ -71,14 +71,16 @@ const ProfilePage = () => {
             message: response?.message,
             type: "error",
             duration: 3000,
-            className: "dark:!bg-gray-800 dark:!text-white !border-gray-800",
+            className:
+              "dark:!bg-gray-800 dark:!text-white dark:!border-gray-800",
           });
         } else {
           showToast({
             message: response?.message,
             type: "success",
             duration: 3000,
-            className: "dark:!bg-gray-800 dark:!text-white !border-gray-800",
+            className:
+              "dark:!bg-gray-800 dark:!text-white dark:!border-gray-800",
           });
           setTimeout(() => navigate(0), 2000);
         }
@@ -87,7 +89,7 @@ const ProfilePage = () => {
           message: "Profile update error.",
           type: "error",
           duration: 3000,
-          className: "dark:!bg-gray-800 dark:!text-white !border-gray-800",
+          className: "dark:!bg-gray-800 dark:!text-white dark:!border-gray-800",
         });
         throw error;
       } finally {

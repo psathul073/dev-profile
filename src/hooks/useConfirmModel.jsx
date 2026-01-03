@@ -117,7 +117,7 @@ const useConfirmModel = () => {
         autoClose: false,
         title: false,
         className:
-          "dark:!bg-gray-800 dark:!text-white !rounded-xl !border-gray-800",
+          "dark:!bg-gray-800 dark:!text-white !rounded-xl dark:!border-gray-800",
       });
 
       toastIdRef.current = id;

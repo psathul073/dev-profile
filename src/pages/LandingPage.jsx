@@ -72,7 +72,7 @@ const LandingPage = () => {
         position: "bottom-right",
         autoClose: false,
         className:
-          "!bg-gray-950 border !border-gray-600/40 !text-indigo-50 !border-gray-800",
+          "!bg-gray-950 border !border-gray-600/40 !text-indigo-50 dark:!border-gray-800",
         actions: [
           {
             text: "Hide",

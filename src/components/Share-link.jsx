@@ -16,7 +16,8 @@ const ShareLink = ({ shareUrl, setShareLinkModel, userData }) => {
           showToast({
             message: "Link copied to clipboard!",
             duration: 3000,
-            className: "dark:!bg-gray-800 dark:!text-white !border-gray-800",
+            className:
+              "dark:!bg-gray-800 dark:!text-white dark:!border-gray-800",
           })
         )
         .catch(() => fallbackCopy());
@@ -35,14 +36,14 @@ const ShareLink = ({ shareUrl, setShareLinkModel, userData }) => {
       showToast({
         message: "Link copied (fallback)!",
         duration: 3000,
-        className: "dark:!bg-gray-800 dark:!text-white !border-gray-800",
+        className: "dark:!bg-gray-800 dark:!text-white dark:!border-gray-800",
       });
     } catch (err) {
       showToast({
         message: `Failed to copy ${err}`,
         type: "error",
         duration: 4000,
-        className: "dark:!bg-gray-800 dark:!text-white !border-gray-800",
+        className: "dark:!bg-gray-800 dark:!text-white dark:!border-gray-800",
       });
     }
     document.body.removeChild(input);
