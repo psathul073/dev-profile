@@ -297,7 +297,7 @@ const ProfilePage = () => {
                 aria-label="Upload button"
                 className={`${
                   editMode ? "inline-flex" : "hidden"
-                } items-center justify-center gap-2 w-full max-w-90 p-2.5 rounded-lg text-white font-semibold bg-emerald-500 hover:bg-emerald-600 active:bg-emerald-600 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer`}
+                } items-center justify-center gap-2 w-full max-w-96 p-2.5 rounded-lg text-white font-semibold bg-emerald-500 hover:bg-emerald-600 active:bg-emerald-600 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer`}
               >
                 <Svg name={loading ? "loading" : "upload"} />
                 {loading ? "Updating..." : "Update"}

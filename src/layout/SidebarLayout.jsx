@@ -52,7 +52,7 @@ const SidebarLayout = ({ children }) => {
       <aside
         className={`${
           showSidebar ? "w-60 block" : "w-[55px] max-sm:hidden"
-        } z-50 shrink-0  p-2 max-sm:fixed min-h-full rounded-r-lg bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm border-r border-gray-200 dark:border-gray-700 transition-[width] duration-500 `}
+        } z-50 shrink-0  p-2 max-sm:fixed min-h-full rounded-r-lg bg-white/50 dark:bg-gray-800/50 backdrop-blur-md border-r border-gray-200 dark:border-gray-700 transition-[width] duration-500 `}
       >
         {/* Header */}
         <div
@@ -90,7 +90,7 @@ const SidebarLayout = ({ children }) => {
         {/* Nav items */}
         <ul className=" flex flex-col gap-5">
           {navItems.map((item) => (
-            <li key={item.id}>
+            <li key={item.id} >
               <NavLink
                 to={item.link}
                 className={({ isActive }) =>
@@ -119,12 +119,12 @@ const SidebarLayout = ({ children }) => {
         </ul>
       </aside>
 
-      <main className=" relative flex-auto max-sm:mt-11  overflow-y-scroll">
+      <main className=" relative flex-auto max-sm:mt-11 overflow-y-scroll">
         <nav className=" fixed top-0  hidden max-sm:inline-flex items-center gap-2.5 py-2 px-2.5">
           <button aria-label="Menu button" onClick={() => setShowSidebar(true)}>
             <Svg name={"menu"} />
           </button>
-          <p className="font-semibold">DEV PROFILE</p>
+          <p className="font-semibold text-lg">DEV PROFILE</p>
         </nav>
         <section className=" flex justify-center">{children}</section>
       </main>

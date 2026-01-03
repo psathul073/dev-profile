@@ -961,6 +961,7 @@ const Svg = ({ name, className }) => {
         viewBox="0 0 24 24"
         width="1.4em"
         height="1.4em"
+        style={{ flexShrink: 0 }}
       >
         <path
           fill="none"
