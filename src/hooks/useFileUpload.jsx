@@ -36,6 +36,7 @@ const useFileUpload = () => {
           title: false,
           position: "top-right",
           duration: 3000,
+          className: "dark:!bg-gray-800 dark:!text-white !border-gray-800",
         });
         // Clear invalid file from input..
         if (fileInputRef.current) {
@@ -51,6 +52,7 @@ const useFileUpload = () => {
           title: false,
           position: "top-right",
           duration: 3000,
+          className: "dark:!bg-gray-800 dark:!text-white !border-gray-800",
         });
         // Clear invalid file from input
         if (fileInputRef.current) {

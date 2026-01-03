@@ -16,13 +16,13 @@ const TOAST_CONFIG = {
     position: "top-right",
     title: false,
     duration: 3000,
-    className: "dark:!bg-gray-800 dark:!text-white",
+    className: "dark:!bg-gray-800 dark:!text-white !border-gray-800",
   },
   error: {
     type: "error",
     position: "top-right",
     duration: 4000,
-    className: "dark:!bg-gray-800 dark:!text-white",
+    className: "dark:!bg-gray-800 dark:!text-white !border-gray-800",
   },
 };
 
@@ -137,7 +137,7 @@ const ProjectForm = ({ initialData = null, setInitialData, close }) => {
             title: false,
             message: updateResult?.message || "Something wrong!",
             duration: 3000,
-            className: "dark:!bg-gray-800 dark:!text-white",
+            className: "dark:!bg-gray-800 dark:!text-white !border-gray-800",
           });
           // Clear data...
           if (updateResult?.type === "success") {
@@ -390,7 +390,7 @@ const ProjectForm = ({ initialData = null, setInitialData, close }) => {
                 disabled={submitting}
                 type="submit"
                 aria-label="Project Upload Button"
-                className="bg-emerald-500 text-white p-2.5 w-80 rounded-lg flex justify-center items-center gap-2 font-semibold hover:bg-emerald-600 active:bg-emerald-600 disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer"
+                className="bg-emerald-500 text-white p-2.5 w-full max-w-96 rounded-lg flex justify-center items-center gap-2 font-semibold hover:bg-emerald-600 active:bg-emerald-600 disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer"
               >
                 <Svg name={submitting ? "loading" : "upload"} />
                 {initialData

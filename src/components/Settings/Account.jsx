@@ -19,7 +19,7 @@ const Account = () => {
       showToast({
         message: "Successfully cleared all local data.",
         duration: 3000,
-        className: "dark:!bg-gray-800 dark:!text-white",
+        className: "dark:!bg-gray-800 dark:!text-white !border-gray-800",
       });
     }
   };
@@ -34,7 +34,7 @@ const Account = () => {
       setTimeout(() => {
         showToast({
           message: "logout successfully.",
-          className: "dark:!bg-gray-800 dark:!text-white",
+          className: "dark:!bg-gray-800 dark:!text-white !border-gray-800",
           duration: 2000,
         });
         navigate("/landing");
@@ -42,7 +42,7 @@ const Account = () => {
     } catch (error) {
       showToast({
         message: error?.message || "Logout error.",
-        className: "dark:!bg-gray-800 dark:!text-white",
+        className: "dark:!bg-gray-800 dark:!text-white !border-gray-800",
         type: "error",
         duration: 3000,
       });
@@ -59,7 +59,7 @@ const Account = () => {
       setTimeout(() => {
         showToast({
           message: "Account delete successfully.",
-          className: "dark:!bg-gray-800 dark:!text-white",
+          className: "dark:!bg-gray-800 dark:!text-white !border-gray-800",
           duration: 2000,
         });
         navigate("/landing");
@@ -67,7 +67,7 @@ const Account = () => {
     } catch (error) {
       showToast({
         message: error?.message || "Account delete error.",
-        className: "dark:!bg-gray-800 dark:!text-white",
+        className: "dark:!bg-gray-800 dark:!text-white !border-gray-800",
         type: "error",
         duration: 3000,
       });

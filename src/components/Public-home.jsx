@@ -11,17 +11,17 @@ const TOAST_CONFIG = {
   success: {
     type: "success",
     duration: 3000,
-    className: "dark:!bg-gray-800 dark:!text-white",
+    className: "dark:!bg-gray-800 dark:!text-white !border-gray-800",
   },
   error: {
     type: "error",
     duration: 4000,
-    className: "dark:!bg-gray-800 dark:!text-white",
+    className: "dark:!bg-gray-800 dark:!text-white !border-gray-800",
   },
   info: {
     type: "info",
     duration: 3000,
-    className: "dark:!bg-gray-800 dark:!text-white",
+    className: "dark:!bg-gray-800 dark:!text-white !border-gray-800",
   },
 };
 
@@ -128,7 +128,7 @@ function PublicHome({ setIsShowHome, username, setProjectID }) {
         server wakes up.`,
         autoClose: false,
         className:
-          " dark:!bg-gray-950 dark:!text-gray-200 border border-gray-200 dark:border-gray-900 ",
+          " dark:!bg-gray-950 dark:!text-gray-200 !border-gray-200 dark:!border-gray-900 ",
         actions: [
           {
             text: "Hide",

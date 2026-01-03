@@ -94,7 +94,7 @@ const PublicProject = ({ projectID, username, setIsShowHome }) => {
       .then(() => {
         showToast({
           message: "Thanks for your support 🥳",
-          className: "dark:!bg-gray-800 dark:!text-white",
+          className: "dark:!bg-gray-800 dark:!text-white !border-gray-800",
           title: false,
           duration: 3000,
         });

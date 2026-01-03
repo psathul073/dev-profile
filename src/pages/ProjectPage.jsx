@@ -17,19 +17,19 @@ const TOAST_CONFIG = {
     position: "top-right",
     title: false,
     duration: 3000,
-    className: "dark:!bg-gray-800 dark:!text-white",
+    className: "dark:!bg-gray-800 dark:!text-white !border-gray-800",
   },
   error: {
     type: "error",
     position: "top-right",
     duration: 4000,
-    className: "dark:!bg-gray-800 dark:!text-white",
+    className: "dark:!bg-gray-800 dark:!text-white !border-gray-800",
   },
   info: {
     type: "info",
     position: "top-right",
     duration: 3000,
-    className: "dark:!bg-gray-800 dark:!text-white",
+    className: "dark:!bg-gray-800 dark:!text-white !border-gray-800",
   },
 };
 
@@ -77,20 +77,6 @@ const ProjectPage = () => {
           if (user.name) {
             const cacheKey = `projects-${user?.name}`;
             clearSpecificItem(cacheKey, projectId, { status: status });
-
-            // const cachedData = localStorage.getItem(cacheKey);
-            // if (cachedData) {
-            //   const parsed = JSON.parse(cachedData);
-
-            //   // Filter out the updated project
-            //   const updatedData = {
-            //     ...parsed,
-            //     value: parsed.value.map((p) =>
-            //       p.id === projectId ? { ...p, status: status } : p
-            //     ),
-            //   };
-            //   localStorage.setItem(cacheKey, JSON.stringify(updatedData));
-            // }
           }
         } else {
           // Handle error case.

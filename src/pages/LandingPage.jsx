@@ -71,7 +71,8 @@ const LandingPage = () => {
         message: donationMsg,
         position: "bottom-right",
         autoClose: false,
-        className: "!bg-gray-950 border !border-gray-600/40 !text-indigo-50",
+        className:
+          "!bg-gray-950 border !border-gray-600/40 !text-indigo-50 !border-gray-800",
         actions: [
           {
             text: "Hide",
@@ -94,10 +95,9 @@ const LandingPage = () => {
 
   return (
     <div className="relative min-h-screen flex items-center justify-center bg-grid-pattern bg-black">
-
       <div className="relative z-10 w-6xl h-screen flex flex-col items-center justify-between p-3">
         {/* Header */}
-      
+
         <header className="w-full inline-flex items-center justify-between">
           <div className="inline-flex items-center gap-4">
             <Svg
