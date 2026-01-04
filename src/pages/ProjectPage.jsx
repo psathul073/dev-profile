@@ -46,7 +46,7 @@ const ProjectPage = () => {
   const [projectForm, setProjectForm] = useState(false);
   const [initialData, setInitialData] = useState(null);
   const { confirmModel } = useConfirmModel();
-  const { showToast } = useToast();
+  const { sounds, showToast } = useToast();
   const observer = useRef();
   const { user } = useAuth();
 
@@ -63,6 +63,9 @@ const ProjectPage = () => {
           showToast({
             message: result.message,
             ...TOAST_CONFIG.success,
+            audio: {
+              audioFile: sounds.success,
+            },
           });
           // Update the specific project in state immediately...
           setProjects((preProjects) =>
@@ -83,6 +86,9 @@ const ProjectPage = () => {
           showToast({
             message: result.message || "Failed to update project status",
             ...TOAST_CONFIG.error,
+            audio: {
+              audioFile: sounds.error,
+            },
           });
         }
       } catch (error) {
@@ -90,13 +96,16 @@ const ProjectPage = () => {
         showToast({
           message: "An unexpected error occurred",
           ...TOAST_CONFIG.error,
+          audio: {
+            audioFile: sounds.error,
+          },
         });
       } finally {
         // Re-enable the specific project's buttons.
         setDisabledProjects((prev) => ({ ...prev, [projectId]: false }));
       }
     },
-    [user?.name, showToast]
+    [user?.name, showToast, sounds.success, sounds.error]
   );
 
   // For project delete.
@@ -104,6 +113,13 @@ const ProjectPage = () => {
     async (projectId, pictureID) => {
       try {
         await DeleteProject(projectId, pictureID);
+         showToast({
+           message: "Project delete successfully.",
+           ...TOAST_CONFIG.success,
+           audio: {
+             audioFile: sounds.success,
+           },
+         });
         // Remove the specific project in state immediately...
         setProjects((prev) => prev.filter((p) => p.id === pictureID));
 
@@ -112,6 +128,9 @@ const ProjectPage = () => {
         showToast({
           message: "An unexpected error occurred",
           ...TOAST_CONFIG.error,
+          audio: {
+            audioFile: sounds.error,
+          },
         });
         throw error; // Re-throw so for confirm modal can catch it..
       } finally {
@@ -119,7 +138,7 @@ const ProjectPage = () => {
         setDisabledProjects((prev) => ({ ...prev, [projectId]: false }));
       }
     },
-    [showToast]
+    [showToast, sounds.error, sounds.success]
   );
 
   // For fetch all projects.
@@ -146,6 +165,9 @@ const ProjectPage = () => {
       showToast({
         message: "Failed to fetch projects",
         ...TOAST_CONFIG.error,
+        audio: {
+          audioFile: sounds.error,
+        },
       });
     } finally {
       setLoading(false);

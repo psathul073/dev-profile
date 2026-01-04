@@ -45,7 +45,7 @@ const ProjectForm = ({ initialData = null, setInitialData, close }) => {
   } = useFileUpload();
   const [selected, setSelected] = useState(initialData?.usedTec || []);
   const [submitting, setSubmitting] = useState(false);
-  const { showToast } = useToast();
+  const { showToast, sounds } = useToast();
   const fetchFormRef = useRef(null);
   const mainFormRef = useRef(null);
   const { user } = useAuth();
@@ -90,6 +90,9 @@ const ProjectForm = ({ initialData = null, setInitialData, close }) => {
           showToast({
             message: result?.message,
             ...TOAST_CONFIG.error,
+            audio: {
+              audioFile: sounds.success,
+            },
           });
           setRepoFetching(false);
           return;
@@ -105,13 +108,16 @@ const ProjectForm = ({ initialData = null, setInitialData, close }) => {
         showToast({
           message: "Repositories Not Found.",
           ...TOAST_CONFIG.error,
+          audio: {
+            audioFile: sounds.error,
+          },
         });
       } finally {
         fetchFormRef.current?.reset();
         setRepoFetching(false);
       }
     },
-    [repoData, showToast]
+    [repoData, showToast, sounds.success, sounds.error]
   );
 
   // For submit project data.
@@ -135,10 +141,13 @@ const ProjectForm = ({ initialData = null, setInitialData, close }) => {
           showToast({
             type: updateResult?.type || "success",
             title: false,
-            message: updateResult?.message || "Something wrong!",
+            message: updateResult?.message || "Project add successfully.",
             duration: 3000,
             className:
               "dark:!bg-gray-800 dark:!text-white dark:!border-gray-800",
+            audio: {
+              audioFile: sounds.success,
+            },
           });
           // Clear data...
           if (updateResult?.type === "success") {
@@ -153,6 +162,9 @@ const ProjectForm = ({ initialData = null, setInitialData, close }) => {
           showToast({
             message: "Project add failed.",
             ...TOAST_CONFIG.error,
+            audio: {
+              audioFile: sounds.error,
+            },
           });
         } finally {
           handleClear();
@@ -168,9 +180,12 @@ const ProjectForm = ({ initialData = null, setInitialData, close }) => {
             showToast({
               type: result?.type || "success",
               title: false,
-              message: result?.message || "Something wrong!",
+              message: result?.message || "Project update successfully.",
               duration: 3000,
               className: "dark:!bg-gray-800 dark:!text-white",
+              audio: {
+                audioFile: sounds.success,
+              },
             });
             // Clear data...
             if (result?.type === "success") {
@@ -184,6 +199,9 @@ const ProjectForm = ({ initialData = null, setInitialData, close }) => {
               message: "Fill in the missing fields...",
               title: false,
               ...TOAST_CONFIG.error,
+              audio: {
+                audioFile: sounds.error,
+              },
             });
             return;
           }
@@ -192,6 +210,9 @@ const ProjectForm = ({ initialData = null, setInitialData, close }) => {
           showToast({
             message: "Project add failed.",
             ...TOAST_CONFIG.error,
+            audio: {
+              audioFile: sounds.error,
+            },
           });
           handleClear();
         } finally {
@@ -199,7 +220,7 @@ const ProjectForm = ({ initialData = null, setInitialData, close }) => {
         }
       }
     },
-    [initialData, user.name, selected, file, handleClear, navigate, showToast]
+    [initialData, user.name, selected, file, handleClear, navigate, showToast, sounds.success, sounds.error]
   );
 
   return (

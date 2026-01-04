@@ -36,7 +36,7 @@ function PublicHome({ setIsShowHome, username, setProjectID }) {
   const [showInfo, setShowInfo] = useState(
     () => localStorage.getItem("infoPopup") || "show"
   );
-  const { showToast, removeToast } = useToast();
+  const { sounds, showToast, removeToast } = useToast();
   const observer = useRef();
 
   const FetchAllProjects = useCallback(async () => {
@@ -87,6 +87,9 @@ function PublicHome({ setIsShowHome, username, setProjectID }) {
         showToast({
           message: "Something went wrong, User not found.",
           ...TOAST_CONFIG.error,
+          audio: {
+            audioFile: sounds.error,
+          },
         });
         return;
       }
@@ -94,9 +97,12 @@ function PublicHome({ setIsShowHome, username, setProjectID }) {
       showToast({
         message: error?.message || "Something went wrong, Profile fetch error.",
         ...TOAST_CONFIG.error,
+        audio: {
+          audioFile: sounds.error,
+        },
       });
     }
-  }, [showToast, username]);
+  }, [showToast, username, sounds.error]);
 
   // For caching...
   useEffect(() => {
@@ -145,9 +151,12 @@ function PublicHome({ setIsShowHome, username, setProjectID }) {
             },
           },
         ],
+        audio: {
+          audioFile: sounds.info,
+        },
       });
     }
-  }, [showToast, removeToast, showInfo]);
+  }, [showToast, removeToast, showInfo, sounds.info]);
 
   return (
     <>

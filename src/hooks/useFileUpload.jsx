@@ -6,7 +6,7 @@ const useFileUpload = () => {
   const [fileURL, setFileURL] = useState(null);
   const [fileName, setFileName] = useState("No selected file");
   const fileInputRef = useRef(null);
-  const { showToast } = useToast();
+  const { sounds, showToast } = useToast();
 
   const removeFile = () => {
     setFileName("No selected file");
@@ -37,6 +37,9 @@ const useFileUpload = () => {
           position: "top-right",
           duration: 3000,
           className: "dark:!bg-gray-800 dark:!text-white dark:!border-gray-800",
+          audio: {
+            audioFile: sounds.warning,
+          },
         });
         // Clear invalid file from input..
         if (fileInputRef.current) {
@@ -53,6 +56,9 @@ const useFileUpload = () => {
           position: "top-right",
           duration: 3000,
           className: "dark:!bg-gray-800 dark:!text-white dark:!border-gray-800",
+          audio: {
+            audioFile: sounds.error,
+          },
         });
         // Clear invalid file from input
         if (fileInputRef.current) {
@@ -67,7 +73,7 @@ const useFileUpload = () => {
       const objURL = URL.createObjectURL(selectedFile);
       setFileURL(objURL);
     },
-    [showToast]
+    [showToast, sounds.error, sounds.warning]
   );
 
   // Revoke image blob url.

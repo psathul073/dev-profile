@@ -20,7 +20,7 @@ const PublicProject = ({ projectID, username, setIsShowHome }) => {
   const [user, setUser] = useState(null);
   const [isDisable, setIsDisable] = useState(false);
   const [isResized, setIsResized] = useState(false);
-  const { showToast } = useToast();
+  const { sounds, showToast } = useToast();
 
   // Create a project like node.
   const projectLikeRef = ref(db, `projects/${projectID}`);
@@ -97,13 +97,16 @@ const PublicProject = ({ projectID, username, setIsShowHome }) => {
           className: "dark:!bg-gray-800 dark:!text-white dark:!border-gray-800",
           title: false,
           duration: 3000,
+          audio: {
+            audioFile: sounds.success,
+          },
         });
         setIsDisable(true);
       })
       .catch((error) => {
         console.error("Transaction failed:", error);
       });
-  }, [isDisable, user, projectLikeRef, projectID, showToast]);
+  }, [isDisable, user, projectLikeRef, projectID, showToast, sounds.success]);
 
   // Fetch a single project.
   const FetchProject = useCallback(async () => {

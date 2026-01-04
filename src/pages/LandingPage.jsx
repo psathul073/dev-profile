@@ -40,7 +40,7 @@ const LandingPage = () => {
     () => localStorage.getItem("donatePopup") || "show"
   );
 
-  const { showToast, removeToast } = useToast();
+  const { sounds, showToast, removeToast } = useToast();
   const authModelRef = useRef(null);
   const startBtnRef = useRef(null);
   const authBtnRef = useRef(null);
@@ -89,9 +89,12 @@ const LandingPage = () => {
             },
           },
         ],
+        audio: {
+          audioFile: sounds.info,
+        },
       });
     }
-  }, [showDonate, showToast, removeToast]);
+  }, [showDonate, showToast, removeToast, sounds.info]);
 
   return (
     <div className="relative min-h-screen flex items-center justify-center bg-grid-pattern bg-black">

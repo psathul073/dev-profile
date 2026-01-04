@@ -5,7 +5,7 @@ import { useCallback } from "react";
 
 const ShareLink = ({ shareUrl, setShareLinkModel, userData }) => {
   const encodedURL = encodeURIComponent(shareUrl);
-  const { showToast } = useToast();
+  const { sounds, showToast } = useToast();
   const navigate = useNavigate();
 
   const handleCopy =  useCallback( () => {
@@ -18,13 +18,16 @@ const ShareLink = ({ shareUrl, setShareLinkModel, userData }) => {
             duration: 3000,
             className:
               "dark:!bg-gray-800 dark:!text-white dark:!border-gray-800",
+            audio: {
+              audioFile: sounds.success,
+            },
           })
         )
         .catch(() => fallbackCopy());
     } else {
       fallbackCopy();
     }
-  },[showToast, shareUrl]);
+  },[showToast, shareUrl, sounds.success]);
 
   const fallbackCopy = () => {
     const input = document.createElement("input");

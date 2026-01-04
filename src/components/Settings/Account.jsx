@@ -11,7 +11,7 @@ const Account = () => {
   const { confirmModel } = useConfirmModel();
   const navigate = useNavigate();
   const { user } = useAuth();
-  const { showToast } = useToast();
+  const { sounds, showToast } = useToast();
 
   const clearLocalData = () => {
     if (localStorage.getItem(`user-${user?.name}`) !== null) {
@@ -20,6 +20,9 @@ const Account = () => {
         message: "Successfully cleared all local data.",
         duration: 3000,
         className: "dark:!bg-gray-800 dark:!text-white dark:!border-gray-800",
+        audio: {
+          audioFile: sounds.success,
+        },
       });
     }
   };
@@ -36,6 +39,9 @@ const Account = () => {
           message: "logout successfully.",
           className: "dark:!bg-gray-800 dark:!text-white dark:!border-gray-800",
           duration: 2000,
+          audio: {
+            audioFile: sounds.success,
+          },
         });
         navigate("/landing");
       }, 2000);
@@ -45,11 +51,14 @@ const Account = () => {
         className: "dark:!bg-gray-800 dark:!text-white dark:!border-gray-800",
         type: "error",
         duration: 3000,
+        audio: {
+          audioFile: sounds.error,
+        },
       });
     } finally {
       setDisabled(false);
     }
-  }, [navigate, showToast, user?.name]);
+  }, [navigate, showToast, user?.name, sounds.success, sounds.error]);
 
   const handleAccountDelete = useCallback(async () => {
     try {
@@ -61,6 +70,9 @@ const Account = () => {
           message: "Account delete successfully.",
           className: "dark:!bg-gray-800 dark:!text-white dark:!border-gray-800",
           duration: 2000,
+          audio: {
+            audioFile: sounds.success,
+          },
         });
         navigate("/landing");
       }, 2000);
@@ -70,11 +82,14 @@ const Account = () => {
         className: "dark:!bg-gray-800 dark:!text-white dark:!border-gray-800",
         type: "error",
         duration: 3000,
+        audio: {
+          audioFile: sounds.error,
+        },
       });
     } finally {
       setDisabled(false);
     }
-  }, [navigate, showToast]);
+  }, [navigate, showToast, sounds.success, sounds.error]);
 
   return (
     <div className="p-2">

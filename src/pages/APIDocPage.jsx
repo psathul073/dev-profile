@@ -9,7 +9,7 @@ const APIDocPage = () => {
   const [apiKey, setApiKey] = useState(
     () => localStorage.getItem("apiKey") || null
   );
-  const { showToast } = useToast();
+  const { sounds, showToast } = useToast();
 
   const GenerateApiKey = useCallback(async () => {
     setIsGenerating(true);
@@ -26,6 +26,9 @@ const APIDocPage = () => {
         message: "API key is generated successfully.",
         className: "dark:!bg-gray-800 dark:!text-white dark:!border-gray-800",
         duration: 3000,
+        audio: {
+          audioFile: sounds.success,
+        },
       });
     } catch (error) {
       console.error("API key generation failed: ", error);
@@ -35,11 +38,14 @@ const APIDocPage = () => {
         message: "API key generation failed",
         className: "dark:!bg-gray-800 dark:!text-white dark:!border-gray-800",
         duration: 4000,
+        audio: {
+          audioFile: sounds.error,
+        },
       });
     } finally {
       setIsGenerating(false);
     }
-  }, [showToast]);
+  }, [showToast, sounds.success, sounds.error]);
 
   const exampleCode = `
 fetch("https://dev-profile-qd3u.onrender.com/api/projects?limit=10", {

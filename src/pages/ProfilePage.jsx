@@ -13,7 +13,7 @@ const ProfilePage = () => {
   const [loading, setLoading] = useState(false);
   const [count, setCount] = useState({});
   const { file, fileURL, fileInputRef, handleFileChange } = useFileUpload();
-  const { showToast } = useToast();
+  const { sounds, showToast } = useToast();
   const { user } = useAuth();
   const navigate = useNavigate();
 
@@ -27,6 +27,9 @@ const ProfilePage = () => {
         position: "center-top",
         duration: 3000,
         className: "dark:!bg-gray-800 dark:!text-white dark:!border-gray-800",
+        audio: {
+          audioFile: sounds.success,
+        },
       });
       setEditMode(true);
     } else {
@@ -37,10 +40,13 @@ const ProfilePage = () => {
         position: "center-top",
         duration: 3000,
         className: "dark:!bg-gray-800 dark:!text-white dark:!border-gray-800",
+        audio: {
+          audioFile: sounds.info,
+        },
       });
       setEditMode(false);
     }
-  }, [showToast, editMode]);
+  }, [showToast, editMode, sounds.info, sounds.success]);
 
   // Handle submit.
   const handleSubmit = useCallback(
@@ -73,6 +79,9 @@ const ProfilePage = () => {
             duration: 3000,
             className:
               "dark:!bg-gray-800 dark:!text-white dark:!border-gray-800",
+            audio: {
+              audioFile: sounds.error,
+            },
           });
         } else {
           showToast({
@@ -81,6 +90,9 @@ const ProfilePage = () => {
             duration: 3000,
             className:
               "dark:!bg-gray-800 dark:!text-white dark:!border-gray-800",
+            audio: {
+              audioFile: sounds.success,
+            },
           });
           setTimeout(() => navigate(0), 2000);
         }
@@ -90,13 +102,16 @@ const ProfilePage = () => {
           type: "error",
           duration: 3000,
           className: "dark:!bg-gray-800 dark:!text-white dark:!border-gray-800",
+          audio: {
+            audioFile: sounds.error,
+          },
         });
         throw error;
       } finally {
         setLoading(false);
       }
     },
-    [user.name, file, navigate, showToast]
+    [user.name, file, navigate, showToast, sounds.success, sounds.error]
   );
 
   // To get total projects and likes count.
