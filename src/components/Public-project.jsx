@@ -15,12 +15,16 @@ import PublicProjectSkeleton from "./Skeleton/PublicProjectSkeleton";
 
 const PublicProject = ({ projectID, username, setIsShowHome }) => {
   const [project, setProject] = useState({});
+  const [badge, setBadge] = useState(null);
   const [isFetching, setIsFetching] = useState(false);
   const [count, setCount] = useState(0);
   const [user, setUser] = useState(null);
   const [isDisable, setIsDisable] = useState(false);
   const [isResized, setIsResized] = useState(false);
   const { sounds, showToast } = useToast();
+
+  // const badgeValue = project?.badge?.length !== 0 && project?.badge[0]?.value;
+  // const badgeLabel = project?.badge?.length !== 0 && project?.badge[0]?.label;
 
   // Create a project like node.
   const projectLikeRef = ref(db, `projects/${projectID}`);
@@ -113,6 +117,9 @@ const PublicProject = ({ projectID, username, setIsShowHome }) => {
     try {
       setIsFetching(true);
       const result = await FetchProjectForPublic(username, projectID);
+      if (result?.badge?.length !== 0) {
+        setBadge(result.badge[0]);
+      }
       setProject({ ...result });
     } catch (error) {
       console.error("Project fetching error,", error);
@@ -135,10 +142,27 @@ const PublicProject = ({ projectID, username, setIsShowHome }) => {
           <div className=" relative h-full flex flex-col md:flex-row justify-between max-md:items-center gap-3 group ">
             <button
               onClick={() => setIsShowHome(true)}
-              className="absolute top-0 right-0 md:hidden p-1.5 text-sm rounded-full border border-indigo-200/10 hover:bg-red-800/10 hover:text-red-800 transition cursor-pointer"
+              className="z-10 absolute -top-1 -right-1 md:hidden p-1 text-sm rounded-full border border-indigo-200/10 hover:bg-red-800/10 hover:text-red-800 transition cursor-pointer"
             >
               <Svg name={"X"} />
             </button>
+
+            {/* Badge */}
+            {badge && (
+              <span
+                className={` ${
+                 badge.value === "badge1"
+                    ? "bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400"
+                    : badge.value === "badge2"
+                    ? "bg-amber-50 dark:bg-amber-900/20 text-amber-600 dark:text-amber-400"
+                    : badge.value === "badge3"
+                    ? "bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 dark:text-emerald-400"
+                    : "bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400"
+                }  z-10 absolute top-0 left-0 px-2 py-1 rounded-lg font-medium text-xs backdrop-blur-xs`}
+              >
+                {badge.label}
+              </span>
+            )}
 
             {/* Image section */}
             <img
@@ -161,7 +185,7 @@ const PublicProject = ({ projectID, username, setIsShowHome }) => {
                   <h2 className="font-semibold text-lg ">{project?.title}</h2>
                   <button
                     onClick={() => setIsShowHome(true)}
-                    className=" hidden md:block p-1 text-sm rounded-full bg-indigo-50/10 dark:bg-indigo-950/20 border border-indigo-200/10 hover:bg-red-800/10 hover:text-red-800 opacity-0  group-hover:opacity-100 group-active:opacity-100 transition cursor-pointer"
+                    className=" hidden md:block mb-2 ml-2  p-1 text-sm rounded-full bg-indigo-50/10 dark:bg-indigo-950/20 border border-indigo-200/10 hover:bg-red-800/10 hover:text-red-800 opacity-0  group-hover:opacity-100 group-active:opacity-100 transition cursor-pointer"
                   >
                     <Svg name={"X"} />
                   </button>

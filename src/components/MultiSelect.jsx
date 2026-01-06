@@ -1,57 +1,35 @@
 import { useState, useRef, useEffect, memo } from "react";
 import Svg from "./Svg";
 
-const allOptions = [
-  { value: "html", label: "HTML" },
-  { value: "css", label: "CSS" },
-  { value: "js", label: "JavaScript" },
-  { value: "ts", label: "TypeScript" },
-  { value: "tw", label: "Tailwindcss." },
-  { value: "bt", label: "Bootstrap" },
-  { value: "sass", label: "Sass" },
-  { value: "react", label: "React" },
-  { value: "nx", label: "Next.js" },
-  { value: "rq", label: "React Query" },
-  { value: "rr", label: "React Router" },
-  { value: "rhf", label: "React Hook Form." },
-  { value: "axios", label: "Axios" },
-  { value: "git", label: "Git" },
-  { value: "gh", label: "Github" },
-  { value: "npm", label: "NPM" },
-  { value: "nodeJs", label: "Node.js" },
-  { value: "exJs", label: "Express.js" },
-  { value: "threeJs", label: "Three.js" },
-  { value: "pg", label: "PostgreSQL" },
-  { value: "mdb", label: "MongoDB" },
-  { value: "fb", label: "Firebase" },
-  { value: "sqz", label: "Sequelize" },
-  { value: "dk", label: "Docker" },
-  { value: "bdr", label: "Blender" },
-  { value: "cv", label: "Canva" },
-  { value: "fm", label: "Figma" },
-  { value: "vs", label: "VS Code" },
-  { value: "ws", label: "Websocket" },
-  { value: "cy", label: "Cloudinary" },
-];
 
-const MultiSelect = ({ selected, setSelected }) => {
+const MultiSelect = ({
+  options,
+  placeholder,
+  type = "multi",
+  selected,
+  setSelected,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const dropdownRef = useRef(null);
 
   // Filter out selected options from available list.
-  const availableOptions = allOptions.filter(
+  const availableOptions = options.filter(
     (opt) => !selected.some((sel) => sel.value === opt.value)
   );
 
   // Select option
   const handleSelect = (value, label) => {
-    setSelected((prev) =>
-      prev.some((opt) => opt.value === value)
-        ? prev
-        : [...prev, { value, label }]
-    );
-    setIsOpen(false); // close after selection.
+    setSelected((prev = []) => {
+      if (type === "multi") {
+        return prev.some((opt) => opt.value === value)
+          ? prev.filter(opt => opt.value !== value )
+          : [...prev, { value, label }];
+      } else {
+        return [{ value, label }];
+      }
+    });
+    if (type !== "multi") setIsOpen(false); // close after selection.
   };
 
   // Delete selection.
@@ -102,7 +80,7 @@ const MultiSelect = ({ selected, setSelected }) => {
               </li>
             ))
           ) : (
-            <li className="text-gray-400">Select used technologies...</li>
+            <li className="text-gray-400">Select {placeholder}</li>
           )}
         </ul>
 

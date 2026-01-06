@@ -50,6 +50,9 @@ const ProjectPage = () => {
   const observer = useRef();
   const { user } = useAuth();
 
+  console.log(projects);
+  
+
   // For make project private and public.
   const projectStatus = useCallback(
     async (projectId, status) => {
@@ -275,6 +278,9 @@ const ProjectPage = () => {
             {projects.length > 0 &&
               projects.map((p, i) => {
                 const isLast = i === projects.length - 1 && projects.length > 0;
+                const badgeValue = p.badge?.length !== 0 && p.badge[0]?.value;
+                const badgeLabel = p.badge?.length !== 0 && p.badge[0]?.label;
+
                 return (
                   <li
                     key={p.id + i}
@@ -283,6 +289,20 @@ const ProjectPage = () => {
                       listView ? "flex-row gap-4 p-4" : "flex-col"
                     } rounded-xl border border-gray-200 dark:border-gray-700 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm overflow-hidden hover:shadow-lg transition-shadow`}
                   >
+                    {/* Badge */}
+                    <span
+                      className={` ${
+                        badgeValue === "badge1"
+                          ? "bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400"
+                          : badgeValue === "badge2"
+                          ? "bg-amber-50 dark:bg-amber-900/20 text-amber-600 dark:text-amber-400"
+                          : badgeValue === "badge3"
+                          ? "bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 dark:text-emerald-400"
+                          : "bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400"
+                      }  z-10 absolute top-2.5 left-2.5 px-2 py-1 rounded-lg font-medium text-xs backdrop-blur-xs`}
+                    >
+                      {badgeLabel}
+                    </span>
                     {/* Project Image */}
                     <div
                       className={`relative overflow-hidden ${

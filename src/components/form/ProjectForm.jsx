@@ -26,6 +26,46 @@ const TOAST_CONFIG = {
   },
 };
 
+const technologies = [
+  { value: "html", label: "HTML" },
+  { value: "css", label: "CSS" },
+  { value: "js", label: "JavaScript" },
+  { value: "ts", label: "TypeScript" },
+  { value: "tw", label: "Tailwindcss." },
+  { value: "bt", label: "Bootstrap" },
+  { value: "sass", label: "Sass" },
+  { value: "react", label: "React" },
+  { value: "nx", label: "Next.js" },
+  { value: "rq", label: "React Query" },
+  { value: "rr", label: "React Router" },
+  { value: "rhf", label: "React Hook Form." },
+  { value: "axios", label: "Axios" },
+  { value: "git", label: "Git" },
+  { value: "gh", label: "Github" },
+  { value: "npm", label: "NPM" },
+  { value: "nodeJs", label: "Node.js" },
+  { value: "exJs", label: "Express.js" },
+  { value: "threeJs", label: "Three.js" },
+  { value: "pg", label: "PostgreSQL" },
+  { value: "mdb", label: "MongoDB" },
+  { value: "fb", label: "Firebase" },
+  { value: "sqz", label: "Sequelize" },
+  { value: "dk", label: "Docker" },
+  { value: "bdr", label: "Blender" },
+  { value: "cv", label: "Canva" },
+  { value: "fm", label: "Figma" },
+  { value: "vs", label: "VS Code" },
+  { value: "ws", label: "Websocket" },
+  { value: "cy", label: "Cloudinary" },
+];
+
+const badges = [
+  { value: "badge1", label: "NEW" },
+  { value: "badge2", label: "POPULAR" },
+  { value: "badge3", label: "FEATURED" },
+  { value: "badge4", label: "UPCOMING" },
+];
+
 const ProjectForm = ({ initialData = null, setInitialData, close }) => {
   const [fetchMode, setFetchMode] = useState(false);
   const [repoData, setRepoData] = useState({
@@ -43,7 +83,9 @@ const ProjectForm = ({ initialData = null, setInitialData, close }) => {
     handleFileChange,
     removeFile,
   } = useFileUpload();
-  const [selected, setSelected] = useState(initialData?.usedTec || []);
+  const [selectedTec, setSelectedTec] = useState(initialData?.usedTec || []);
+  const [selectedBadge, setSelectedBadge] = useState(initialData?.badge || []);
+
   const [submitting, setSubmitting] = useState(false);
   const { showToast, sounds } = useToast();
   const fetchFormRef = useRef(null);
@@ -62,7 +104,8 @@ const ProjectForm = ({ initialData = null, setInitialData, close }) => {
       liveURL: "",
       demoURL: "",
     });
-    setSelected([]);
+    setSelectedTec([]);
+    setSelectedBadge([]);
     removeFile();
   }, [removeFile]);
 
@@ -129,11 +172,18 @@ const ProjectForm = ({ initialData = null, setInitialData, close }) => {
 
       if (initialData) {
         if (!file) newFormData.delete("picture");
+
         if (initialData.pictureID)
           newFormData.set("pictureID", initialData?.pictureID);
-        if (selected.length > 0)
-          newFormData.set("usedTec", JSON.stringify(selected));
+
+        if (selectedTec.length > 0)
+          newFormData.set("usedTec", JSON.stringify(selectedTec));
+
+        if (selectedBadge.length > 0)
+          newFormData.set("badge", JSON.stringify(selectedBadge));
+
         newFormData.set("projectID", initialData?.id);
+
         newFormData.set("status", initialData?.status);
         try {
           const updateResult = await UpdateProject(newFormData);
@@ -172,9 +222,11 @@ const ProjectForm = ({ initialData = null, setInitialData, close }) => {
         }
       } else {
         try {
-          if (selected.length > 0 && file) {
+          if (selectedTec.length > 0 && selectedBadge.length > 0 && file) {
             newFormData.set("picture", file);
-            newFormData.set("usedTec", JSON.stringify(selected));
+            newFormData.set("usedTec", JSON.stringify(selectedTec));
+            newFormData.set("badge", JSON.stringify(selectedBadge));
+
             const result = await UploadProject(newFormData);
 
             showToast({
@@ -182,7 +234,8 @@ const ProjectForm = ({ initialData = null, setInitialData, close }) => {
               title: false,
               message: result?.message || "Project update successfully.",
               duration: 3000,
-              className: "dark:!bg-gray-800 dark:!text-white",
+              className:
+                "dark:!bg-gray-800 dark:!text-white dark:!border-gray-800",
               audio: {
                 audioFile: sounds.success,
               },
@@ -220,7 +273,18 @@ const ProjectForm = ({ initialData = null, setInitialData, close }) => {
         }
       }
     },
-    [initialData, user.name, selected, file, handleClear, navigate, showToast, sounds.success, sounds.error]
+    [
+      initialData,
+      user.name,
+      selectedTec,
+      selectedBadge,
+      file,
+      handleClear,
+      navigate,
+      showToast,
+      sounds.success,
+      sounds.error,
+    ]
   );
 
   return (
@@ -275,6 +339,7 @@ const ProjectForm = ({ initialData = null, setInitialData, close }) => {
               required
             />
           </div>
+
           <div className=" w-full flex items-center justify-end-safe">
             <button
               disabled={repoFetching}
@@ -309,6 +374,7 @@ const ProjectForm = ({ initialData = null, setInitialData, close }) => {
                 required
               />
             </div>
+
             <div className="col-span-2">
               <textarea
                 className="w-full h-28 p-2.5 rounded-md border border-gray-300 dark:border-gray-700 outline-4 outline-gray-200/15 dark:outline-gray-700/30 "
@@ -325,8 +391,25 @@ const ProjectForm = ({ initialData = null, setInitialData, close }) => {
             </div>
 
             {/* Select container*/}
-            <div className="col-span-2">
-              <MultiSelect selected={selected} setSelected={setSelected} />
+            <div className="max-sm:col-span-2">
+              {/* technologies */}
+              <MultiSelect
+                selected={selectedTec}
+                setSelected={setSelectedTec}
+                placeholder={"used technologies..."}
+                options={technologies}
+                type="multi"
+              />
+            </div>
+            {/* badges */}
+            <div className="max-sm:col-span-2">
+              <MultiSelect
+                selected={selectedBadge}
+                setSelected={setSelectedBadge}
+                placeholder={"badges..."}
+                options={badges}
+                type="single"
+              />
             </div>
 
             <div className="max-sm:col-span-2">
@@ -339,9 +422,9 @@ const ProjectForm = ({ initialData = null, setInitialData, close }) => {
                 defaultValue={
                   initialData ? initialData?.liveURL : repoData?.liveURL
                 }
-                required
               />
             </div>
+
             <div className="max-sm:col-span-2">
               <input
                 className="w-full p-2.5 rounded-md border border-gray-300 dark:border-gray-700 outline-4 outline-gray-200/15 dark:outline-gray-700/30 "
@@ -352,7 +435,6 @@ const ProjectForm = ({ initialData = null, setInitialData, close }) => {
                 defaultValue={
                   initialData ? initialData?.demoURL : repoData?.demoURL
                 }
-                required
               />
             </div>
 
@@ -406,6 +488,7 @@ const ProjectForm = ({ initialData = null, setInitialData, close }) => {
                 <Svg name={"delete"} />
               </button>
             </div>
+
             {/* Action */}
             <div className="col-span-2 flex justify-end items-center mb-6 ">
               <button
