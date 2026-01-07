@@ -33,6 +33,28 @@ const TOAST_CONFIG = {
   },
 };
 
+const BADGE_CONFIG = {
+  badge1: {
+    label: "NEW",
+    class: "bg-blue-100 dark:bg-blue-900/20 text-blue-700",
+  },
+  badge2: {
+    label: "POPULAR",
+    class:
+      "bg-amber-100 dark:bg-amber-900/20 text-amber-700",
+  },
+  badge3: {
+    label: "FEATURED",
+    class:
+      "bg-emerald-100 dark:bg-emerald-900/20 text-emerald-700",
+  },
+  badge4: {
+    label: "UPCOMING",
+    class:
+      "bg-indigo-100 dark:bg-indigo-900/20 text-indigo-700 ",
+  },
+};
+
 const ProjectPage = () => {
   const [projects, setProjects] = useState([]);
   const [nextCursor, setNextCursor] = useState(null);
@@ -49,9 +71,6 @@ const ProjectPage = () => {
   const { sounds, showToast } = useToast();
   const observer = useRef();
   const { user } = useAuth();
-
-  console.log(projects);
-  
 
   // For make project private and public.
   const projectStatus = useCallback(
@@ -116,16 +135,15 @@ const ProjectPage = () => {
     async (projectId, pictureID) => {
       try {
         await DeleteProject(projectId, pictureID);
-         showToast({
-           message: "Project delete successfully.",
-           ...TOAST_CONFIG.success,
-           audio: {
-             audioFile: sounds.success,
-           },
-         });
+        showToast({
+          message: "Project delete successfully.",
+          ...TOAST_CONFIG.success,
+          audio: {
+            audioFile: sounds.success,
+          },
+        });
         // Remove the specific project in state immediately...
         setProjects((prev) => prev.filter((p) => p.id === pictureID));
-
       } catch (error) {
         console.error("Error updating project status:", error);
         showToast({
@@ -278,8 +296,17 @@ const ProjectPage = () => {
             {projects.length > 0 &&
               projects.map((p, i) => {
                 const isLast = i === projects.length - 1 && projects.length > 0;
-                const badgeValue = p.badge?.length !== 0 && p.badge[0]?.value;
-                const badgeLabel = p.badge?.length !== 0 && p.badge[0]?.label;
+
+                const badge = p.badge?.[0] ?? {
+                  value: "badge3",
+                  label: "FEATURED",
+                };
+
+                const config = BADGE_CONFIG[badge?.value] ?? {
+                  label: badge.label,
+                  class:
+                    "bg-emerald-100 dark:bg-emerald-900/20 text-emerald-700 ",
+                };
 
                 return (
                   <li
@@ -291,17 +318,9 @@ const ProjectPage = () => {
                   >
                     {/* Badge */}
                     <span
-                      className={` ${
-                        badgeValue === "badge1"
-                          ? "bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400"
-                          : badgeValue === "badge2"
-                          ? "bg-amber-50 dark:bg-amber-900/20 text-amber-600 dark:text-amber-400"
-                          : badgeValue === "badge3"
-                          ? "bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 dark:text-emerald-400"
-                          : "bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400"
-                      }  z-10 absolute top-2.5 left-2.5 px-2 py-1 rounded-lg font-medium text-xs backdrop-blur-xs`}
+                      className={` ${config.class}  z-10 absolute top-2.5 left-2.5 px-2 py-1 rounded-lg font-medium text-xs backdrop-blur-xs`}
                     >
-                      {badgeLabel}
+                      {config.label}
                     </span>
                     {/* Project Image */}
                     <div

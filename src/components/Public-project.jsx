@@ -13,6 +13,28 @@ import {
 import { useToast } from "d9-toast";
 import PublicProjectSkeleton from "./Skeleton/PublicProjectSkeleton";
 
+const BADGE_CONFIG = {
+  badge1: {
+    label: "NEW",
+    class: "bg-blue-100 dark:bg-blue-900/20 text-blue-700 ",
+  },
+  badge2: {
+    label: "POPULAR",
+    class:
+      "bg-amber-100 dark:bg-amber-900/20 text-amber-700",
+  },
+  badge3: {
+    label: "FEATURED",
+    class:
+      "bg-emerald-100 dark:bg-emerald-900/20 text-emerald-700",
+  },
+  badge4: {
+    label: "UPCOMING",
+    class:
+      "bg-indigo-100 dark:bg-indigo-900/20 text-indigo-700",
+  },
+};
+
 const PublicProject = ({ projectID, username, setIsShowHome }) => {
   const [project, setProject] = useState({});
   const [badge, setBadge] = useState(null);
@@ -118,7 +140,12 @@ const PublicProject = ({ projectID, username, setIsShowHome }) => {
       setIsFetching(true);
       const result = await FetchProjectForPublic(username, projectID);
       if (result?.badge?.length !== 0) {
-        setBadge(result.badge[0]);
+        setBadge(
+          result.badge?.[0] ?? {
+            value: "badge3",
+            label: "FEATURED",
+          }
+        );
       }
       setProject({ ...result });
     } catch (error) {
@@ -131,6 +158,12 @@ const PublicProject = ({ projectID, username, setIsShowHome }) => {
   useEffect(() => {
     FetchProject();
   }, []);
+
+  const config = BADGE_CONFIG[badge?.value] ?? {
+    label: badge?.label,
+    class:
+      "bg-emerald-100 dark:bg-emerald-900/20 text-emerald-700",
+  };
 
   return (
     <div className="h-full w-full flex items-center justify-center overflow-y-scroll">
@@ -148,21 +181,12 @@ const PublicProject = ({ projectID, username, setIsShowHome }) => {
             </button>
 
             {/* Badge */}
-            {badge && (
-              <span
-                className={` ${
-                 badge.value === "badge1"
-                    ? "bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400"
-                    : badge.value === "badge2"
-                    ? "bg-amber-50 dark:bg-amber-900/20 text-amber-600 dark:text-amber-400"
-                    : badge.value === "badge3"
-                    ? "bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 dark:text-emerald-400"
-                    : "bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400"
-                }  z-10 absolute top-0 left-0 px-2 py-1 rounded-lg font-medium text-xs backdrop-blur-xs`}
-              >
-                {badge.label}
-              </span>
-            )}
+
+            <span
+              className={` ${config.class}  z-10 absolute top-0 left-0 px-2 py-1 rounded-lg font-semibold text-xs backdrop-blur-md `}
+            >
+              {config.label}
+            </span>
 
             {/* Image section */}
             <img
